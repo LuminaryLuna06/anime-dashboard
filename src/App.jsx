@@ -11,7 +11,7 @@ import { AuthProvider } from "./context/AuthContext";
 function App() {
   return (
     <AuthProvider>
-      <Router basename="/anime-dashboard/">
+      <Router>
         <div className="text-gray-200 bg-gradient-to-r from-black to-slate-800 font-sans">
           <NavBar />
           <SkeletonTheme baseColor="#202020" highlightColor="#444">
