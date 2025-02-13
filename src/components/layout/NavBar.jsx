@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import { useAuth } from "../../context/authContext";
+import { doSignOut } from "../../firebase/auth";
 function NavBar() {
+  const { userLoggedIn } = useAuth();
   return (
     <div className="navbar bg-[#23252b] text-neutral-content h-5 sticky top-0 z-20">
       <div className="navbar-start">
@@ -60,10 +62,22 @@ function NavBar() {
           </li>
         </ul>
       </div>
-      <div className="navbar-end">
-        <Link to={"/admin"} className="btn ">
+      <div className="navbar-end gap-3">
+        <Link to={"/login"} className="btn ">
           Admin
         </Link>
+        {userLoggedIn ? (
+          <button
+            onClick={() => {
+              doSignOut().then(() => {
+                navigate("/login");
+              });
+            }}
+            className="btn"
+          >
+            Logout
+          </button>
+        ) : null}
       </div>
     </div>
   );

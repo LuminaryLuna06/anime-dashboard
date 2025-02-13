@@ -5,7 +5,6 @@ import AnimePage from "../pages/anime/AnimePage";
 import Dashboard from "../pages/dashboard/Dashboard";
 import Genre from "../pages/genres/Genre";
 import GenrePage from "../pages/genres/components/GenrePage.jsx/GenrePage";
-import Login from "../pages/login/Login";
 
 const PublicRoutes = () => (
   <Routes>
@@ -15,12 +14,6 @@ const PublicRoutes = () => (
     <Route path="/dashboard" element={<Dashboard />} />
     <Route path="/genres" element={<Genre />} />
     <Route path="/genres/:genreId/:genreName" element={<GenrePage />} />
-    <Route path="/login" element={<Login />} />
-
-    <Route
-      path="*"
-      element={<div> Not Found or You do not have permission.</div>}
-    />
   </Routes>
 );
 

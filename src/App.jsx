@@ -7,11 +7,11 @@ import Footer from "./components/layout/Footer";
 import PublicRoutes from "./routes/PublicRoutes";
 import AdminRoutes from "./routes/AdminRoutes";
 
-import { AuthProvider } from "./context/AuthContext";
+import { AuthProvider } from "./context/authContext/index";
 function App() {
   return (
-    <AuthProvider>
-      <Router>
+    <Router>
+      <AuthProvider>
         <div className="text-gray-200 bg-gradient-to-r from-black to-slate-800 font-sans">
           <NavBar />
           <SkeletonTheme baseColor="#202020" highlightColor="#444">
@@ -20,8 +20,8 @@ function App() {
           </SkeletonTheme>
           <Footer />
         </div>
-      </Router>
-    </AuthProvider>
+      </AuthProvider>
+    </Router>
   );
 }
 
