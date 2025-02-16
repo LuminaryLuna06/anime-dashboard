@@ -63,7 +63,7 @@ function NavBar() {
         </ul>
       </div>
       <div className="navbar-end gap-3">
-        <Link to={"/login"} className="btn ">
+        <Link to={"/admin"} className="btn ">
           Admin
         </Link>
         {userLoggedIn ? (
