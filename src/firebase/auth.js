@@ -31,27 +31,7 @@ export const doCreateUserWithEmailAndPassword = async (email, password) => {
 };
 
 export const doSignInWithEmailAndPassword = async (email, password) => {
-  // return signInWithEmailAndPassword(auth, email, password);
-  try {
-    const userCredential = await signInWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-    const user = userCredential.user;
-
-    const userDoc = await getDoc(doc(db, "users", user.uid));
-    if (userDoc.exists()) {
-      const userData = userDoc.data();
-      console.log("User Role:", userData.role);
-      return userData.role;
-    } else {
-      console.log("No user data found!");
-      return null;
-    }
-  } catch (error) {
-    console.error("Error signing in:", error);
-  }
+  return signInWithEmailAndPassword(auth, email, password);
 };
 
 export const doSignInWithGoogle = async () => {
@@ -70,31 +50,29 @@ export const doSignInWithGoogle = async () => {
   }
 };
 
-export const checkAdmin = async (user) => {
-  try {
-    if (!user || !user.uid) {
-      console.log("Invalid user object:", user);
-      return false;
-    }
+// export const checkAdmin = async (user) => {
+//   try {
+//     if (!user || !user.uid) {
+//       console.log("Invalid user object:", user);
+//       return false;
+//     }
 
-    const userDoc = await getDoc(doc(db, "users", user.uid));
-    if (userDoc.exists()) {
-      const userData = userDoc.data();
-      console.log("User data:", userData);
-      if (userData.role === "admin") {
-        return true;
-      } else {
-        return false;
-      }
-    } else {
-      console.log("No user data found!");
-      return false;
-    }
-  } catch (error) {
-    console.error("Error checking admin role:", error);
-    return false;
-  }
-};
+//     const userDoc = await getDoc(doc(db, "users", user.uid));
+//     if (userDoc.exists()) {
+//       const userData = userDoc.data();
+//       console.log("User data:", userData);
+//       if (userData.role === "admin") return true;
+//       else return false;
+//     }
+//     else {
+//       console.log("No user data found!");
+//       return false;
+//     }
+//   } catch (error) {
+//     console.error("Error checking admin role:", error);
+//     return false;
+//   }
+// };
 
 export const doSignOut = () => {
   return auth.signOut();

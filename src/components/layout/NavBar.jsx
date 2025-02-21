@@ -1,9 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import { doSignOut } from "../../firebase/auth";
 function NavBar() {
-  const { userLoggedIn } = useAuth();
+  const { isAdmin, userLoggedIn } = useAuth();
+  const navigate = useNavigate();
   return (
     <div className="navbar bg-[#23252b] text-neutral-content h-5 sticky top-0 z-20">
       <div className="navbar-start">
@@ -40,6 +41,11 @@ function NavBar() {
             <li>
               <Link to={"/genres"}>Genres</Link>
             </li>
+            {isAdmin ? (
+            <li>
+              <Link to={"/admin"}>Admin</Link>
+            </li>
+          ) : null}
           </ul>
         </div>
         <Link className="btn btn-ghost text-2xl" to={"/"}>
@@ -60,12 +66,14 @@ function NavBar() {
           <li>
             <Link to={"/genres"}>Genres</Link>
           </li>
+          {isAdmin ? (
+            <li>
+              <Link to={"/admin"}>Admin</Link>
+            </li>
+          ) : null}
         </ul>
       </div>
       <div className="navbar-end gap-3">
-        <Link to={"/admin"} className="btn ">
-          Admin
-        </Link>
         {userLoggedIn ? (
           <button
             onClick={() => {
@@ -77,7 +85,11 @@ function NavBar() {
           >
             Logout
           </button>
-        ) : null}
+        ) : (
+          <Link to={"/login"} className="btn ">
+            Log in
+          </Link>
+        )}
       </div>
     </div>
   );
