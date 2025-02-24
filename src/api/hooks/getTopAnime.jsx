@@ -2,12 +2,12 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import http from "../config/http";
 
-function getTopAnime(option) {
+function getTopAnime(page) {
   return ({} = useQuery({
-    queryKey: ["top-anime"],
+    queryKey: ["top-anime", page],
     queryFn: async () => {
       return await http
-        .get(`/top/anime`, { params: option })
+        .get(`/top/anime`, { params: { page, limit: 24 } })
         .then((res) => res.data.data)
         .catch((err) => console.log(err));
     },

@@ -4,11 +4,13 @@ import { useParams } from "react-router-dom";
 import CardSkeleton from "../../../../components/ui/Skeleton/CardSkeleton";
 import Cards from "../../../../components/ui/Cards/Cards";
 import getAnimeByGenre from "../../../../api/hooks/getAnimeByGenre";
+import Pagination from "../../../../components/ui/Pagination/Pagination";
 
 function GenrePage() {
   window.scrollTo(0, 0);
+  const [page, setPage] = useState(1);
   const { genreId, genreName } = useParams();
-  const { data: animes, isLoading } = getAnimeByGenre(genreName, genreId);
+  const { data: animes, isLoading } = getAnimeByGenre(genreName, genreId, page);
   return (
     <div className="w-[95%] h-auto mx-auto">
       <div className="py-4 ">
@@ -25,6 +27,7 @@ function GenrePage() {
           )}
         </div>
       </div>
+      <Pagination page={page} setPage={setPage} totalPages={3} />
     </div>
   );
 }

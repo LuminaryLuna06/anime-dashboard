@@ -8,12 +8,11 @@ import { useState } from "react";
 
 function Dashboard() {
   window.scrollTo(0, 0);
-  let option = { limit: 12 };
   const [more, setMore] = useState(false);
   function handleMore() {
     setMore(!more);
   }
-  const { data, isLoading } = getTopAnime(option);
+  const { data, isLoading } = getTopAnime(1);
   const anime = data && data.length > 0 ? data[0] : null;
   if (isLoading) {
     return <div className="h-[100vh]"></div>;

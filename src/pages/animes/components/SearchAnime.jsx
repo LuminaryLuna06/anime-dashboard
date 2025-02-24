@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import Cards from "../../../components/ui/Cards/Cards";
 import CardSkeleton from "../../../components/ui/Skeleton/CardSkeleton";
 import useAnimeSearch from "../../../api/hooks/useAnimeSearch";
+import Pagination from "../../../components/ui/Pagination/Pagination";
 
 function SearchAnime() {
+  const [page, setPage] = useState(1);
   const [query, setQuery] = useState("");
   const [search, setSearch] = useState("");
-  const { data: animes, isLoading, isError } = useAnimeSearch(search);
+  const { data: animes, isLoading, isError } = useAnimeSearch(search, page);
   const handleSubmit = (e) => {
     e.preventDefault();
     setSearch(query);
@@ -58,7 +60,7 @@ function SearchAnime() {
 
       <div className="mx-auto">
         {!animes ? null : isLoading ? (
-          <CardSkeleton cards={6} />
+          <CardSkeleton cards={24} />
         ) : (
           <div>
             <h1>Your search results:</h1>
@@ -67,6 +69,7 @@ function SearchAnime() {
                 <Cards key={anime.mal_id} props={anime} />
               ))}
             </div>
+            <Pagination page={page} setPage={setPage} totalPages={3} />
           </div>
         )}
       </div>

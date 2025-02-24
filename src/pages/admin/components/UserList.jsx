@@ -1,8 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import getUsersInfo from "../../../api/hooks/getUsersInfo";
+import Pagination from "../../../components/ui/Pagination/Pagination";
 function UserList() {
-  const { data: users, isLoading } = getUsersInfo();
+  const [page, setPage] = useState(1);
+  const { data: users, isLoading } = getUsersInfo(page);
+  // const nextPage = () => setPage((prev) => prev + 1);
+  // const prevPage = () => setPage((prev) => prev - 1);
   return (
     <>
       {isLoading ? (
@@ -54,6 +58,9 @@ function UserList() {
           </div>
         </>
       )}
+      <div>
+        <Pagination page={page} setPage={setPage} totalPages={10} />
+      </div>
     </>
   );
 }

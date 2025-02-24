@@ -2,12 +2,16 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import http from "../config/http";
 
-function getUsersInfo() {
+function getUsersInfo(page) {
   return ({} = useQuery({
-    queryKey: ["users"],
+    queryKey: ["users", page],
     queryFn: async () => {
       return await http
-        .get("/users")
+        .get("/users", {
+          params: {
+            page,
+          }
+        })
         .then((res) => res.data.data)
         .catch((err) => console.log(err));
     },

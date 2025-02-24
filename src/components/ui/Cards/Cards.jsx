@@ -20,7 +20,7 @@ function Cards({ props }) {
             <p className="text-sm">
               ⭐ {props?.score} - {props?.episodes} Episodes
             </p>
-            <p className="text-sm my-2">{`${props?.synopsis.slice(
+            <p className="text-sm my-2">{`${props?.synopsis?.slice(
               0,
               150
             )}...`}</p>

@@ -2,18 +2,19 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import http from "../config/http";
 
-function useAnimeSearch(query) {
+function useAnimeSearch(query, page) {
   return useQuery({
-    queryKey: ["search-anime", query],
+    queryKey: ["search-anime", query, page],
     queryFn: async () => {
       if (!query) return null;
 
       return await http
         .get("/anime", {
           params: {
-            limit: 6,
             sfw: true,
             q: `${query}`,
+            limit: 24,
+            page,
           },
         })
         .then((res) => res.data.data)

@@ -6,18 +6,8 @@ import { useAuth } from "../../context/authContext";
 import Login from "../../components/auth/login";
 
 function Admin() {
-  const { userLoggedIn, currentUser, isAdmin} = useAuth();
-  // const [isAdmin, setIsAdmin] = useState(false);
-  // useEffect(() => {
-  //   const checkUserAdmin = async () => {
-  //     const result = await checkAdmin(currentUser);
-  //     setIsAdmin(result);
-  //     console.log("Is admin:", result);
-  //   };
-  //   if (currentUser) {
-  //     checkUserAdmin();
-  //   }
-  // }, [currentUser]);
+  const {isAdmin} = useAuth();
+
   window.scrollTo(0, 0);
 
   return (
