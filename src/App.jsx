@@ -8,17 +8,22 @@ import PublicRoutes from "./routes/PublicRoutes";
 import AdminRoutes from "./routes/AdminRoutes";
 
 import { AuthProvider } from "./context/authContext/index";
+import MayShow from "./components/layout/MayShow";
 function App() {
   return (
     <Router>
       <AuthProvider>
         <div className="text-gray-200 bg-gradient-to-r from-black to-slate-800 font-sans">
-          <NavBar />
+          <MayShow>
+            <NavBar />
+          </MayShow>
           <SkeletonTheme baseColor="#202020" highlightColor="#444">
             <PublicRoutes />
             <AdminRoutes />
           </SkeletonTheme>
-          <Footer />
+          <MayShow>
+            <Footer />
+          </MayShow>
         </div>
       </AuthProvider>
     </Router>

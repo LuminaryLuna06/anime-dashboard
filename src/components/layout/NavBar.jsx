@@ -42,10 +42,10 @@ function NavBar() {
               <Link to={"/genres"}>Genres</Link>
             </li>
             {isAdmin ? (
-            <li>
-              <Link to={"/admin"}>Admin</Link>
-            </li>
-          ) : null}
+              <li>
+                <Link to={"/admin"}>Admin</Link>
+              </li>
+            ) : null}
           </ul>
         </div>
         <Link className="btn btn-ghost text-2xl" to={"/"}>
