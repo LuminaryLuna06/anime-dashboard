@@ -6,7 +6,7 @@ export const SideBarData = [
   {
     title: "Dashboard",
     icon: <DashboardIcon />,
-    link: "/admin/dashboard",
+    link: "/admin",
     active: true,
   },
   {

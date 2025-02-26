@@ -3,15 +3,20 @@ import { SideBarData } from "./SideBarData";
 import { Link } from "react-router-dom";
 import FirstPageIcon from "@mui/icons-material/FirstPage";
 import LastPageIcon from "@mui/icons-material/LastPage";
+import { useAuth } from "../../../context/authContext";
+import { doSignOut } from "../../../firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const SideBarContext = createContext();
 
 function SideBar() {
   const [expanded, setExpanded] = useState(true);
+  const { currentUser } = useAuth();
+  const navigate = useNavigate();
 
   return (
     <aside
-      className={`h-screen transition-all ${
+      className={`h-screen transition-all sticky top-0 ${
         expanded ? "w-[250px]" : "w-[81px]"
       }`}
     >
@@ -27,7 +32,9 @@ function SideBar() {
             🌸{expanded ? <span>Anime Website</span> : null}
           </Link>
           <button
-            className="text-gray-800 hover:bg-pink-50 rounded-full p-2 transition-colors"
+            className={`text-gray-800 hover:bg-pink-50 rounded-full p-2 transition-colors ${
+              expanded ? "" : "bg-pink-50 hover:bg-pink-100"
+            }`}
             onClick={() => setExpanded(!expanded)}
           >
             {expanded ? <FirstPageIcon /> : <LastPageIcon />}
@@ -38,7 +45,11 @@ function SideBar() {
         <SideBarContext.Provider value={{ expanded }}>
           <ul className="text-black px-4 flex-1">
             {SideBarData.map((item) => (
-              <Link to={item.link} key={item.title} className={`${expanded ? "" : "flex"}`}>
+              <Link
+                to={item.link}
+                key={item.title}
+                className={`${expanded ? "" : "flex"}`}
+              >
                 <SideBarItem
                   icon={item.icon}
                   text={item.title}
@@ -50,7 +61,37 @@ function SideBar() {
         </SideBarContext.Provider>
 
         {/* Admin User */}
-        <div></div>
+        <div className="border-t flex p-3 text-gray-800">
+          <img
+            src="https://picsum.photos/100/100"
+            alt=""
+            className="w-10 h-10 rounded-md"
+          />
+          {expanded ? (
+            <div
+              className={` ${
+                expanded
+                  ? "flex justify-between items-center w-52 ml-3 transition-all"
+                  : ""
+              }`}
+            >
+              <div>
+                <h4>Admin</h4>
+                <span>{currentUser.email}</span>
+              </div>
+            </div>
+          ) : null}
+        </div>
+        <button
+          onClick={() => {
+            doSignOut().then(() => {
+              navigate("/login");
+            });
+          }}
+          className="btn bg-pink-100 hover:bg-pink-200 text-pink-800"
+        >
+          Logout
+        </button>
       </nav>
     </aside>
   );

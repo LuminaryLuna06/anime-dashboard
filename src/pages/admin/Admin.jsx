@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
-import UserList from "./components/UserList";
-import Clubs from "./components/Clubs/Clubs";
-import InfoCard from "./components/InfoCard";
 import { useAuth } from "../../context/authContext";
-import Login from "../../components/auth/login";
 import SideBar from "../../components/layout/SideBar/SideBar";
+import Dashboard from "../dashboard/Dashboard"
 
 function Admin() {
   const { isAdmin } = useAuth();
@@ -12,24 +9,11 @@ function Admin() {
   window.scrollTo(0, 0);
 
   return (
-    <>
-      {/* <div className="h-screen"> */}
-        <SideBar />
-      {/* </div> */}
-    </>
+    <div className="flex">
+      <SideBar />
+      <Dashboard />
+    </div>
   );
 }
 
 export default Admin;
-
-{
-  /* {isAdmin ? (
-  <>
-    <InfoCard />
-    <Clubs />
-    <UserList />
-  </>
-) : (
-  <Login />
-)} */
-}

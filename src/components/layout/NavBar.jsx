@@ -5,6 +5,9 @@ import { doSignOut } from "../../firebase/auth";
 function NavBar() {
   const { isAdmin, userLoggedIn } = useAuth();
   const navigate = useNavigate();
+
+
+  
   return (
     <div className="navbar bg-[#23252b] text-neutral-content h-5 sticky top-0 z-20">
       <div className="navbar-start">

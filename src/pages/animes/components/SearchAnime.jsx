@@ -3,6 +3,7 @@ import Cards from "../../../components/ui/Cards/Cards";
 import CardSkeleton from "../../../components/ui/Skeleton/CardSkeleton";
 import useAnimeSearch from "../../../api/hooks/useAnimeSearch";
 import Pagination from "../../../components/ui/Pagination/Pagination";
+import SearchIcon from '@mui/icons-material/Search';
 
 function SearchAnime() {
   const [page, setPage] = useState(1);
@@ -24,8 +25,8 @@ function SearchAnime() {
           Search
         </label>
         <div className="relative">
-          <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-            <svg
+          <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-800">
+            {/* <svg
               className="w-4 h-4 text-gray-500"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
@@ -39,19 +40,20 @@ function SearchAnime() {
                 strokeWidth="2"
                 d="M13 13l4 4m-4-4a7 7 0 1110 0 7 7 0 01-10 0z"
               />
-            </svg>
+            </svg> */}
+            <SearchIcon />
           </div>
           <input
             type="search"
             id="default-search"
-            className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+            className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-pink-500 focus:border-pink-500"
             placeholder="Search Anime..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
           <button
             type="submit"
-            className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2"
+            className="text-white absolute right-2.5 bottom-2.5 bg-pink-300 hover:bg-pink-400 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-sm px-4 py-2"
           >
             Search
           </button>
