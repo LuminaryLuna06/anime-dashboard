@@ -3,7 +3,7 @@ import Cards from "../../../components/ui/Cards/Cards";
 import CardSkeleton from "../../../components/ui/Skeleton/CardSkeleton";
 import useAnimeSearch from "../../../api/hooks/useAnimeSearch";
 import Pagination from "../../../components/ui/Pagination/Pagination";
-import SearchIcon from '@mui/icons-material/Search';
+import SearchIcon from "@mui/icons-material/Search";
 
 function SearchAnime() {
   const [page, setPage] = useState(1);
@@ -26,21 +26,6 @@ function SearchAnime() {
         </label>
         <div className="relative">
           <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-800">
-            {/* <svg
-              className="w-4 h-4 text-gray-500"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 20 20"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M13 13l4 4m-4-4a7 7 0 1110 0 7 7 0 01-10 0z"
-              />
-            </svg> */}
             <SearchIcon />
           </div>
           <input

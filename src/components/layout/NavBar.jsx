@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import { doSignOut } from "../../firebase/auth";
+import SearchIcon from "@mui/icons-material/Search";
 function NavBar() {
   const { isAdmin, userLoggedIn } = useAuth();
   const navigate = useNavigate();
 
+  const [query, setQuery] = useState("");
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (query.trim()) {
+      navigate(`/search?query=${query}`);
+    }
+  };
 
-  
   return (
     <div className="navbar bg-[#23252b] text-neutral-content h-5 sticky top-0 z-20">
       <div className="navbar-start">
@@ -39,7 +46,7 @@ function NavBar() {
               <Link to={"/anime"}>Anime</Link>
             </li>
             <li>
-              <Link to={"/dashboard"}>Dashboard</Link>
+              <Link to={"/top-anime"}>Top-anime</Link>
             </li>
             <li>
               <Link to={"/genres"}>Genres</Link>
@@ -64,7 +71,7 @@ function NavBar() {
             <Link to={"/anime"}>Anime</Link>
           </li>
           <li>
-            <Link to={"/dashboard"}>Dashboard</Link>
+            <Link to={"/top-anime"}>Top Anime</Link>
           </li>
           <li>
             <Link to={"/genres"}>Genres</Link>
@@ -77,6 +84,49 @@ function NavBar() {
         </ul>
       </div>
       <div className="navbar-end gap-3">
+        {/* <form onSubmit={handleSearchSubmit} className="relative">
+          <input
+            type="search"
+            className="block w-full p-2 pl-8 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-pink-500 focus:border-pink-500"
+            placeholder="Search Anime..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          <button
+            type="submit"
+            className="absolute right-0 top-0 mt-2 mr-2 text-gray-800"
+          >
+            <SearchIcon />
+          </button>
+        </form> */}
+        <form
+          className="max-w-md my-5 invisible lg:visible"
+          onSubmit={handleSearchSubmit}
+        >
+          <label
+            htmlFor="default-search"
+            className="mb-2 text-sm font-medium text-gray-900 sr-only"
+          >
+            Search
+          </label>
+          <div className="relative">
+            <input
+              type="search"
+              id="default-search"
+              className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-pink-500 focus:border-pink-500"
+              placeholder="Search Anime..."
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+            />
+            <button
+              type="submit"
+              className="text-white absolute right-2.5 bottom-2.5 bg-pink-300 hover:bg-pink-400 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-sm p-2"
+            >
+              <SearchIcon />
+            </button>
+          </div>
+        </form>
+
         {userLoggedIn ? (
           <button
             onClick={() => {

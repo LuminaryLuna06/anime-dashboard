@@ -17,7 +17,7 @@ function Pagination({ page, setPage, totalPages }) {
           (pageNum) => (
             <button
               key={pageNum}
-              className={`px-2 rounded-sm ${
+              className={`px-2 rounded-full ${
                 page === pageNum ? "bg-pink-100 text-pink-800" : ""
               }`}
               onClick={() => setPage(pageNum)}
