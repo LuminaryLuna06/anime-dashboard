@@ -6,6 +6,7 @@ import LastPageIcon from "@mui/icons-material/LastPage";
 import { useAuth } from "../../../context/authContext";
 import { doSignOut } from "../../../firebase/auth";
 import { useNavigate } from "react-router-dom";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const SideBarContext = createContext();
 
@@ -76,21 +77,23 @@ function SideBar() {
               }`}
             >
               <div>
-                <h4>Admin</h4>
+                <h4>{currentUser.displayName || "Admin"}</h4>
                 <span>{currentUser.email}</span>
               </div>
             </div>
           ) : null}
         </div>
+
         <button
           onClick={() => {
             doSignOut().then(() => {
               navigate("/login");
             });
           }}
-          className="btn bg-pink-100 hover:bg-pink-200 text-pink-800"
+          className="btn rounded bg-pink-100 hover:bg-pink-200 text-pink-800"
         >
-          Logout
+          <LogoutIcon />
+          {expanded ? <span>Logout</span> : null}
         </button>
       </nav>
     </aside>

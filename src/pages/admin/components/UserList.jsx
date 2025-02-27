@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import getUsersInfo from "../../../api/hooks/getUsersInfo";
 import Pagination from "../../../components/ui/Pagination/Pagination";
 import SearchIcon from "@mui/icons-material/Search";
+import { CSVLink } from "react-csv";
+import Papa from "papaparse";
 
 function UserList() {
   const [page, setPage] = useState(1);
@@ -17,6 +19,25 @@ function UserList() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSearch(query);
+  };
+
+  const exportToCSV = () => {
+    const csvData = users.map((user) => ({
+      username: user.username,
+      email: "handsomeuser@gmail.com",
+      last_online: user.last_online,
+    }));
+
+    const csv = Papa.unparse(csvData);
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.setAttribute("href", url);
+    link.setAttribute("download", "user_list.csv");
+    link.style.visibility = "hidden";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
   return (
     <>
@@ -51,6 +72,12 @@ function UserList() {
             </button>
           </div>
         </form>
+        <button
+          onClick={exportToCSV}
+          className="text-white bg-pink-300 hover:bg-pink-400 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-sm px-4 py-2"
+        >
+          Export to CSV
+        </button>
         {isLoading ? null : (
           <table className="table">
             <thead>
