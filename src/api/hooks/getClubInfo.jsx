@@ -2,13 +2,13 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import http from "../config/http";
 
-function getClubInfo() {
+function getClubInfo(page, search) {
   return ({} = useQuery({
-    queryKey: ["clubs"],
+    queryKey: ["clubs", page, search],
     queryFn: async () => {
       return await http
         .get("/clubs", {
-          params: {limit:4},
+          params: {limit:4, page, q: `${search}`},
         })
         .then((res) => res.data.data)
         .catch((err) => console.log(err));

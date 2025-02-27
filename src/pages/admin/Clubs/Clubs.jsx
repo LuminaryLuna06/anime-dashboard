@@ -1,15 +1,15 @@
 import React from "react";
 import SideBar from "../../../components/layout/SideBar/SideBar";
-import UserList from "../components/UserList";
-function Users() {
+import ClubList from "../components/Clubs/ClubList";
+function Clubs() {
   return (
     <div className="flex">
       <SideBar />
       <div className="w-full">
-        <UserList />
+        <ClubList />
       </div>
     </div>
   );
 }
 
-export default Users;
+export default Clubs;
