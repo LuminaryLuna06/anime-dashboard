@@ -27,7 +27,7 @@ function SearchAnime() {
 
   return (
     <>
-      
+      {isLoading ? <div className="w-screen"></div> : (
 
       <div className="mx-auto w-[95%]">
         {!animes ? null : isLoading ? (
@@ -44,6 +44,8 @@ function SearchAnime() {
           </div>
         )}
       </div>
+      )}
+
     </>
   );
 }
