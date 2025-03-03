@@ -12,10 +12,7 @@ function UserList() {
   const [search, setSearch] = useState("");
 
   const { data: users, isLoading } = getUsersInfo(page, search);
-  // const filteredUsers = users?.filter((user) =>
-  //   user.username.toLowerCase().includes(search.toLowerCase())
-  // );
-  // const usersToDisplay = search ? filteredUsers : users;
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setSearch(query);
@@ -39,20 +36,30 @@ function UserList() {
     link.click();
     document.body.removeChild(link);
   };
+
   return (
     <>
       <div className="w-[80%] mx-auto my-4 flex">
         <h1 className="font-bold text-3xl">User Information</h1>
       </div>
-      <div className="md:w-[80%] w-[95%] mx-auto border rounded my-4">
-        <form className="max-w-md mx-auto my-5" onSubmit={handleSubmit}>
+      <div>
+        <form
+          className="max-w-md mx-auto my-5 flex gap-4"
+          onSubmit={handleSubmit}
+        >
+          <button
+            onClick={exportToCSV}
+            className="text-white bg-pink-300 hover:bg-pink-400 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-sm px-4 py-2"
+          >
+            Export to CSV
+          </button>
           <label
             htmlFor="default-search"
             className="mb-2 text-sm font-medium text-gray-900 sr-only"
           >
             Search
           </label>
-          <div className="relative">
+          <div className="relative flex-grow">
             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
               <SearchIcon />
             </div>
@@ -72,12 +79,8 @@ function UserList() {
             </button>
           </div>
         </form>
-        <button
-          onClick={exportToCSV}
-          className="text-white bg-pink-300 hover:bg-pink-400 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-sm px-4 py-2"
-        >
-          Export to CSV
-        </button>
+      </div>
+      <div className="md:w-[80%] w-[95%] mx-auto border rounded my-4">
         {isLoading ? null : (
           <table className="table">
             <thead>
@@ -106,7 +109,6 @@ function UserList() {
                       </td>
                     </a>
                   </div>
-
                   <td>handsomeuser@gmail.com</td>
                   <td>
                     <div className="hidden md:block">
