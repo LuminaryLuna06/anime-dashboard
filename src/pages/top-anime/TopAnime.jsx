@@ -34,14 +34,14 @@ function Dashboard() {
             <div className="lg:w-1/2 md:w-full mx-auto flex flex-col">
               {/* Title */}
               <div className="my-4">
-                <h1 className="font-bold text-4xl bg-gradient-to-r from-green-400 from-10%  to-blue-300 inline-block text-transparent bg-clip-text">
+                <h1 className="font-bold bg-gradient-to-r from-green-400 from-10%  to-blue-300  text-transparent bg-clip-text">
                   {anime.title}
                 </h1>
                 <h1 className="text-xl text-gray-400 font-bold">
                   {anime.title_english}
                 </h1>
               </div>
-              <div className="flex flex-row gap-2 mb-5">
+              <div className="flex flex-row gap-2 mb-5 justify-center md:justify-normal">
                 {anime?.genres?.map((genre, index) => (
                   <div
                     key={index}
@@ -84,11 +84,12 @@ function Dashboard() {
                   </h2>
                 </div>
               </div>
-
-              <Button
-                content={"Watch Trailer"}
-                link={`/anime/${anime.mal_id}`}
-              />
+              <div className="mx-auto my-3">
+                <Button
+                  content={"Watch Trailer"}
+                  link={`/anime/${anime.mal_id}`}
+                />
+              </div>
               <hr />
 
               {/* Infomation */}
