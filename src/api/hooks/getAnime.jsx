@@ -4,7 +4,7 @@ import http from "../config/http";
 
 function getAnime(option) {
   return ({} = useQuery({
-    queryKey: ["animes"],
+    queryKey: ["animes", option],
     queryFn: async () => {
       return await http
         .get("/anime", {
