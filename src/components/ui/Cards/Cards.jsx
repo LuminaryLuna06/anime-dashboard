@@ -9,7 +9,7 @@ function Cards({ props }) {
       <Link key={props?.mal_id} to={`/anime/${props?.mal_id}`}>
         <div className="aspect-[2/3] flex">
           <img
-            src={props?.images.webp.large_image_url}
+            src={props?.images?.webp.large_image_url}
             alt=""
             className="aspect-[2/3] object-cover"
           />

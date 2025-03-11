@@ -12,10 +12,6 @@ function getUpcoming(option) {
         })
         .then((res) => res.data.data)
         .catch((err) => console.log(err));
-      // return await axios
-      //   .get(`${import.meta.env.VITE_API_BASEURL}/anime`)
-      //   .then((res) => res.data.data)
-      //   .catch((err) => console.log(err));
     },
     staleTime: 1000 * 60 * 5,
   }));
