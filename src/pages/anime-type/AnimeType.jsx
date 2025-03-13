@@ -4,12 +4,67 @@ import Cards from "../../components/ui/Cards/Cards";
 import Button from "../../components/ui/Button";
 import Pagination from "../../components/ui/Pagination/Pagination";
 import CardSkeleton from "../../components/ui/Skeleton/CardSkeleton";
+
+import genres from "../genres/assets/genres";
+import types from "./assets/type";
+
+import TrendingUpIcon from "@mui/icons-material/TrendingUp";
+import TrendingDownIcon from "@mui/icons-material/TrendingDown";
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+import WhatshotIcon from "@mui/icons-material/Whatshot";
+
 function AnimeType() {
   const [isOpen, setIsOpen] = useState(false);
   const [page, setPage] = useState(1);
-  const [option, setOption] = useState({ limit: 9, sfw: true, type: "TV" });
+  const [filters, setFilters] = useState({
+    type: "",
+    genres: [],
+    start_date: "",
+    end_date: "",
+  });
+
+  const [option, setOption] = useState({
+    limit: 12,
+    sfw: true,
+  });
   const { data: animes, isLoading } = getAnime(option);
-  console.log(option);
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+
+    if (type === "checkbox") {
+      setFilters((prev) => ({
+        ...prev,
+        genres: checked
+          ? [...prev.genres, Number(value)] // Convert value to number if mal_id is a number
+          : prev.genres.filter((id) => id !== Number(value)),
+      }));
+    } else {
+      setFilters((prev) => ({ ...prev, [name]: value }));
+    }
+  };
+
+  const handleYearChange = (e) => {
+    const year = e.target.value;
+
+    setFilters((prev) => ({
+      ...prev,
+      start_date: year ? `${year}-01-01` : "", // "YYYY-01" or empty
+      end_date: year ? `${year}-12-31` : "", // "YYYY-12" or empty
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Formatted Value:", filters);
+    setOption((prevOption) => ({
+      ...prevOption,
+      ...filters,
+      genres: filters.genres.join(","),
+    }));
+    console.log(option);
+  };
+
   function handleSort(sort) {
     setOption((prevOption) => ({
       ...prevOption,
@@ -18,9 +73,8 @@ function AnimeType() {
     }));
   }
 
-  function handleSubmit() {
-    setOption({ limit: 6, sfw: true });
-  }
+  console.log(option);
+
   return (
     <>
       <div>
@@ -34,14 +88,27 @@ function AnimeType() {
         </button>
       </div>
       {isOpen && (
-        <div className="h-[500px] w-[80%] mx-auto bg-white">
-          <form action="" className="flex text-black">
+        <div className="h-[500px] w-[80%] mx-auto bg-white rounded-lg my-2">
+          <form action="" className="flex text-gray-800 p-2">
             {/* Left */}
-            <div className="w-[200px] flex flex-col">
-              <h2>Sort by</h2>
-              <button onClick={() => handleSort("asc")}>Asc Title </button>
-              <button onClick={() => handleSort("desc")}>Desc Title</button>
+            <div className="w-[200px] flex flex-col p-2">
+              <h2 className="font-semibold text-xl text-center">Sort by</h2>
               <button
+                className="text-left bg-gray-200 p-2 hover:text-pink-800 hover:bg-pink-200 transition-all rounded-md my-1"
+                onClick={() => handleSort("asc")}
+              >
+                <TrendingUpIcon />
+                Asc Title
+              </button>
+              <button
+                className="text-left bg-gray-200 p-2 hover:text-pink-800 hover:bg-pink-200 transition-all rounded-md my-1"
+                onClick={() => handleSort("desc")}
+              >
+                <TrendingDownIcon />
+                Desc Title
+              </button>
+              <button
+                className="text-left bg-gray-200 p-2 hover:text-pink-800 hover:bg-pink-200 transition-all rounded-md my-1"
                 onClick={() => {
                   setOption((prevOption) => ({
                     ...prevOption,
@@ -50,33 +117,103 @@ function AnimeType() {
                   }));
                 }}
               >
+                <RemoveRedEyeIcon />
                 Most View
               </button>
               <button
-                onClick={() => {
+                className="text-left bg-gray-200 p-2 hover:text-pink-800 hover:bg-pink-200 transition-all rounded-md my-1"
+                onClick={(e) => {
+                  e.preventDefault();
                   setOption((prevOption) => ({
                     ...prevOption,
-                    status: "airing",
                     order_by: "start_date",
                     sort: "desc",
                   }));
                 }}
               >
+                <WhatshotIcon />
                 Newest
               </button>
             </div>
             {/* Right */}
-            <div className="flex flex-col w-full">
-              <div className="h-[100px] bg-red-600">
-                <h2>Type</h2>
-                <div>
-                  <input type="checkbox" name="TV" id="" />
-                  <label htmlFor="">TV</label>
-                </div>
-              </div>
-              <div className="h-[100px] bg-blue-600"></div>
-              <div className="h-[100px] bg-green-600"></div>
-              <button onClick={() => handleSubmit()}>Sort Anime</button>
+            <div className="flex flex-col w-full gap-5">
+              {/* Type Selection */}
+              <fieldset>
+                <legend className="text-xl font-semibold">Type:</legend>
+                <label key={"all"}>
+                  <input
+                    className=""
+                    type="radio"
+                    name="type"
+                    value={""}
+                    checked={filters.type === ""}
+                    onChange={handleChange}
+                  />
+                  {" All"}
+                </label>
+                {types.map((type) => (
+                  <label className="px-2" key={type.name}>
+                    <input
+                      type="radio"
+                      name="type"
+                      value={type.value}
+                      checked={filters.type === type.value}
+                      onChange={handleChange}
+                    />
+                    {` ${type.name}`}
+                  </label>
+                ))}
+              </fieldset>
+              {/* Genre Selection */}
+              <fieldset>
+                <legend className="text-xl font-semibold">Genres:</legend>
+                {genres.map((genre) => (
+                  <label className="mx-2" key={genre.name}>
+                    <input
+                      type="checkbox"
+                      name="genres"
+                      value={genre.mal_id}
+                      checked={filters.genres.includes(genre.mal_id)}
+                      onChange={handleChange}
+                    />
+                    {` ${genre.name}`}
+                  </label>
+                ))}
+              </fieldset>
+              {/* Year Selection */}
+              <fieldset>
+                <legend className="text-xl font-semibold">Release Year:</legend>
+                <label>
+                  <input
+                    type="radio"
+                    name="year"
+                    value=""
+                    checked={filters.start_date === ""} // No year selected
+                    onChange={handleYearChange}
+                  />
+                  All
+                </label>
+
+                {[2025, 2024, 2023, 2022, 2021, 2020].map((year) => (
+                  <label className="mx-2" key={year}>
+                    <input
+                      type="radio"
+                      name="year"
+                      value={year}
+                      checked={filters.start_date === `${year}-01-01`}
+                      onChange={handleYearChange}
+                    />
+                    {` ${year}`}
+                  </label>
+                ))}
+              </fieldset>
+              {/* Submit Button */}
+              <button
+                className="bg-gray-200 p-2 hover:text-pink-800 hover:bg-pink-200 transition-all rounded-md my-1"
+                onClick={handleSubmit}
+              >
+                Sort Anime
+              </button>
             </div>
           </form>
         </div>
