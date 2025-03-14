@@ -86,6 +86,7 @@ function NavBar() {
             >
               Anime
             </NavLink>
+
             {/* <Link to={"/anime"}>Anime</Link> */}
             {/* <details>
               <summary>Anime</summary>
@@ -98,6 +99,7 @@ function NavBar() {
                 </li>
               </ul>
             </details> */}
+
           </li>
           <li>
             <Link

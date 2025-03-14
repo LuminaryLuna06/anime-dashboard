@@ -1,33 +1,37 @@
 import React, { useEffect, useState } from "react";
 import getAnime from "../../api/hooks/getAnime";
 import Cards from "../../components/ui/Cards/Cards";
-import Button from "../../components/ui/Button";
 import Pagination from "../../components/ui/Pagination/Pagination";
 import CardSkeleton from "../../components/ui/Skeleton/CardSkeleton";
 
-import genres from "../genres/assets/genres";
-import types from "./assets/type";
+import genres from "../../assets/genres";
+import types from "../../assets/type";
 
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import TrendingDownIcon from "@mui/icons-material/TrendingDown";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 
-function AnimeType() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [page, setPage] = useState(1);
-  const [filters, setFilters] = useState({
+function AnimeFilter({
+  initialFilters = {
+    q: "",
     type: "",
     genres: [],
     start_date: "",
     end_date: "",
-  });
-
-  const [option, setOption] = useState({
+  },
+  initialOption = {
     limit: 12,
     sfw: true,
     page: 1,
-  });
+  },
+  totalPages = 3,
+  query,
+}) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [page, setPage] = useState(initialOption.page);
+  const [filters, setFilters] = useState(initialFilters);
+  const [option, setOption] = useState(initialOption);
 
   useEffect(() => {
     setOption((prevOption) => ({
@@ -35,6 +39,15 @@ function AnimeType() {
       page: page,
     }));
   }, [page]);
+  useEffect(() => {
+    setOption((prevOption) => ({
+      ...prevOption,
+      q: query,
+      page: 1,
+    }));
+    setPage(1);
+  }, [query]);
+
   const { data: animes, isLoading } = getAnime(option);
 
   const handleChange = (e) => {
@@ -64,15 +77,14 @@ function AnimeType() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Formatted Value:", filters);
     setOption((prevOption) => ({
       ...prevOption,
       ...filters,
       genres: filters.genres.join(","),
     }));
-    console.log(option);
+    setPage(1); // Reset to first page on filter change
   };
-  
+
   function handleSort(sort) {
     setOption((prevOption) => ({
       ...prevOption,
@@ -80,7 +92,7 @@ function AnimeType() {
       sort: sort,
     }));
   }
-  
+
   return (
     <>
       <div className="flex flex-row-reverse">
@@ -224,7 +236,7 @@ function AnimeType() {
           </form>
         </div>
       )}
-      <Pagination page={page} setPage={setPage} totalPages={3} />
+      <Pagination page={page} setPage={setPage} totalPages={totalPages} />
 
       <div className="flex flex-wrap items-start mx-auto w-[95%]">
         {isLoading ? (
@@ -233,9 +245,9 @@ function AnimeType() {
           animes.map((anime) => <Cards key={anime.mal_id} props={anime} />)
         )}
       </div>
-      <Pagination page={page} setPage={setPage} totalPages={3} />
+      <Pagination page={page} setPage={setPage} totalPages={totalPages} />
     </>
   );
 }
 
-export default AnimeType;
+export default AnimeFilter;

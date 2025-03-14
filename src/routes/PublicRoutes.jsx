@@ -6,7 +6,7 @@ import Genre from "../pages/genres/Genre";
 import GenrePage from "../pages/genres/components/GenrePage.jsx/GenrePage";
 import SearchAnime from "../components/function/SearchAnime";
 import TopAnime from "../pages/top-anime/TopAnime";
-import AnimeType from "../pages/anime-type/AnimeType"
+import AnimeType from "../pages/anime-type/AnimeType";
 const PublicRoutes = () => (
   <Routes>
     <Route path="/" element={<Home />} />
@@ -16,7 +16,7 @@ const PublicRoutes = () => (
     <Route path="/genres" element={<Genre />} />
     <Route path="/genres/:genreId/:genreName" element={<GenrePage />} />
     <Route path="/search" element={<SearchAnime />} />
-    <Route path="/anime-type" element={<AnimeType/>} />
+    <Route path="/anime-type" element={<AnimeType />} />
   </Routes>
 );
 
