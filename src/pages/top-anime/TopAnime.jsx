@@ -97,7 +97,12 @@ function Dashboard() {
                 <div>
                   <h2 className="font-bold">Synopsis</h2>
                   {more ? (
-                    <p className="text-[14px]">{anime?.synopsis}</p>
+                    <div>
+                      <p className="text-[14px]">{anime?.synopsis}</p>
+                      <button onClick={handleMore} className="text-pink-400">
+                        Less
+                      </button>
+                    </div>
                   ) : (
                     <>
                       <p className="text-[14px]">
