@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 @layer base {
-    h1 {
-        @apply md:text-4xl font-semibold my-3 text-3xl text-center md:text-left
-    }
-    h4 {
-        @apply font-semibold
-    }
+  h1 {
+    @apply md:text-4xl font-semibold my-3 text-3xl text-center md:text-left;
+  }
+  h4 {
+    @apply font-semibold;
+  }
 }

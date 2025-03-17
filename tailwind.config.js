@@ -26,4 +26,8 @@ export default {
     },
   },
   plugins: [daisyui],
+  daisyui: {
+    themes: ["light", "dark", "cupcake"], // Add or remove themes here
+    darkTheme: "dark", // Set default dark mode theme
+  },
 };

@@ -13,7 +13,7 @@ function App() {
   return (
     <Router>
       <AuthProvider>
-        <div className="text-gray-200 bg-gradient-to-r from-black to-slate-800 font-sans">
+        <div className="text-gray-200 bg-gradient-to-r from-black to-slate-800 font-sans " data-theme="dark">
           <MayShow>
             <NavBar />
           </MayShow>
