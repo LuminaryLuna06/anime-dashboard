@@ -73,44 +73,50 @@ function NavBar() {
       <div className="navbar-center hidden md:flex">
         <ul className="menu menu-horizontal px-1 text-lg">
           <li>
-            <Link to={"/"}>Home</Link>
+            <NavLink
+              to="/"
+              className={({ isActive }) => ` 
+              ${isActive ? "text-pink-400" : "inactive"}
+              `}
+            >
+              Home
+            </NavLink>
           </li>
           <li>
             <NavLink
               to="/anime"
-              className={({
-                isActive,
-              }) => ` hover:bg-gray-700 focus:text-pink-700 focus:bg-transparent
-              ${isActive ? "text-pink-700" : "inactive"}
+              className={({ isActive }) => ` 
+              ${isActive ? "text-pink-400" : "inactive"}
               `}
             >
               Anime
             </NavLink>
-
-            {/* <Link to={"/anime"}>Anime</Link> */}
-            {/* <details>
-              <summary>Anime</summary>
-              <ul className="p-2">
-                <li>
-                  <Link to={"/anime"}>Anime</Link>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
-            </details> */}
-
           </li>
           <li>
-            <Link
+            <NavLink
+              to="/top-anime"
+              className={({ isActive }) => ` 
+              ${isActive ? "text-pink-400" : "inactive"}
+              `}
+            >
+              Top Anime
+            </NavLink>
+            {/* <Link
               to={"/top-anime"}
               className="hover:bg-gray-700 focus:bg-transparent active:bg-transparent"
             >
               Top Anime
-            </Link>
+            </Link> */}
           </li>
           <li>
-            <Link to={"/genres"}>Genres</Link>
+            <NavLink
+              to="/genres"
+              className={({ isActive }) => ` 
+              ${isActive ? "text-pink-400" : "inactive"}
+              `}
+            >
+              Genres
+            </NavLink>
           </li>
           {isAdmin ? (
             <li>

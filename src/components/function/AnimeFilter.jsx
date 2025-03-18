@@ -57,7 +57,7 @@ function AnimeFilter({
       setFilters((prev) => ({
         ...prev,
         genres: checked
-          ? [...prev.genres, Number(value)] // Convert value to number if mal_id is a number
+          ? [...prev.genres, Number(value)]
           : prev.genres.filter((id) => id !== Number(value)),
       }));
     } else {
@@ -70,8 +70,8 @@ function AnimeFilter({
 
     setFilters((prev) => ({
       ...prev,
-      start_date: year ? `${year}-01-01` : "", // "YYYY-01" or empty
-      end_date: year ? `${year}-12-31` : "", // "YYYY-12" or empty
+      start_date: year ? `${year}-01-01` : "",
+      end_date: year ? `${year}-12-31` : "",
     }));
   };
 
@@ -82,7 +82,7 @@ function AnimeFilter({
       ...filters,
       genres: filters.genres.join(","),
     }));
-    setPage(1); // Reset to first page on filter change
+    setPage(1);
   };
 
   function handleSort(sort) {
@@ -95,15 +95,18 @@ function AnimeFilter({
 
   return (
     <>
-      <div className="flex flex-row-reverse">
-        <button
-          className="border-2 rounded-lg py-3 px-6  border-pink-300 hover:bg-pink-300 font-semibold"
-          onClick={() => {
-            setIsOpen(!isOpen);
-          }}
-        >
-          Filter anime
-        </button>
+      <div className="md:flex md:justify-between mx-5">
+        <h1>Use anime filter for better result!</h1>
+        <div className="flex justify-center">
+          <button
+            className="border-2 rounded-lg py-3 px-6  border-pink-300 hover:bg-pink-300 font-semibold items-center"
+            onClick={() => {
+              setIsOpen(!isOpen);
+            }}
+          >
+            Filter anime
+          </button>
+        </div>
       </div>
       {isOpen && (
         <div className="h-[500px] w-[80%] mx-auto bg-white rounded-lg my-2">
@@ -238,7 +241,7 @@ function AnimeFilter({
       )}
       <Pagination page={page} setPage={setPage} totalPages={totalPages} />
 
-      <div className="flex flex-wrap items-start mx-auto w-[95%]">
+      <div className="flex flex-wrap items-start mx-auto">
         {isLoading ? (
           <CardSkeleton cards={12} />
         ) : (

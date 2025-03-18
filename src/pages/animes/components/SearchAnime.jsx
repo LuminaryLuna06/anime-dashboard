@@ -4,12 +4,12 @@ import CardSkeleton from "../../../components/ui/Skeleton/CardSkeleton";
 import useAnimeSearch from "../../../api/hooks/useAnimeSearch";
 import Pagination from "../../../components/ui/Pagination/Pagination";
 import SearchIcon from "@mui/icons-material/Search";
+import AnimeFilter from "../../../components/function/AnimeFilter";
 
 function SearchAnime() {
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState("");
   const [search, setSearch] = useState("");
-  const { data: animes, isLoading, isError } = useAnimeSearch(search, page);
   const handleSubmit = (e) => {
     e.preventDefault();
     setSearch(query);
@@ -46,18 +46,11 @@ function SearchAnime() {
       </form>
 
       <div className="mx-auto">
-        {!animes ? null : isLoading ? (
-          <CardSkeleton cards={24} />
-        ) : (
-          <div>
-            <h1>Your search results:</h1>
-            <div className="flex flex-wrap items-start">
-              {animes?.map((anime) => (
-                <Cards key={anime.mal_id} props={anime} />
-              ))}
-            </div>
-            <Pagination page={page} setPage={setPage} totalPages={3} />
-          </div>
+        {!search ? null : (
+          <AnimeFilter
+            query={search}
+          />
+          
         )}
       </div>
     </>
