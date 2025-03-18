@@ -2,16 +2,12 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import http from "../config/http";
 
-function getAnimeCharacters(id) {
+function getAnimeRecommendations(id) {
   return ({} = useQuery({
-    queryKey: ["characters", id],
+    queryKey: ["anime-recommend", id],
     queryFn: async () => {
       return await http
-        .get(`/anime/${id}/characters`, {
-          params: {
-            limit: 15,
-          },
-        })
+        .get(`/anime/${id}/recommendations`)
         .then((res) => res.data.data)
         .catch((err) => console.log(err));
     },
@@ -19,4 +15,4 @@ function getAnimeCharacters(id) {
   }));
 }
 
-export default getAnimeCharacters;
+export default getAnimeRecommendations;

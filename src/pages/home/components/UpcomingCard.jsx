@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function UpcomingCard({ props }) {
   return (
-    <div className="flex flex-col md:w-[30%] lg:w-[15%] w-[45%] mx-auto py-2 relative container animate-fadeIn">
+    <div className="flex flex-col md:w-[30%] lg:w-[15%] w-[45%] mx-2 py-2 relative container animate-fadeIn">
       <Link key={props?.mal_id} to={`/anime/${props.mal_id}`}>
         <img
           src={props.images?.webp?.large_image_url}

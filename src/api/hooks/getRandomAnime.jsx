@@ -2,16 +2,12 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import http from "../config/http";
 
-function getAnimeCharacters(id) {
+function getRandomAnime() {
   return ({} = useQuery({
-    queryKey: ["characters", id],
+    queryKey: ["random"],
     queryFn: async () => {
       return await http
-        .get(`/anime/${id}/characters`, {
-          params: {
-            limit: 15,
-          },
-        })
+        .get(`/random/anime`)
         .then((res) => res.data.data)
         .catch((err) => console.log(err));
     },
@@ -19,4 +15,4 @@ function getAnimeCharacters(id) {
   }));
 }
 
-export default getAnimeCharacters;
+export default getRandomAnime;
