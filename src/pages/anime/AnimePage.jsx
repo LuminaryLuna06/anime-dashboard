@@ -246,7 +246,7 @@ function AnimePage() {
                           className="w-full h-full"
                           width="1044"
                           height="587"
-                          src={anime?.trailer.embed_url}
+                          src={`${anime?.trailer.embed_url}?autoplay=0`}
                           title=""
                           frameborder="0"
                           allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
