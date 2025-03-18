@@ -1,15 +1,12 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import getAnimeFullById from "../../api/hooks/getAnimeFullById";
 import getAnimePictures from "../../api/hooks/getAnimePictures";
 import getAnimeCharacters from "../../api/hooks/getAnimeCharacters";
 import getAnimeVideosEpisodes from "../../api/hooks/getAnimeVideosEpisodes";
 
-import Button from "../../components/ui/Button";
 import EpisodeCard from "./components/EpisodeCard";
-import CharacterCard from "./components/CharacterCard";
 import AnimeRecommend from "./components/AnimeRecommend";
 
 import PlayArrowOutlinedIcon from "@mui/icons-material/PlayArrowOutlined";
@@ -98,7 +95,7 @@ function AnimePage() {
                     <img
                       src={anime?.images?.webp?.large_image_url}
                       alt="Top #1 anime image"
-                      className="w-[250px] lg:w-1/5 object-cover"
+                      className="w-[250px]  object-cover"
                     />
                     <div className="p-3 ">
                       <h1 className="text-pink-400">{anime?.title}</h1>
@@ -215,15 +212,7 @@ function AnimePage() {
                     <PeopleAltOutlinedIcon className="mr-1" />
                     Characters
                   </label>
-                  {/* <div className="tab-content bg-base-100 border-base-300 p-6 animate-fadeIn grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {characters &&
-                      characters?.map((character) => (
-                        <CharacterCard
-                          link={character?.character?.images?.webp?.image_url}
-                          name={character?.character?.name}
-                        />
-                      ))}
-                  </div> */}
+
                   <div className="tab-content bg-base-100 border-base-300 p-6 animate-fadeIn">
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                       {characters &&

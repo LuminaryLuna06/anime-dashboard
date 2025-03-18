@@ -62,7 +62,7 @@ function Side() {
                   to={`/anime/${recent.entry.mal_id}`}
                   className="text-pink-700 hover:text-pink-500 transition-all duration-500"
                 >
-                  {recent.entry.title}...
+                  {recent.entry.title}
                 </Link>
                 <p>{recent.episodes[0].mal_id}</p>
               </li>

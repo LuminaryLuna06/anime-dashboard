@@ -13,7 +13,8 @@ function getAnimePictures(id) {
     },
     staleTime: 1000 * 60 * 5,
     priority: "high",
-
+    retry: 3,
+    retryDelay: 2000,
   }));
 }
 
