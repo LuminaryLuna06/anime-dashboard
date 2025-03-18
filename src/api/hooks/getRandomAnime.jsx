@@ -14,6 +14,8 @@ function getRandomAnime(enable) {
     staleTime: 1000 * 60 * 5,
     priority: "low",
     enabled: !!enable,
+    retry: 3,
+    retryDelay: 2000,
   }));
 }
 

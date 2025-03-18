@@ -26,6 +26,7 @@ import Button from "../../ui/Button";
 import getRandomAnime from "../../../api/hooks/getRandomAnime";
 import getWatchRecentEpisodes from "../../../api/hooks/getWatchRecentEpisodes";
 import { Link } from "react-router-dom";
+import ShuffleIcon from "@mui/icons-material/Shuffle";
 
 function Side() {
   const [shouldFetch, setShouldFetch] = useState(false);
@@ -41,14 +42,21 @@ function Side() {
   const { data: recents } = getWatchRecentEpisodes();
 
   return (
-    <div className="md:w-[20%] lg:w-[25%] flex flex-col gap-2">
+    <div className="md:w-[20%] lg:w-[25%] flex flex-col gap-4">
       {/* Random */}
       <div className="w-full bg-base-100 p-2 rounded">
         <h2 className="text-xl font-semibold my-2">Anime for today</h2>
         <hr className="my-2" />
         {random && (
-          <Button link={`/anime/${random.mal_id}`} content={"Random Anime"} />
+          <Button
+            link={`/anime/${random.mal_id}`}
+            content={"Random Anime"}
+            icon={<ShuffleIcon />}
+          />
         )}
+      </div>
+      <div>
+        <img src="quangcao2.jpg" alt="" />
       </div>
       {/* Anime moi cap nhat */}
       <div className="w-full bg-base-100 p-2 rounded">
@@ -57,10 +65,13 @@ function Side() {
         <ul>
           {recents &&
             recents.map((recent, index) => (
-              <li key={index} className="flex justify-between p-2 bg-base-200 my-2">
+              <li
+                key={index}
+                className="flex justify-between p-2 bg-base-200 my-2"
+              >
                 <Link
                   to={`/anime/${recent.entry.mal_id}`}
-                  className="text-pink-700 hover:text-pink-500 transition-all duration-500"
+                  className="text-pink-500 hover:text-pink-300 transition-all duration-500"
                 >
                   {recent.entry.title}
                 </Link>
@@ -68,6 +79,9 @@ function Side() {
               </li>
             ))}
         </ul>
+      </div>
+      <div>
+        <img src="quangcao.jpg" alt="" />
       </div>
     </div>
   );

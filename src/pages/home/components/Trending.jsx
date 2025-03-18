@@ -16,7 +16,7 @@ function Trending() {
   const { data, isLoading, isError } = getAnime(option);
 
   return (
-    <div className="w-[95%] h-auto mx-auto">
+    <div className="h-auto mx-auto">
       <div className="py-4 ">
         <div className="py-4">
           <h1>⭐Trending Anime⭐</h1>

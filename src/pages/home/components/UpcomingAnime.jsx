@@ -11,7 +11,7 @@ function UpcomingAnime() {
 
   return (
     <>
-      <div className="w-[95%] mx-auto">
+      <div className="mx-auto">
         <div className="py-4 ">
           <h1 className="text-3xl font-bold my-3">⭐Upcoming 2025 Anime⭐</h1>
           {/* Upcoming */}

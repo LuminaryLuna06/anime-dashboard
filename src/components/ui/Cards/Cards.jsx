@@ -22,7 +22,7 @@ function Cards({ props }) {
             </p>
             <p className="text-sm my-2">{`${props?.synopsis?.slice(
               0,
-              150
+              70
             )}...`}</p>
           </div>
         </div>

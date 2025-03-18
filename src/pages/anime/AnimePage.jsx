@@ -13,6 +13,8 @@ import PlayArrowOutlinedIcon from "@mui/icons-material/PlayArrowOutlined";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import ImportContactsIcon from "@mui/icons-material/ImportContacts";
+
 import Side from "../../components/layout/SideBar/Side";
 
 function AnimePage() {
@@ -158,7 +160,7 @@ function AnimePage() {
                       <h2>
                         Favorites{" "}
                         <span className="font-bold">
-                          {anime.favorites?.toLocaleString()}
+                          {anime?.favorites?.toLocaleString()}
                         </span>
                       </h2>
                     </div>
@@ -192,19 +194,20 @@ function AnimePage() {
 
                   <label className="tab ">
                     <input type="radio" name="my_tabs_4" />
-                    <InfoOutlinedIcon className="mr-1" />
+                    <ImportContactsIcon className="mr-1" />
                     Episodes
                   </label>
                   <div className="tab-content bg-base-100 border-base-300 p-6 animate-fadeIn">
-                    {episodes &&
-                      episodes.map((ep) => (
-                        <EpisodeCard
-                          link={ep.images.jpg.image_url}
-                          title={ep.title}
-                          episode={ep.episode}
-                          key={ep.title}
-                        />
-                      ))}
+                    {episodes
+                      ? "No data"
+                      : episodes?.map((ep) => (
+                          <EpisodeCard
+                            link={ep.images.jpg.image_url}
+                            title={ep.title}
+                            episode={ep.episode}
+                            key={ep.title}
+                          />
+                        ))}
                   </div>
 
                   <label className="tab">
@@ -215,22 +218,23 @@ function AnimePage() {
 
                   <div className="tab-content bg-base-100 border-base-300 p-6 animate-fadeIn">
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                      {characters &&
-                        characters.slice(0, 15).map((character, index) => (
-                          <div
-                            key={index}
-                            className="flex flex-col items-center"
-                          >
-                            <img
-                              src={character.character.images.webp.image_url}
-                              alt=""
-                              className="rounded-full h-[100px] w-[100px] object-cover"
-                            />
-                            <h2 className="mt-2 text-center">
-                              {character.character.name}
-                            </h2>
-                          </div>
-                        ))}
+                      {characters
+                        ? "No data"
+                        : characters?.slice(0, 15).map((character, index) => (
+                            <div
+                              key={index}
+                              className="flex flex-col items-center"
+                            >
+                              <img
+                                src={character.character.images.webp.image_url}
+                                alt=""
+                                className="rounded-full h-[100px] w-[100px] object-cover"
+                              />
+                              <h2 className="mt-2 text-center">
+                                {character.character.name}
+                              </h2>
+                            </div>
+                          ))}
                     </div>
                   </div>
 
@@ -240,7 +244,7 @@ function AnimePage() {
                     Trailer
                   </label>
                   <div className="tab-content bg-base-100 border-base-300 p-6 animate-fadeIn">
-                    {anime && (
+                    {anime && anime?.trailer.embed_url ? (
                       <figure className="aspect-[16/9]">
                         <iframe
                           className="w-full h-full"
@@ -254,6 +258,8 @@ function AnimePage() {
                           allowFullScreen
                         ></iframe>
                       </figure>
+                    ) : (
+                      "No data"
                     )}
                   </div>
                 </div>

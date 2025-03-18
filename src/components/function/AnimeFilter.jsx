@@ -48,8 +48,6 @@ function AnimeFilter({
     setPage(1);
   }, [query]);
 
-  const { data: animes, isLoading } = getAnime(option);
-
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
@@ -93,6 +91,7 @@ function AnimeFilter({
     }));
   }
 
+  const { data: animes, isLoading } = getAnime(option);
   return (
     <>
       <div className="md:flex md:justify-between mx-5">

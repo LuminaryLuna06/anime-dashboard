@@ -14,7 +14,7 @@ function getAnimeVideosEpisodes(id, enable) {
     staleTime: 1000 * 60 * 5,
     priority: "low",
     enabled: !!enable,
-    retry: 3,
+    retry: 5,
     retryDelay: 2000,
   }));
 }

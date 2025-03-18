@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import SearchAnime from "./components/SearchAnime";
 import TopAnime from "./components/TopAnime";
+import AnimeFilter from "../../components/function/AnimeFilter";
 
 function Animes() {
   window.scrollTo(0, 0);
@@ -8,8 +9,8 @@ function Animes() {
   return (
     <>
       <div className="w-[95%] mx-auto">
-        {/* Search anime */}
-        <SearchAnime />
+        {/* Filter anime */}
+        <AnimeFilter />
 
         {/* Top Anime Of All Time */}
         <TopAnime />
