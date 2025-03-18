@@ -25,6 +25,7 @@ function getAnime(option) {
       return uniqueAnimes;
     },
     staleTime: 1000 * 60 * 5,
+    priority: "high",
   });
 }
 

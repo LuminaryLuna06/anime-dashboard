@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import getAnimeFullById from "../../api/hooks/getAnimeFullById";
@@ -16,16 +16,25 @@ import PlayArrowOutlinedIcon from "@mui/icons-material/PlayArrowOutlined";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import getRandomAnime from "../../api/hooks/getRandomAnime";
+import Side from "../../components/layout/SideBar/Side";
 
 function AnimePage() {
   window.scrollTo(0, 0);
+
+  const [shouldFetch, setShouldFetch] = useState(false);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShouldFetch(true);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   const { id } = useParams();
   const { data: anime, isLoading } = getAnimeFullById(id);
   const { data: pictures } = getAnimePictures(id);
-  const { data: characters } = getAnimeCharacters(id);
-  const { data: episodes } = getAnimeVideosEpisodes(id);
-  const { data: random } = getRandomAnime();
+  const { data: characters } = getAnimeCharacters(id, shouldFetch);
+  const { data: episodes } = getAnimeVideosEpisodes(id, shouldFetch);
   const [more, setMore] = useState(false);
   function handleMore() {
     setMore(!more);
@@ -171,15 +180,16 @@ function AnimePage() {
                   </label>
                   <div className="tab-content bg-base-100 border-base-300 p-6 animate-fadeIn">
                     <ul>
-                      {info.map((info) => (
-                        <li className="text-gray-300 p-1" key={info.id}>
-                          <AddCircleOutlineIcon className="text-pink-200" />
-                          <span className=" text-gray-200 font-semibold">
-                            {info.title}:
-                          </span>{" "}
-                          {info.content}
-                        </li>
-                      ))}
+                      {info &&
+                        info.map((info) => (
+                          <li className="text-gray-300 p-1" key={info.id}>
+                            <AddCircleOutlineIcon className="text-pink-200" />
+                            <span className=" text-gray-200 font-semibold">
+                              {info.title}:
+                            </span>{" "}
+                            {info.content}
+                          </li>
+                        ))}
                     </ul>
                   </div>
 
@@ -241,19 +251,21 @@ function AnimePage() {
                     Trailer
                   </label>
                   <div className="tab-content bg-base-100 border-base-300 p-6 animate-fadeIn">
-                    <figure className="aspect-[16/9]">
-                      <iframe
-                        className="w-full h-full"
-                        width="1044"
-                        height="587"
-                        src={anime?.trailer.embed_url}
-                        title=""
-                        frameborder="0"
-                        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerPolicy="strict-origin-when-cross-origin"
-                        allowFullScreen
-                      ></iframe>
-                    </figure>
+                    {anime && (
+                      <figure className="aspect-[16/9]">
+                        <iframe
+                          className="w-full h-full"
+                          width="1044"
+                          height="587"
+                          src={anime?.trailer.embed_url}
+                          title=""
+                          frameborder="0"
+                          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          referrerPolicy="strict-origin-when-cross-origin"
+                          allowFullScreen
+                        ></iframe>
+                      </figure>
+                    )}
                   </div>
                 </div>
               </div>
@@ -263,19 +275,7 @@ function AnimePage() {
             </div>
 
             {/* Right */}
-            <div className="md:w-[20%] lg:w-[25%] flex flex-col">
-              {/* Random */}
-              <div className="w-full bg-base-100 p-2 rounded">
-                <h2 className="text-xl font-semibold my-2">Anime for today</h2>
-                <hr className="my-2" />
-                {random && (
-                  <Button
-                    content={"Random Anime"}
-                    link={`/anime/${random.mal_id}`}
-                  />
-                )}
-              </div>
-            </div>
+            <Side />
           </div>
         </>
       )}

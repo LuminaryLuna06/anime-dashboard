@@ -2,19 +2,18 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import http from "../config/http";
 
-function getAnimeFullById(id) {
+function getWatchRecentEpisodes() {
   return ({} = useQuery({
-    queryKey: ["anime full", id],
+    queryKey: ["recent"],
     queryFn: async () => {
       return await http
-        .get(`/anime/${id}/full`)
+        .get("https://api.jikan.moe/v4/watch/episodes")
         .then((res) => res.data.data)
         .catch((err) => console.log(err));
     },
     staleTime: 1000 * 60 * 5,
-    priority: "high",
-
+    priority: "low",
   }));
 }
 
-export default getAnimeFullById;
+export default getWatchRecentEpisodes;

@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import getAnimeRecommendations from "../../../api/hooks/getAnimeRecommendations";
 import CardSkeleton from "../../../components/ui/Skeleton/CardSkeleton";
 import Cards from "../../../components/ui/Cards/Cards";
 import UpcomingCard from "../../home/components/UpcomingCard";
 
 function AnimeRecommend({ id }) {
-  const { data: animes, isLoading } = getAnimeRecommendations(id);
+  const [shouldFetch, setShouldFetch] = useState(false);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShouldFetch(true);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+  const { data: animes, isLoading } = getAnimeRecommendations(id, shouldFetch);
 
   return (
     <>

@@ -2,7 +2,7 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import http from "../config/http";
 
-function getAnimeVideosEpisodes(id) {
+function getAnimeVideosEpisodes(id, enable) {
   return ({} = useQuery({
     queryKey: ["anime-episodes", id],
     queryFn: async () => {
@@ -12,6 +12,10 @@ function getAnimeVideosEpisodes(id) {
         .catch((err) => console.log(err));
     },
     staleTime: 1000 * 60 * 5,
+    priority: "low",
+    enabled: !!enable,
+    retry: 3,
+    retryDelay: 2000,
   }));
 }
 

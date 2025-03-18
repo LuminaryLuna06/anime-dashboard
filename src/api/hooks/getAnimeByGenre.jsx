@@ -21,6 +21,8 @@ function getAnimeByGenre(genreName, genreId, page) {
         .catch((err) => console.log(err));
     },
     staleTime: 1000 * 60 * 5,
+    priority: "high",
+
   }));
 }
 
