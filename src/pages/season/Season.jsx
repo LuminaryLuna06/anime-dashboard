@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import getSeason from "../../api/hooks/getSeason";
 import Side from "../../components/layout/SideBar/Side";
 import CardSkeleton from "../../components/ui/Skeleton/CardSkeleton";
@@ -7,11 +7,25 @@ import Pagination from "../../components/ui/Pagination/Pagination";
 
 function Season() {
   const [page, setPage] = useState(1);
+  const [seasonY, setSeasonY] = useState("2025/summer");
   const [search, setSearch] = useState("");
   const [option, setOption] = useState({
     sfw: true,
+    page,
   });
-  const [seasonY, setSeasonY] = useState("2025/summer");
+  useEffect(() => {
+    setOption((prevOption) => ({
+      ...prevOption,
+      page: page,
+    }));
+  }, [page]);
+  useEffect(() => {
+    setOption((prevOption) => ({
+      ...prevOption,
+      page: 1,
+    }));
+    setPage(1);
+  }, [seasonY]);
   const handleChange = (e) => {
     const selected = JSON.parse(e.target.value);
     setOption((prev) => ({
