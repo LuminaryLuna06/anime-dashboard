@@ -59,6 +59,9 @@ function NavBar() {
             <li>
               <Link to={"/genres"}>Genres</Link>
             </li>
+            <li>
+              <Link to={"/season"}>Seasonal</Link>
+            </li>
             {isAdmin ? (
               <li>
                 <Link to={"/admin"}>Admin</Link>
