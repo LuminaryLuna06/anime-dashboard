@@ -11,7 +11,7 @@ function Animes() {
     <>
       <div className="lg:w-[85%] mx-auto py-3 flex flex-col md:flex-row gap-3">
         {/* Left */}
-        <div className="flex flex-col md:w-[80%] lg:w-[75%]">
+        <div className="flex flex-col md:w-[80%] lg:w-[80%]">
           {/* Filter anime */}
           <AnimeFilter />
 
