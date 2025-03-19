@@ -6,12 +6,17 @@ function getSeason(option, seasonY) {
   return ({} = useQuery({
     queryKey: [`season-${seasonY}`, option],
     queryFn: async () => {
-      return await http
+      const data = await http
         .get(`/seasons/${seasonY}`, {
           params: option,
         })
         .then((res) => res.data.data)
         .catch((err) => console.log(err));
+
+      const uniqueAnimes = Array.from(
+        new Set(data.map((anime) => anime.mal_id))
+      ).map((mal_id) => data.find((anime) => anime.mal_id === mal_id));
+      return uniqueAnimes;
     },
     staleTime: 1000 * 60 * 5,
     priority: "high",
