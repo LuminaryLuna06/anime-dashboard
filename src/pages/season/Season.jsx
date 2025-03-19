@@ -6,12 +6,17 @@ function Season() {
   const [option, setOption] = useState({
     sfw: true,
   });
+  const [seasonY, setSeasonY] = useState("2025/summer");
   const handleChange = (e) => {
     const selected = JSON.parse(e.target.value);
     setOption((prev) => ({
       ...prev,
       ...selected,
     }));
+  };
+  const handleChangeURL = (e) => {
+    const selected = JSON.parse(e.target.value);
+    setSeasonY(selected);
   };
   const yearSeason = [
     {
@@ -24,7 +29,7 @@ function Season() {
     },
   ];
 
-  const { data: seasons, isLoading } = getSeason();
+  const { data: seasons, isLoading } = getSeason(option, seasonY);
   return (
     <>
       {/* name of each tab group should be unique */}
@@ -33,16 +38,21 @@ function Season() {
           type="radio"
           name="my_tabs_6"
           className="tab"
-          aria-label="Tab 1"
+          aria-label="Summer 2025"
+          value={`2025/summer`}
+          onChange={handleChangeURL}
           defaultChecked
         />
         {yearSeason.map((item, index) => {
-          item.seasons.map((i, index) => (
+          return item.seasons.map((i, index) => (
             <input
+              key={`${item.year}-${i}`}
               type="radio"
               name="my_tabs_6"
-              className={`${item.year} ${i}`}
-              aria-label="Tab 1"
+              className="tab"
+              value={`${item.year}/${i}`}
+              onChange={handleChangeURL}
+              aria-label={`${i.toUpperCase()} ${item.year}`}
             />
           ));
         })}

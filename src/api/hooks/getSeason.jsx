@@ -2,12 +2,12 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import http from "../config/http";
 
-function getSeason(option, year, season) {
+function getSeason(option, seasonY) {
   return ({} = useQuery({
-    queryKey: [`season`, option],
+    queryKey: [`season-${seasonY}`, option],
     queryFn: async () => {
       return await http
-        .get(`/seasons/${year}/${season}`, {
+        .get(`/seasons/${seasonY}`, {
           params: option,
         })
         .then((res) => res.data.data)
