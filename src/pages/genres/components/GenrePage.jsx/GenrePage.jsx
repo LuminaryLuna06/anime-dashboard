@@ -18,6 +18,7 @@ function GenrePage() {
           <h1 className="text-4xl">{genreName}</h1>
           <p className="text-md text-gray-400">Discover anime of your taste!</p>
         </div>
+        <Pagination page={page} setPage={setPage} totalPages={3} />
 
         <div className="flex flex-wrap items-start ">
           {isLoading ? (

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import getTopAnimeFilter from "../../api/hooks/getTopAnimeFilter";
 import { Link, useNavigate } from "react-router-dom";
 import StarIcon from "@mui/icons-material/Star";
+import Side from "../../components/layout/SideBar/Side";
 
 function TopAnime() {
   const [option, setOption] = useState({
@@ -71,64 +72,68 @@ function TopAnime() {
           aria-label="Most Favorited"
           value='{"type": "", "filter": "favorite"}'
           onChange={handleChange}
-          defaultChecked
         />
       </div>
       {isLoading ? (
         <div className="h-[100vh]"></div>
       ) : (
-        <div className="overflow-x-auto w-[90%] mx-auto animate-fadeIn">
-          <h1>Top anime series</h1>
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Rank</th>
-                <th>Title</th>
-                <th>Score</th>
-              </tr>
-            </thead>
-            <tbody>
-              {data &&
-                data.map((anime, index) => (
-                  <tr
-                    key={index}
-                    onClick={() => {
-                      navigate(`/anime/${anime.mal_id}`);
-                    }}
-                    className="cursor-pointer hover:bg-gray-900"
-                  >
-                    <th className="text-4xl">{index + 1}</th>
-                    <td className="font-bold text-xl">
-                      <div className="flex">
-                        <img
-                          src={anime.images.webp.large_image_url}
-                          alt=""
-                          className="h-28 w-20 object-cover"
-                        />
-                        <div className="p-3">
-                          <h2>{anime.title}</h2>
-                          <p className="text-sm font-normal text-gray-400">
-                            {anime.type} ({anime.episodes} eps)
-                          </p>
-                          <p className="text-sm font-normal text-gray-400">
-                            {anime.year || "NaN"}
-                          </p>
-                          <p className="text-sm font-normal text-gray-400">
-                            {anime.members} members
-                          </p>
+        <div className="lg:w-[85%] mx-auto py-3 flex flex-col md:flex-row gap-3">
+          {/* Left */}
+          <div className="overflow-x-auto flex flex-col md:w-[80%] lg:w-[75%] mx-auto animate-fadeIn">
+            <h1>Top anime series</h1>
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Title</th>
+                  <th>Score</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data &&
+                  data.map((anime, index) => (
+                    <tr
+                      key={index}
+                      onClick={() => {
+                        navigate(`/anime/${anime.mal_id}`);
+                      }}
+                      className="cursor-pointer hover:bg-gray-900"
+                    >
+                      <th className="text-4xl">{index + 1}</th>
+                      <td className="font-bold text-xl">
+                        <div className="flex">
+                          <img
+                            src={anime.images.webp.large_image_url}
+                            alt=""
+                            className="h-28 w-20 object-cover"
+                          />
+                          <div className="p-3">
+                            <h2>{anime.title}</h2>
+                            <p className="text-sm font-normal text-gray-400">
+                              {anime.type} ({anime.episodes} eps)
+                            </p>
+                            <p className="text-sm font-normal text-gray-400">
+                              {anime.year || "NaN"}
+                            </p>
+                            <p className="text-sm font-normal text-gray-400">
+                              {anime.members} members
+                            </p>
+                          </div>
                         </div>
-                      </div>
-                    </td>
-                    <td className="font-bold text-xl ">
-                      <div className="flex items-center">
-                        <StarIcon className="text-yellow-400" />
-                        {anime.score}
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
+                      </td>
+                      <td className="font-bold text-xl ">
+                        <div className="flex items-center">
+                          <StarIcon className="text-yellow-400" />
+                          {anime.score}
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
+          {/* Right */}
+          <Side />
         </div>
       )}
     </>

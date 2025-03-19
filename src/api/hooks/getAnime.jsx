@@ -26,6 +26,8 @@ function getAnime(option) {
     },
     staleTime: 1000 * 60 * 5,
     priority: "high",
+    retry: 5,
+    retryDelay: 2000,
   });
 }
 

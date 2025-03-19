@@ -12,6 +12,8 @@ function TopAnime() {
     <>
       <div className="my-10">
         <h1>⭐Top animes of all times!⭐</h1>
+        <Pagination page={page} setPage={setPage} totalPages={3} />
+
         {/* Top */}
         <div className="flex flex-wrap items-start ">
           {isLoading ? (

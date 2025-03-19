@@ -13,7 +13,9 @@ function Home() {
       <div className="mx-auto py-3 flex flex-col md:flex-row gap-3 w-[95%]">
         {/* Left */}
         <div className="flex flex-col md:w-[80%] lg:w-[75%]">
-          <Trending />
+          <div>
+            <Trending />
+          </div>
 
           {/* Banner */}
           <div className="my-5">
@@ -21,8 +23,9 @@ function Home() {
               <img src="banner.avif" alt="Dr.Stone" />
             </Link>
           </div>
-
-          <UpcomingAnime />
+          <div>
+            <UpcomingAnime />
+          </div>
         </div>
         {/* Right */}
         <Side />

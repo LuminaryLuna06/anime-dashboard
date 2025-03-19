@@ -90,7 +90,7 @@ function AnimeFilter({
       sort: sort,
     }));
   }
-
+  console.log(option);
   const { data: animes, isLoading } = getAnime(option);
   return (
     <>
@@ -108,8 +108,11 @@ function AnimeFilter({
         </div>
       </div>
       {isOpen && (
-        <div className="h-[500px] w-[80%] mx-auto bg-white rounded-lg my-2">
-          <form action="" className="flex text-gray-800 p-2">
+        <div className=" w-[80%] mx-auto bg-white rounded-lg my-2">
+          <form
+            action=""
+            className="flex flex-col md:flex-row text-gray-800 p-2"
+          >
             {/* Left */}
             <div className="w-[200px] flex flex-col p-2">
               <h2 className="font-semibold text-xl text-center">Sort by</h2>
@@ -158,9 +161,9 @@ function AnimeFilter({
             {/* Right */}
             <div className="flex flex-col w-full gap-5 p-2">
               {/* Type Selection */}
-              <fieldset>
+              <fieldset className="grid md:grid-cols-4 lg:grid-cols-5 grid-cols-2">
                 <legend className="text-xl font-semibold">Type:</legend>
-                <label key={"all"}>
+                <label key={"all"} className="px-2">
                   <input
                     className=""
                     type="radio"
@@ -185,25 +188,26 @@ function AnimeFilter({
                 ))}
               </fieldset>
               {/* Genre Selection */}
-              <fieldset>
+              <fieldset className="grid lg:grid-cols-4 grid-cols-3">
                 <legend className="text-xl font-semibold">Genres:</legend>
                 {genres.map((genre) => (
-                  <label className="mx-2" key={genre.name}>
+                  <label className="mx-2 flex" key={genre.name}>
                     <input
                       type="checkbox"
                       name="genres"
                       value={genre.mal_id}
                       checked={filters.genres.includes(genre.mal_id)}
                       onChange={handleChange}
+                      className="mr-1"
                     />
                     {` ${genre.name}`}
                   </label>
                 ))}
               </fieldset>
               {/* Year Selection */}
-              <fieldset>
+              <fieldset className=" grid grid-cols-3">
                 <legend className="text-xl font-semibold">Release Year:</legend>
-                <label>
+                <label className="mx-2">
                   <input
                     type="radio"
                     name="year"
@@ -211,7 +215,7 @@ function AnimeFilter({
                     checked={filters.start_date === ""} // No year selected
                     onChange={handleYearChange}
                   />
-                  All
+                  {` All`}
                 </label>
 
                 {[2025, 2024, 2023, 2022, 2021, 2020].map((year) => (
@@ -238,16 +242,20 @@ function AnimeFilter({
           </form>
         </div>
       )}
-      <Pagination page={page} setPage={setPage} totalPages={totalPages} />
+      <div>
+        <Pagination page={page} setPage={setPage} totalPages={totalPages} />
 
-      <div className="flex flex-wrap items-start mx-auto">
-        {isLoading ? (
-          <CardSkeleton cards={12} />
-        ) : (
-          animes.map((anime) => <Cards key={anime.mal_id} props={anime} />)
-        )}
+        <div className="flex flex-wrap items-start mx-auto">
+          {isLoading ? (
+            // <div className="h-[100vh]">
+            <CardSkeleton cards={12} />
+          ) : (
+            // </div>
+            animes.map((anime) => <Cards key={anime.mal_id} props={anime} />)
+          )}
+        </div>
+        <Pagination page={page} setPage={setPage} totalPages={totalPages} />
       </div>
-      <Pagination page={page} setPage={setPage} totalPages={totalPages} />
     </>
   );
 }
