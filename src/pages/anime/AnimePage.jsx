@@ -31,9 +31,10 @@ function AnimePage() {
 
   const { id } = useParams();
   const { data: anime, isLoading } = getAnimeFullById(id);
-  const { data: pictures } = getAnimePictures(id);
-  const { data: characters } = getAnimeCharacters(id, shouldFetch);
-  const { data: episodes } = getAnimeVideosEpisodes(id, shouldFetch);
+  const { data: characters, isLoading: isCharacterLoading } =
+    getAnimeCharacters(id, shouldFetch);
+  const { data: episodes, isLoading: isEpisodeLoading } =
+    getAnimeVideosEpisodes(id, shouldFetch);
   const [more, setMore] = useState(false);
   function handleMore() {
     setMore(!more);
@@ -82,11 +83,11 @@ function AnimePage() {
             <div className="flex flex-col md:w-[80%] lg:w-[75%]">
               {/* Info */}
               <div className=" relative  mx-auto md:mx-0 text-gray-800 p-3">
-                {pictures && (
+                {anime && (
                   <div
                     className="absolute inset-0 bg-center bg-no-repeat bg-cover rounded"
                     style={{
-                      backgroundImage: `url(${pictures[1]?.webp?.large_image_url})`,
+                      backgroundImage: `url(${anime.images.webp.large_image_url})`,
                     }}
                   ></div>
                 )}
@@ -198,8 +199,8 @@ function AnimePage() {
                     Episodes
                   </label>
                   <div className="tab-content bg-base-100 border-base-300 p-6 animate-fadeIn">
-                    {episodes
-                      ? "No data"
+                    {isEpisodeLoading
+                      ? "Loading..."
                       : episodes?.map((ep) => (
                           <EpisodeCard
                             link={ep.images.jpg.image_url}
@@ -218,7 +219,7 @@ function AnimePage() {
 
                   <div className="tab-content bg-base-100 border-base-300 p-6 animate-fadeIn">
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                      {characters
+                      {isCharacterLoading
                         ? "No data"
                         : characters?.slice(0, 15).map((character, index) => (
                             <div

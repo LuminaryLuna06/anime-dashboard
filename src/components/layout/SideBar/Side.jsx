@@ -1,26 +1,3 @@
-// import React from "react";
-// import Button from "../../ui/Button";
-// import getRandomAnime from "../../../api/hooks/getRandomAnime";
-
-// function Side() {
-//   const { data: random } = getRandomAnime();
-
-//   return (
-//     <div className="md:w-[20%] lg:w-[25%] flex flex-col">
-//       {/* Random */}
-//       <div className="w-full bg-base-100 p-2 rounded">
-//         <h2 className="text-xl font-semibold my-2">Anime for today</h2>
-//         <hr className="my-2" />
-//         {random && (
-//           <Button content={"Random Anime"} link={`/anime/${random.mal_id}`} />
-//         )}
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Side;
-
 import React, { useState, useEffect } from "react";
 import Button from "../../ui/Button";
 import getRandomAnime from "../../../api/hooks/getRandomAnime";
@@ -29,34 +6,21 @@ import { Link } from "react-router-dom";
 import ShuffleIcon from "@mui/icons-material/Shuffle";
 
 function Side() {
-  const [shouldFetch, setShouldFetch] = useState(false);
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShouldFetch(true);
-    }, 1500);
+  // const [shouldFetch, setShouldFetch] = useState(false);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setShouldFetch(true);
+  //   }, 1500);
 
-    return () => clearTimeout(timer);
-  }, []);
+  //   return () => clearTimeout(timer);
+  // }, []);
 
-  const { data: random } = getRandomAnime(shouldFetch);
   const { data: recents } = getWatchRecentEpisodes();
 
   return (
     <div className="md:w-[20%] lg:w-[25%] flex flex-col gap-4">
-      {/* Random */}
-      <div className="w-full bg-base-100 p-2 rounded">
-        <h2 className="text-xl font-semibold my-2">Anime for today</h2>
-        <hr className="my-2" />
-        {random && (
-          <Button
-            link={`/anime/${random.mal_id}`}
-            content={"Random Anime"}
-            icon={<ShuffleIcon />}
-          />
-        )}
-      </div>
       <div>
-        <img src="quangcao2.jpg" alt="" />
+        <img src="quangcao2.jpg" alt="Quang cao" />
       </div>
       {/* Anime moi cap nhat */}
       <div className="w-full bg-base-100 p-2 rounded">
