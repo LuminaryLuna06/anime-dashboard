@@ -7,7 +7,7 @@ function getTopAnime(page) {
     queryKey: ["top-anime", page],
     queryFn: async () => {
       return await http
-        .get(`/top/anime`, { params: { page, limit: 24 } })
+        .get(`/top/anime`, { params: { page, limit: 12 } })
         .then((res) => res.data.data)
         .catch((err) => console.log(err));
     },

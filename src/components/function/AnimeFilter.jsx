@@ -243,8 +243,6 @@ function AnimeFilter({
         </div>
       )}
       <div>
-        <Pagination page={page} setPage={setPage} totalPages={totalPages} />
-
         <div className="flex flex-wrap items-start mx-auto">
           {isLoading ? (
             // <div className="h-[100vh]">

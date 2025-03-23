@@ -4,6 +4,13 @@ import "react-loading-skeleton/dist/skeleton.css";
 import "./style.css";
 
 function Cards({ props }) {
+  const truncateTitle = (title, maxLength) => {
+    if (title.length > maxLength) {
+      return `${title.slice(0, maxLength)}...`;
+    }
+    return title;
+  };
+
   return (
     <div className="flex flex-col md:w-[30%] lg:w-[15%] w-[45%] mx-2 py-2 relative container animate-fadeIn">
       <Link key={props?.mal_id} to={`/anime/${props?.mal_id}`}>
@@ -27,7 +34,7 @@ function Cards({ props }) {
           </div>
         </div>
         <div className="my-2">
-          <h4 className="font-semibold">{props?.title}</h4>
+          <h4 className="font-semibold">{truncateTitle(props?.title, 50)}</h4>
           <p>
             ⭐ {props?.score} - 🗓 {props?.year}
           </p>
