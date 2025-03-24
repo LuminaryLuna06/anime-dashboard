@@ -83,7 +83,8 @@
 //     setPage(1);
 //   };
 
-//   function handleSort(sort) {
+//   function handleSort(e, sort) {
+//     e.preventDefault();
 //     setOption((prevOption) => ({
 //       ...prevOption,
 //       order_by: "title",
@@ -260,8 +261,6 @@
 
 // export default AnimeFilter;
 
-
-
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import getAnime from "../../api/hooks/getAnime";
@@ -276,49 +275,55 @@ import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import TrendingDownIcon from "@mui/icons-material/TrendingDown";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
+import Pagination2 from "../ui/Pagination/Pagination2";
 
-function AnimeFilter({
-  initialFilters = {
-    q: "",
-    type: "",
-    genres: [],
-    start_date: "",
-    end_date: "",
-  },
-  initialOption = {
-    limit: 12,
-    sfw: true,
-    page: 1,
-  },
-  totalPages = 3,
-  query,
-}) {
+function AnimeFilter({ totalPages = 3, query }) {
   const navigate = useNavigate();
   const location = useLocation();
+  const params = new URLSearchParams(location.search);
+
+  const [filters, setFilters] = useState({
+    q: params.get("q") || "",
+    type: params.get("type") || "",
+    genres: params.get("genres")
+      ? params.get("genres").split(",").map(Number)
+      : [],
+    start_date: params.get("start_date") || "",
+    end_date: params.get("end_date") || "",
+  });
+  const [option, setOption] = useState({
+    page: Number(params.get("page")) || 1,
+    order_by: params.get("order_by") || "",
+    sort: params.get("sort") || "",
+    sfw: true,
+  });
 
   const [isOpen, setIsOpen] = useState(false);
-  const [page, setPage] = useState(initialOption.page);
-  const [filters, setFilters] = useState(initialFilters);
-  const [option, setOption] = useState(initialOption);
+  const [page, setPage] = useState(option.page);
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const newFilters = {
       q: params.get("q") || "",
       type: params.get("type") || "",
-      genres: params.get("genres") ? params.get("genres").split(",").map(Number) : [],
+      genres: params.get("genres")
+        ? params.get("genres").split(",").map(Number)
+        : [],
       start_date: params.get("start_date") || "",
       end_date: params.get("end_date") || "",
     };
     const newOption = {
-      limit: Number(params.get("limit")) || 12,
-      sfw: params.get("sfw") === "true",
       page: Number(params.get("page")) || 1,
       order_by: params.get("order_by") || "",
       sort: params.get("sort") || "",
     };
     setFilters(newFilters);
-    setOption(newOption);
+    setOption((prevOption) => ({
+      ...prevOption,
+      ...newOption,
+      ...filters,
+      genres: filters.genres.join(","),
+    }));
     setPage(newOption.page);
   }, [location.search]);
 
@@ -391,7 +396,10 @@ function AnimeFilter({
     handleSubmit(null, newOption);
   }
 
-  const { data: animes, isLoading } = getAnime(option);
+  const { data, isLoading } = getAnime(option);
+  const uniqueAnimes = data && data[0];
+  const pagination = data && data[1];
+  console.log(pagination);
 
   return (
     <>
@@ -409,7 +417,7 @@ function AnimeFilter({
         </div>
       </div>
       {isOpen && (
-        <div className=" w-[80%] mx-auto bg-white rounded-lg my-2">
+        <div className=" md:w-[100%] lg:w-[80%] mx-auto bg-white rounded-lg my-2">
           <form
             action=""
             className="flex flex-col md:flex-row text-gray-800 p-2"
@@ -546,15 +554,36 @@ function AnimeFilter({
           </form>
         </div>
       )}
+      <h2 className="font-semibold text-xl">
+        There are {pagination && pagination.items.total} Results
+      </h2>
       <div>
+        {pagination && (
+          <Pagination2
+            currentPage={page}
+            totalCount={pagination.items.total}
+            pageSize={pagination.items.per_page}
+            onPageChange={(page) => setPage(page)}
+          />
+        )}
+
         <div className="flex flex-wrap items-start mx-auto">
           {isLoading ? (
             <CardSkeleton cards={12} />
           ) : (
-            animes.map((anime) => <Cards key={anime.mal_id} props={anime} />)
+            uniqueAnimes.map((anime) => (
+              <Cards key={anime.mal_id} props={anime} />
+            ))
           )}
         </div>
-        <Pagination page={page} setPage={setPage} totalPages={totalPages} />
+        {pagination && (
+          <Pagination2
+            currentPage={page || 1}
+            totalCount={pagination.items.total}
+            pageSize={pagination.items.per_page}
+            onPageChange={(page) => setPage(page)}
+          />
+        )}
       </div>
     </>
   );

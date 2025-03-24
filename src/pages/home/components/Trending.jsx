@@ -14,7 +14,7 @@ function Trending() {
     type: "tv",
   };
   const { data, isLoading, isError } = getAnime(option);
-
+  const uniqueAnimes = data && data[0];
   return (
     <>
       <div className="h-auto mx-auto">
@@ -29,7 +29,7 @@ function Trending() {
           {isLoading ? (
             <SliderCardSkeleton cards={6} />
           ) : (
-            <SliderCard props={data} />
+            <SliderCard props={uniqueAnimes} />
           )}
         </div>
       </div>

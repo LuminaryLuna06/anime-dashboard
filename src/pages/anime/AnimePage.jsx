@@ -38,7 +38,7 @@ function AnimePage() {
   function handleMore() {
     setMore(!more);
   }
-  const currentEpisode = episodes && episodes[0].episode;
+  const currentEpisode = episodes && episodes[0] && episodes[0].episode;
   const info = [
     {
       id: 1,

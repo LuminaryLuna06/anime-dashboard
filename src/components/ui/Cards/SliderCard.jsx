@@ -51,7 +51,10 @@ function SliderCard({ props }) {
       <Slider {...settings}>
         {props &&
           props.map((anime) => (
-            <div className="flex flex-col md:w-[30%] lg:w-[15%] w-[45%]  relative container animate-fadeIn p-2">
+            <div
+              className="flex flex-col md:w-[30%] lg:w-[15%] w-[45%]  relative container animate-fadeIn p-2"
+              key={anime.mal_id}
+            >
               <Link key={anime?.mal_id} to={`/anime/${anime?.mal_id}`}>
                 <div className="aspect-[2/3] flex">
                   <img

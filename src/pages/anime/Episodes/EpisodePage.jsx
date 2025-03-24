@@ -15,7 +15,7 @@ function EpisodePage() {
           <PlayCircleOutlinedIcon fontSize="large" />
         </div>
         {episode && (
-          <div className="flex flex-col mx-10 lg:w-2/3">
+          <div className="flex flex-col mx-10 lg:w-2/3 mb-10">
             <h1>
               Episode {epId}: {episode.title}
             </h1>

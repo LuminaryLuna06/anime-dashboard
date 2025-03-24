@@ -12,22 +12,13 @@ function useQuery() {
 }
 
 function SearchAnime() {
-  const query = useQuery().get("query") || "";
+  const query = useQuery().get("q") || "";
   return (
     <>
       <div className="lg:w-[85%] mx-auto py-3 flex flex-col md:flex-row gap-3">
         {/* Left */}
         <div className="flex flex-col md:w-[80%] lg:w-[75%]">
-          <AnimeFilter
-            initialOption={{
-              q: query,
-              limit: 12,
-              sfw: true,
-              page: 1,
-            }}
-            totalPages={3}
-            query={query}
-          />
+          <AnimeFilter totalPages={3} query={query} />
         </div>
         <Side />
       </div>
