@@ -4,6 +4,8 @@ import Cards from "../../../components/ui/Cards/Cards";
 import CardSkeleton from "../../../components/ui/Skeleton/CardSkeleton";
 import getTopAnime from "../../../api/hooks/getTopAnime";
 import Pagination from "../../../components/ui/Pagination/Pagination";
+import SliderCardSkeleton from "../../../components/ui/Skeleton/SliderCardSkeleton";
+import SliderCard from "../../../components/ui/Cards/SliderCard";
 function TopAnime() {
   const [page, setPage] = useState(1);
   const { data: animes, isLoading } = getTopAnime(page);
@@ -14,14 +16,13 @@ function TopAnime() {
         <h1>⭐Top animes of all times!⭐</h1>
 
         {/* Top */}
-        <div className="flex flex-wrap items-start ">
+        <div className="">
           {isLoading ? (
-            <CardSkeleton cards={12} />
+            <SliderCardSkeleton cards={6} />
           ) : (
-            animes.map((anime) => <Cards key={anime.mal_id} props={anime} />)
+            <SliderCard props={animes} />
           )}
         </div>
-        <Pagination page={page} setPage={setPage} totalPages={3} />
       </div>
     </>
   );

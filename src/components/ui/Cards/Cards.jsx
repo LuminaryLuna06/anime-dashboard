@@ -36,7 +36,7 @@ function Cards({ props }) {
         <div className="my-2">
           <h4 className="font-semibold">{truncateTitle(props?.title, 50)}</h4>
           <p>
-            ⭐ {props?.score} - 🗓 {props?.year}
+            ⭐ {props?.score || NaN} - 🗓 {props?.year || NaN}
           </p>
         </div>
       </Link>

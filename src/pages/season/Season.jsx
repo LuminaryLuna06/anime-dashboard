@@ -176,8 +176,6 @@ function Season() {
     item.seasons.some((season) => `${item.year}/${season}` === seasonY)
   );
 
-  console.log(seasonY);
-
   const { data: seasons, isLoading } = getSeason(option, seasonY);
   return (
     <>
@@ -299,11 +297,13 @@ function Season() {
         />
       </div>
 
-      <div className="mx-auto py-3 flex flex-col md:flex-row gap-3 w-[95%]">
+      <div className="mx-auto py-3 flex flex-col md:flex-row gap-3 lg:w-[85%]">
         {/* Left */}
         <div className="flex flex-col md:w-[80%] lg:w-[75%]">
           <div>
-            <Pagination page={page} setPage={setPage} totalPages={3} />
+            {seasons && seasons.length >= 18 && (
+              <Pagination page={page} setPage={setPage} totalPages={3} />
+            )}
 
             <div className="flex flex-wrap items-start mx-auto">
               {isLoading ? (

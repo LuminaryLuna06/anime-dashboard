@@ -1,39 +1,39 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import Cards from "../../../components/ui/Cards/Cards";
 import CardSkeleton from "../../../components/ui/Skeleton/CardSkeleton";
 import getAnime from "../../../api/hooks/getAnime";
+import SliderCard from "../../../components/ui/Cards/SliderCard";
+import SliderCardSkeleton from "../../../components/ui/Skeleton/SliderCardSkeleton";
 
 function Trending() {
   let option = {
     order_by: "popularity",
     sort: "asc",
-    limit: 6,
+    limit: 20,
     min_score: 8.0,
     status: "airing",
-    start_date: "2024-10-01",
+    type: "tv",
   };
   const { data, isLoading, isError } = getAnime(option);
 
   return (
-    <div className="h-auto mx-auto">
-      <div className="py-4 ">
-        <div className="py-4">
-          <h1>⭐Trending Anime⭐</h1>
-          <p className="text-md text-gray-400 text-center md:text-left">
-            Find the best new and continuing simulcasts here!
-          </p>
-        </div>
+    <>
+      <div className="h-auto mx-auto">
+        <div className="py-4 ">
+          <div className="py-4">
+            <h1>⭐Trending Anime⭐</h1>
+            <p className="text-md text-gray-400 text-center md:text-left">
+              Find the best new and continuing simulcasts here!
+            </p>
+          </div>
 
-        <div className="flex flex-wrap items-start ">
           {isLoading ? (
-            <CardSkeleton cards={6} />
+            <SliderCardSkeleton cards={6} />
           ) : (
-            data.map((anime) => <Cards key={anime.mal_id} props={anime} />)
+            <SliderCard props={data} />
           )}
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

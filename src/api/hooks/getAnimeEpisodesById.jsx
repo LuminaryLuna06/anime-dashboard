@@ -2,17 +2,18 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import http from "../config/http";
 
-function getTopAnime(page) {
+function getAnimeEpisodesById(id, epId) {
   return ({} = useQuery({
-    queryKey: ["top-anime", page],
+    queryKey: ["anime", id, "episodes", epId],
     queryFn: async () => {
       return await http
-        .get(`/top/anime`, { params: { page, limit: 24 } })
+        .get(`/anime/${id}/episodes/${epId}`)
         .then((res) => res.data.data)
         .catch((err) => console.log(err));
     },
     staleTime: 1000 * 60 * 5,
+    priority: "high",
   }));
 }
 
-export default getTopAnime;
+export default getAnimeEpisodesById;

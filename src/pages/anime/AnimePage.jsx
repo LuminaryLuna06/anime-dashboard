@@ -12,7 +12,6 @@ import AnimeRecommend from "./components/AnimeRecommend";
 import PlayArrowOutlinedIcon from "@mui/icons-material/PlayArrowOutlined";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import ImportContactsIcon from "@mui/icons-material/ImportContacts";
 
 import Side from "../../components/layout/SideBar/Side";
@@ -39,36 +38,52 @@ function AnimePage() {
   function handleMore() {
     setMore(!more);
   }
+  const currentEpisode = episodes && episodes[0].episode;
   const info = [
     {
       id: 1,
       title: "Schedule",
-      content: "01/01/2025",
+      content: anime?.aired.string,
     },
     {
       id: 2,
       title: "Status",
-      content: anime?.status + " - Episode " + anime?.episodes,
+      content: anime?.status + " - " + currentEpisode + "/" + anime?.episodes,
     },
     {
       id: 3,
       title: "Genres",
-      content: anime?.genres.map((genre) => genre.name + ", "),
+      content: anime?.genres.map((genre) => genre.name.toString()).join(", "),
     },
     {
       id: 4,
+      title: "Themes",
+      content: anime?.themes.map((theme) => theme.name.toString()).join(", "),
+    },
+    {
+      id: 5,
       title: "Members",
       content: anime?.members.toLocaleString(),
     },
     {
-      id: 5,
+      id: 6,
       title: "Studio",
       content: anime?.studios[0]?.name || "",
     },
     {
-      id: 6,
+      id: 7,
       title: "Year",
       content: anime?.year,
+    },
+    {
+      id: 8,
+      title: "Duration",
+      content: anime?.duration,
+    },
+    {
+      id: 9,
+      title: "Type",
+      content: anime?.type,
     },
   ];
 
@@ -137,34 +152,39 @@ function AnimePage() {
                   {/* Bot */}
                   <div className="flex md:w-[450px] lg:w-[600px] bg-gradient-to-r from-gray-800  text-gray-200">
                     {/* Score */}
-                    <div className="text-center my-4 mx-3 ">
-                      <p className="bg-pink-400 rounded text-white text-sm p-1">
-                        SCORE
-                      </p>
-                      <h1 className="text-2xl text-white text-center">
-                        {anime.score}
-                      </h1>
-                      <p className="text-[10px] text-gray-300">
-                        {anime.scored_by?.toLocaleString()} users
-                      </p>
-                    </div>
+                    {anime && (
+                      <div className="text-center my-4 mx-3 ">
+                        <p className="bg-pink-400 rounded text-white text-sm p-1">
+                          SCORE
+                        </p>
+                        <h1 className="text-2xl text-white text-center">
+                          {anime.score}
+                        </h1>
+                        <p className="text-[10px] text-gray-300">
+                          {anime.scored_by?.toLocaleString()} users
+                        </p>
+                      </div>
+                    )}
 
                     {/* Ranking */}
-                    <div className="flex gap-5 items-center text-xl border border-gray-500 pl-5 lg:pr-16 pr-4">
-                      <h2>
-                        Ranked <span className="font-bold">#{anime.rank}</span>{" "}
-                      </h2>
-                      <h2>
-                        Popularity{" "}
-                        <span className="font-bold">#{anime.popularity}</span>
-                      </h2>
-                      <h2>
-                        Favorites{" "}
-                        <span className="font-bold">
-                          {anime?.favorites?.toLocaleString()}
-                        </span>
-                      </h2>
-                    </div>
+                    {anime && (
+                      <div className="flex gap-5 items-center text-xl border border-gray-500 pl-5 lg:pr-16 pr-4">
+                        <h2>
+                          Ranked{" "}
+                          <span className="font-bold">#{anime.rank}</span>{" "}
+                        </h2>
+                        <h2>
+                          Popularity{" "}
+                          <span className="font-bold">#{anime.popularity}</span>
+                        </h2>
+                        <h2>
+                          Favorites{" "}
+                          <span className="font-bold">
+                            {anime?.favorites?.toLocaleString()}
+                          </span>
+                        </h2>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -183,7 +203,7 @@ function AnimePage() {
                       {info &&
                         info.map((info) => (
                           <li className="text-gray-300 p-1" key={info.id}>
-                            <AddCircleOutlineIcon className="text-pink-200" />
+                            <InfoOutlinedIcon className="text-pink-200 mx-1" />
                             <span className=" text-gray-200 font-semibold">
                               {info.title}:
                             </span>{" "}
@@ -207,6 +227,7 @@ function AnimePage() {
                             title={ep.title}
                             episode={ep.episode}
                             key={ep.title}
+                            url={`/anime/${id}/episodes/${ep.mal_id}`}
                           />
                         ))}
                   </div>

@@ -95,15 +95,15 @@ function AnimeFilter({
   return (
     <>
       <div className="md:flex md:justify-between mx-5">
-        <h1>Use anime filter for better result!</h1>
-        <div className="flex justify-center">
+        <h1>Use filter for better result!</h1>
+        <div className="flex justify-center items-center">
           <button
             className="border-2 rounded-lg py-3 px-6  border-pink-300 hover:bg-pink-300 font-semibold items-center"
             onClick={() => {
               setIsOpen(!isOpen);
             }}
           >
-            Filter anime
+            Filter
           </button>
         </div>
       </div>

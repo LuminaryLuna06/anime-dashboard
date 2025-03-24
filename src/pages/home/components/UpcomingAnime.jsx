@@ -3,9 +3,11 @@ import axios from "axios";
 import CardSkeleton from "../../../components/ui/Skeleton/CardSkeleton";
 import getUpcoming from "../../../api/hooks/getUpcoming";
 import UpcomingCard from "./UpcomingCard";
+import SliderCardSkeleton from "../../../components/ui/Skeleton/SliderCardSkeleton";
+import SliderCard from "../../../components/ui/Cards/SliderCard";
 
 function UpcomingAnime() {
-  let option = { limit: 6 };
+  let option = { limit: 24 };
 
   const { data, isLoading, isError } = getUpcoming(option);
 
@@ -17,15 +19,9 @@ function UpcomingAnime() {
           {/* Upcoming */}
 
           {isLoading ? (
-            <div className="flex flex-wrap items-start ">
-              <CardSkeleton cards={6} />
-            </div>
+            <SliderCardSkeleton cards={6} />
           ) : (
-            <div className="flex flex-wrap items-start ">
-              {data.map((anime) => (
-                <UpcomingCard key={anime.mal_id} props={anime} />
-              ))}
-            </div>
+            <SliderCard props={data} />
           )}
         </div>
       </div>

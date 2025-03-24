@@ -1,8 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-function EpisodeCard({ link, title, episode }) {
+function EpisodeCard({ link, title, episode, url }) {
+  const navigate = useNavigate();
   return (
-    <div className="card card-side bg-base-200 shadow-sm my-3 p-3 hover:bg-gray-800">
+    <div
+      className="card card-side bg-base-200 shadow-sm my-3 p-3 hover:bg-gray-800 cursor-pointer"
+      onClick={() => navigate(url)}
+    >
       <img
         src={
           link ||

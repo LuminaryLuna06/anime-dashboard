@@ -46,7 +46,7 @@ function NavBar() {
               <Link to={"/anime"}>Anime</Link>
             </li>
             <li>
-              <Link to={"/top-anime"}>Top-anime</Link>
+              <Link to={"/popular"}>Popular</Link>
               {/* <ul className="p-2">
                 <li>
                   <a>Submenu 1</a>
@@ -56,9 +56,9 @@ function NavBar() {
                 </li>
               </ul> */}
             </li>
-            <li>
+            {/* <li>
               <Link to={"/genres"}>Genres</Link>
-            </li>
+            </li> */}
             <li>
               <Link to={"/season"}>Seasonal</Link>
             </li>
@@ -70,7 +70,7 @@ function NavBar() {
           </ul>
         </div>
         <Link className="btn btn-ghost text-2xl" to={"/"}>
-          🌸Anime Website
+          🌸BlossomAnime
         </Link>
       </div>
       <div className="navbar-center hidden md:flex">
@@ -97,12 +97,12 @@ function NavBar() {
           </li>
           <li>
             <NavLink
-              to="/top-anime"
+              to="/popular"
               className={({ isActive }) => ` 
               ${isActive ? "text-pink-400" : "inactive"}
               `}
             >
-              Top Anime
+              Popular
             </NavLink>
           </li>
 
@@ -112,7 +112,7 @@ function NavBar() {
             >
               Top Anime
             </Link> */}
-          <li>
+          {/* <li>
             <NavLink
               to="/genres"
               className={({ isActive }) => ` 
@@ -121,7 +121,7 @@ function NavBar() {
             >
               Genres
             </NavLink>
-          </li>
+          </li> */}
           <li>
             <NavLink
               to="/season"
