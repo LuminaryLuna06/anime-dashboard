@@ -37,7 +37,7 @@ const HeroSection = () => {
 
         {/* Buttons */}
         <div className="mt-6 flex items-center justify-center space-x-4">
-          <Button content={"Watch Trailer"} link={"/anime/58567"} />
+          <Button content={"Watch Now"} link={"/anime/58567"} />
           <button className="bg-gray-700 hover:bg-gray-800 text-white py-3 px-4 rounded-lg">
             <svg
               xmlns="http://www.w3.org/2000/svg"
