@@ -14,15 +14,15 @@ function HeroSlider() {
     slidesToShow: 1,
     slidesToScroll: 1,
     waitForAnimate: false,
-    // autoplay: true,
-    // autoplaySpeed: 4000,
+    autoplay: true,
+    autoplaySpeed: 4000,
   };
   return (
     <div className="slider-container">
       <Slider {...settings}>
-        <div className="h-[100vh] bg-[url(hero.webp)]">
-          <div className="h-[100vh] bg-gradient-to-l from-black/100 via-black/80 to-transparent flex flex-row-reverse">
-            <div className="flex flex-col justify-center z-10 w-[50%] max-w-4xl text-left px-4 text-white ">
+        <div className="h-[95vh] bg-[url(hero.webp)]">
+          <div className="h-[95vh] bg-gradient-to-t md:bg-gradient-to-l from-black/100 md:via-black/80 via-black/60 to-transparent flex flex-row-reverse">
+            <div className="flex flex-col justify-center z-10 md:w-[40%] max-w-4xl text-left px-4 text-white ">
               {/* Title */}
               <div className="flex justify-center">
                 <img
@@ -64,9 +64,9 @@ function HeroSlider() {
             </div>
           </div>
         </div>
-        <div className="h-[100vh] bg-[url(hero.webp)]">
-          <div className="h-[100vh] bg-gradient-to-r from-black/100 via-black/80 to-transparent flex">
-            <div className="flex flex-col justify-center z-10 w-[50%] max-w-4xl text-left px-4 text-white ">
+        <div className="h-[95vh] bg-[url(hero2.webp)] bg-center bg-cover md:bg-right md:bg-contain bg-no-repeat">
+          <div className="h-[95vh] bg-gradient-to-t md:bg-gradient-to-r from-black/100 md:via-black/90 via-black/70 to-transparent flex">
+            <div className="flex flex-col justify-center z-10 md:w-[40%] max-w-4xl text-left px-4 text-white ">
               {/* Title */}
               <div className="flex justify-center">
                 <img
@@ -78,10 +78,10 @@ function HeroSlider() {
 
               {/* Description */}
               <p className="mt-4 text-lg leading-relaxed">
-                They say whatever doesn’t kill you makes you stronger, but
-                that’s not the case for the world’s weakest hunter, Sung Jinwoo.
-                After being brutally slaughtered by monsters in a high-ranking
-                dungeon, Jinwoo...
+                Ever since Rakurou "Sunraku" Hizutome started to play the
+                extremely popular virtual reality game Shangri-La Frontier, he
+                has truly fallen in love with it. Sunraku has quickly made a big
+                name for himse...
               </p>
 
               {/* Buttons */}
