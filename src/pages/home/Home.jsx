@@ -11,7 +11,6 @@ function Home() {
   return (
     <>
       <HeroSlider />
-      {/* <HeroSection /> */}
       <div className="mx-auto py-3 flex flex-col md:flex-row gap-3 w-[95%]">
         {/* Left */}
         <div className="flex flex-col md:w-[80%] lg:w-[75%]">

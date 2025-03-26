@@ -106,22 +106,6 @@ function NavBar() {
             </NavLink>
           </li>
 
-          {/* <Link
-              to={"/top-anime"}
-              className="hover:bg-gray-700 focus:bg-transparent active:bg-transparent"
-            >
-              Top Anime
-            </Link> */}
-          {/* <li>
-            <NavLink
-              to="/genres"
-              className={({ isActive }) => ` 
-              ${isActive ? "text-pink-400" : "inactive"}
-              `}
-            >
-              Genres
-            </NavLink>
-          </li> */}
           <li>
             <NavLink
               to="/season"

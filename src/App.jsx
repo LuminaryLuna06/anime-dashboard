@@ -3,6 +3,7 @@ import { SkeletonTheme } from "react-loading-skeleton";
 
 import NavBar from "./components/layout/NavBar";
 import Footer from "./components/layout/Footer";
+import Loading from "./components/layout/Loading";
 
 import PublicRoutes from "./routes/PublicRoutes";
 import AdminRoutes from "./routes/AdminRoutes";
@@ -14,6 +15,7 @@ function App() {
     <Router>
       <AuthProvider>
         <div className="text-gray-200 bg-gradient-to-r from-black to-slate-800 font-sans " data-theme="dark">
+            <Loading />
           <MayShow>
             <NavBar />
           </MayShow>
