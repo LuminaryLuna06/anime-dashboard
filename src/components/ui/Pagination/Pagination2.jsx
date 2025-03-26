@@ -36,8 +36,11 @@ const Pagination2 = (props) => {
     <ul className="flex items-center justify-center gap-10 my-5">
       {/* Left navigation arrow */}
       {currentPage !== 1 && (
-        <li onClick={onPrevious}>
-          <ArrowBackIosOutlinedIcon />
+        <li
+          onClick={onPrevious}
+          className="rounded p-3 hover:bg-pink-300 hover:text-pink-700 bg-gray-800  font-semibold flex items-center justify-center cursor-pointer transition-all"
+        >
+          <ArrowBackIosOutlinedIcon /> Previous
         </li>
       )}
       {paginationRange.map((pageNumber) => {
@@ -62,8 +65,11 @@ const Pagination2 = (props) => {
       })}
       {/*  Right Navigation arrow */}
       {currentPage !== lastPage && (
-        <li onClick={onNext}>
-          <ArrowForwardIosOutlinedIcon />
+        <li
+          onClick={onNext}
+          className="rounded p-3 hover:bg-pink-300 hover:text-pink-700 bg-gray-800  font-semibold flex items-center justify-center cursor-pointer transition-all"
+        >
+          Next <ArrowForwardIosOutlinedIcon />
         </li>
       )}
     </ul>
