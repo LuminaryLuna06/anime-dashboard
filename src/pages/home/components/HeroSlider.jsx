@@ -20,7 +20,7 @@ function HeroSlider() {
   return (
     <div className="slider-container">
       <Slider {...settings}>
-        <div className="h-[95vh] bg-[url(sololeveling.webp)]">
+        <div className="h-[95vh] bg-SoloLeveling">
           <div className="h-[95vh] bg-gradient-to-t md:bg-gradient-to-l from-black/100 md:via-black/80 via-black/60 to-transparent flex flex-row-reverse">
             <div className="flex flex-col justify-center z-10 md:w-[40%] max-w-4xl text-left px-4 text-white ">
               {/* Title */}
@@ -64,7 +64,7 @@ function HeroSlider() {
             </div>
           </div>
         </div>
-        <div className="h-[95vh] bg-[url(shangrila.webp)] bg-center bg-cover md:bg-right md:bg-contain bg-no-repeat">
+        <div className="h-[95vh] bg-Shangrila bg-center bg-cover md:bg-right md:bg-contain bg-no-repeat">
           <div className=" h-[95vh] bg-gradient-to-t md:bg-gradient-to-r from-black/100 md:via-black/90 via-black/70 to-transparent flex md:w-2/3">
             <div className="md:bg-gradient-to-r md:from-black/100 md:via-black/90 md:to-transparent flex flex-col justify-center z-10 md:w-1/2 max-w-4xl text-left px-4 text-white ">
               {/* Title */}
@@ -107,7 +107,7 @@ function HeroSlider() {
             </div>
           </div>
         </div>
-        <div className="h-[95vh] bg-[url(rezero.webp)] bg-center bg-cover md:bg-right md:bg-contain bg-no-repeat">
+        <div className="h-[95vh] bg-Rezero bg-center bg-cover md:bg-right md:bg-contain bg-no-repeat">
           <div className="h-[95vh] bg-gradient-to-t md:bg-gradient-to-r from-black/100 md:via-black/90 via-black/70 to-transparent flex md:w-2/3">
             <div className="md:bg-gradient-to-r md:from-black/100 md:via-black/90 md:to-transparent flex flex-col justify-center z-10 md:w-1/2 max-w-4xl text-left px-4 text-white ">
               {/* Title */}

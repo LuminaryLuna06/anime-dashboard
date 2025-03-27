@@ -23,6 +23,11 @@ export default {
         fadeIn: "fadeIn 1s ease-in",
         fadeOut: "fadeOut 1s ease-out",
       },
+      backgroundImage: {
+        SoloLeveling: "url('/public/sololeveling.webp')",
+        Shangrila: "url('/public/shangrila.webp')",
+        Rezero: "url('/public/rezero.webp')",
+      },
     },
   },
   plugins: [daisyui],
