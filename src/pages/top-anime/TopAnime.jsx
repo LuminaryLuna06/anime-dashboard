@@ -74,23 +74,30 @@ function TopAnime() {
           onChange={handleChange}
         />
       </div>
-      {isLoading ? (
-        <div className="h-[100vh] lg:w-[85%]"></div>
-      ) : (
-        <div className="lg:w-[85%] mx-auto py-3 flex flex-col md:flex-row gap-3">
-          {/* Left */}
-          <div className="overflow-x-auto flex flex-col md:w-[80%] lg:w-[75%] mx-auto animate-fadeIn">
-            <h1>Top anime series</h1>
-            <table className="table">
-              <thead>
-                <tr>
-                  <th>Rank</th>
-                  <th>Title</th>
-                  <th>Score</th>
-                </tr>
-              </thead>
-              <tbody>
-                {data &&
+      <div className="lg:w-[85%] mx-auto py-3 flex flex-col md:flex-row gap-3">
+        {/* Left */}
+        <div className="overflow-x-auto flex flex-col md:w-[80%] lg:w-[75%] mx-auto animate-fadeIn">
+          <h1>Top anime series</h1>
+          <table className="table">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Title</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              {isLoading
+                ? Array(10)
+                    .fill(0)
+                    .map((_, index) => (
+                      <tr className="h-32 bg-gray-700 animate-pulse">
+                        <th className="w-[12%]"></th>
+                        <td className=""></td>
+                        <td className="w-[12%]"></td>
+                      </tr>
+                    ))
+                : data &&
                   data.map((anime, index) => (
                     <tr
                       key={index}
@@ -129,13 +136,12 @@ function TopAnime() {
                       </td>
                     </tr>
                   ))}
-              </tbody>
-            </table>
-          </div>
-          {/* Right */}
-          <Side />
+            </tbody>
+          </table>
         </div>
-      )}
+        {/* Right */}
+        <Side />
+      </div>
     </>
   );
 }

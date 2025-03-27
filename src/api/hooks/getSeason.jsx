@@ -23,8 +23,6 @@ function getSeason(option, seasonY) {
     priority: "high",
     retry: 3,
     retryDelay: 2000,
-    suspense: true,
-    keepPreviousData: false,
   }));
 }
 
