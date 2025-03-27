@@ -1,16 +1,19 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { Link } from "react-router-dom";
 import HeroSection from "./components/HeroSection";
 import Trending from "./components/Trending";
 import UpcomingAnime from "./components/UpcomingAnime";
 import Side from "../../components/layout/SideBar/Side";
-import HeroSlider from "./components/HeroSlider";
+import Loading from "../../components/layout/Loading";
 
 function Home() {
   window.scrollTo(0, 0);
+  const LazyHero = lazy(() => import("./components/HeroSlider"));
   return (
     <>
-      <HeroSlider />
+      <Suspense fallback={<Loading />}>
+        <LazyHero />
+      </Suspense>
       <div className="mx-auto py-3 flex flex-col md:flex-row gap-3 w-[95%]">
         {/* Left */}
         <div className="flex flex-col md:w-[80%] lg:w-[75%]">

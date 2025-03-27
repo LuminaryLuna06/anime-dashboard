@@ -24,9 +24,9 @@ export default {
         fadeOut: "fadeOut 1s ease-out",
       },
       backgroundImage: {
-        SoloLeveling: "url('/public/sololeveling.webp')",
-        Shangrila: "url('/public/shangrila.webp')",
-        Rezero: "url('/public/rezero.webp')",
+        SoloLeveling: "url('/sololeveling.webp')",
+        Shangrila: "url('/shangrila.webp')",
+        Rezero: "url('/rezero.webp')",
       },
     },
   },
