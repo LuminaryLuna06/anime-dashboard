@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import getAnime from "../../api/hooks/getAnime";
 import Cards from "../../components/ui/Cards/Cards";
 import CardSkeleton from "../../components/ui/Skeleton/CardSkeleton";
 import Pagination2 from "../ui/Pagination/Pagination2";
+import Loading from "../layout/Loading";
 
 import genres from "../../assets/genres";
 import types from "../../assets/type";
@@ -137,7 +138,6 @@ function AnimeFilter({ totalPages = 3, query }) {
   const { data, isLoading } = getAnime(option);
   const uniqueAnimes = data && data[0];
   const pagination = data && data[1];
-  console.log(pagination);
 
   return (
     <>
@@ -328,6 +328,14 @@ function AnimeFilter({ totalPages = 3, query }) {
             ))
           )}
         </div>
+        {/* <Suspense fallback={<Loading />}>
+          <div className="flex flex-wrap items-start mx-auto">
+            {uniqueAnimes.map((anime) => (
+              <Cards key={anime.mal_id} props={anime} />
+            ))}
+          </div>
+        </Suspense> */}
+
         {pagination ? (
           <Pagination2
             currentPage={page}

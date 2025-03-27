@@ -10,18 +10,21 @@ function getSeason(option, seasonY) {
         .get(`/seasons/${seasonY}`, {
           params: option,
         })
-        .then((res) => res.data.data)
+        .then((res) => res.data)
         .catch((err) => console.log(err));
 
       const uniqueAnimes = Array.from(
-        new Set(data.map((anime) => anime.mal_id))
-      ).map((mal_id) => data.find((anime) => anime.mal_id === mal_id));
-      return uniqueAnimes;
+        new Set(data.data.map((anime) => anime.mal_id))
+      ).map((mal_id) => data.data.find((anime) => anime.mal_id === mal_id));
+      const pagination = data.pagination;
+      return [uniqueAnimes, pagination];
     },
     staleTime: 1000 * 60 * 5,
     priority: "high",
     retry: 3,
     retryDelay: 2000,
+    suspense: true,
+    keepPreviousData: false,
   }));
 }
 

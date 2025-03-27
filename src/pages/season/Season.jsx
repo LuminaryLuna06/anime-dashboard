@@ -4,6 +4,7 @@ import Side from "../../components/layout/SideBar/Side";
 import CardSkeleton from "../../components/ui/Skeleton/CardSkeleton";
 import Cards from "../../components/ui/Cards/Cards";
 import Pagination from "../../components/ui/Pagination/Pagination";
+import Pagination2 from "../../components/ui/Pagination/Pagination2";
 
 function Season() {
   const [page, setPage] = useState(1);
@@ -176,7 +177,9 @@ function Season() {
     item.seasons.some((season) => `${item.year}/${season}` === seasonY)
   );
 
-  const { data: seasons, isLoading } = getSeason(option, seasonY);
+  const { data, isLoading } = getSeason(option, seasonY);
+  const seasons = data && data[0];
+  const pagination = data && data[1];
   return (
     <>
       {/* name of each tab group should be unique */}
@@ -301,9 +304,19 @@ function Season() {
         {/* Left */}
         <div className="flex flex-col md:w-[80%] lg:w-[75%]">
           <div>
-            {seasons && seasons.length >= 18 && (
-              <Pagination page={page} setPage={setPage} totalPages={3} />
-            )}
+            {isLoading ? (
+              <div className="flex justify-center">
+                <div className="h-8 w-96 bg-gray-400 animate-pulse my-7"></div>
+              </div>
+            ) : null}
+            {pagination && pagination.items.total > 18 ? (
+              <Pagination2
+                currentPage={page}
+                totalCount={pagination.items.total}
+                pageSize={pagination.items.per_page}
+                onPageChange={(page) => setPage(page)}
+              />
+            ) : null}
 
             <div className="flex flex-wrap items-start mx-auto">
               {isLoading ? (
@@ -316,7 +329,18 @@ function Season() {
                 ))
               )}
             </div>
-            <Pagination page={page} setPage={setPage} totalPages={3} />
+            {pagination ? (
+              <Pagination2
+                currentPage={page}
+                totalCount={pagination.items.total}
+                pageSize={pagination.items.per_page}
+                onPageChange={(page) => setPage(page)}
+              />
+            ) : (
+              <div className="flex justify-center">
+                <div className="h-8 w-96 bg-gray-400 animate-pulse my-7"></div>
+              </div>
+            )}
           </div>
         </div>
         {/* Right */}

@@ -27,6 +27,8 @@ function getAnime(option) {
     priority: "high",
     retry: 5,
     retryDelay: 2000,
+    suspense: true,
+    keepPreviousData: false,
   });
 }
 
