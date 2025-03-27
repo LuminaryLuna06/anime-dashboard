@@ -15,7 +15,7 @@ function Side() {
   };
 
   return (
-    <div className="md:w-[20%] lg:w-[25%] flex flex-col gap-4">
+    <div className="md:w-[20%] lg:w-[25%] flex flex-col gap-4 animate-fadeIn">
       <div>
         <img src="quangcao2.jpg" alt="Quang cao" />
       </div>

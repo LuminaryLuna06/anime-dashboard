@@ -33,7 +33,7 @@ const Pagination2 = (props) => {
   let lastPage = paginationRange[paginationRange.length - 1];
 
   return (
-    <ul className="flex items-center justify-center gap-10 my-5">
+    <ul className="flex items-center justify-center gap-10 my-5 px-5">
       {/* Left navigation arrow */}
       {currentPage !== 1 && (
         <li

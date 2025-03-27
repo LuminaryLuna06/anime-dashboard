@@ -116,6 +116,7 @@ function AnimeFilter({ totalPages = 3, query }) {
     };
     setOption(finalOption);
     setPage(1);
+    setIsOpen(false);
 
     const params = new URLSearchParams();
     Object.keys(finalOption).forEach((key) => {
@@ -316,6 +317,7 @@ function AnimeFilter({ totalPages = 3, query }) {
             totalCount={pagination.items.total}
             pageSize={pagination.items.per_page}
             onPageChange={(page) => setPage(page)}
+            siblingCount={0}
           />
         ) : null}
 

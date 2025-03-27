@@ -75,7 +75,7 @@ function TopAnime() {
         />
       </div>
       {isLoading ? (
-        <div className="h-[100vh]"></div>
+        <div className="h-[100vh] lg:w-[85%]"></div>
       ) : (
         <div className="lg:w-[85%] mx-auto py-3 flex flex-col md:flex-row gap-3">
           {/* Left */}
