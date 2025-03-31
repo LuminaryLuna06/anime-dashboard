@@ -26,7 +26,6 @@ function SliderCard({ props }) {
           slidesToShow: 3,
           slidesToScroll: 3,
           infinite: true,
-          dots: true,
         },
       },
       {
@@ -35,6 +34,7 @@ function SliderCard({ props }) {
           slidesToShow: 2,
           slidesToScroll: 2,
           initialSlide: 2,
+          infinite: true,
         },
       },
       {
@@ -42,23 +42,28 @@ function SliderCard({ props }) {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          infinite: true,
         },
       },
     ],
   };
+
   return (
     <div className="p-4 m-auto">
-      <Slider {...settings}>
+      <Slider {...settings} className="lg:h-[400px] h-[300px]">
         {props &&
           props.map((anime) => (
             <div
-              className="flex flex-col md:w-[30%] lg:w-[15%] w-[45%]  relative container animate-fadeIn p-2"
-              key={anime.mal_id}
+              className="flex flex-col md:w-[30%] lg:w-[15%] w-[45%] h-[400px]  relative container animate-fadeIn p-2"
+              key={anime.mal_id || anime.uid}
             >
-              <Link key={anime?.mal_id} to={`/anime/${anime?.mal_id}`}>
+              <Link
+                key={anime?.mal_id}
+                to={`/anime/${anime?.mal_id || anime.uid}`}
+              >
                 <div className="aspect-[2/3] flex">
                   <img
-                    src={anime?.images?.webp.large_image_url}
+                    src={anime?.images?.webp.large_image_url || anime.image}
                     alt=""
                     className="aspect-[2/3] object-cover"
                   />
@@ -68,22 +73,28 @@ function SliderCard({ props }) {
                     <p className="font-bold">
                       {truncateTitle(anime?.title, 50)}
                     </p>
-                    <p className="text-sm">
-                      ⭐ {anime?.score} - {anime?.episodes} Episodes
-                    </p>
-                    <p className="text-sm my-2">{`${anime?.synopsis?.slice(
-                      0,
-                      70
-                    )}...`}</p>
+                    {anime.score || anime.year ? (
+                      <p className="text-sm">
+                        ⭐ {anime?.score} - 🗓 {anime?.year || "NaN"}
+                      </p>
+                    ) : null}
+                    {anime.synopnis ? (
+                      <p className="text-sm my-2">{`${anime?.synopsis?.slice(
+                        0,
+                        70
+                      )}...`}</p>
+                    ) : null}
                   </div>
                 </div>
                 <div className="my-2">
                   <h4 className="font-semibold">
                     {truncateTitle(anime?.title, 50)}
                   </h4>
-                  <p>
-                    ⭐ {anime?.score} - 🗓 {anime?.year || "NaN"}
-                  </p>
+                  {anime.score || anime.year ? (
+                    <p>
+                      ⭐ {anime?.score} - 🗓 {anime?.year || "NaN"}
+                    </p>
+                  ) : null}
                 </div>
               </Link>
             </div>

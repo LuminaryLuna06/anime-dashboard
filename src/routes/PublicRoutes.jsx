@@ -8,7 +8,7 @@ import AnimeType from "../pages/anime-type/AnimeType";
 import Season from "../pages/season/Season";
 import EpisodePage from "../pages/anime/Episodes/EpisodePage";
 import Test from "../pages/test/Test";
-
+import Favourites from "../pages/favourites/favourites";
 const PublicRoutes = () => (
   <Routes>
     <Route path="/" element={<Home />} />
@@ -22,6 +22,7 @@ const PublicRoutes = () => (
     <Route path="/anime-type" element={<AnimeType />} />
     <Route path="/season" element={<Season />} />
     <Route path="/test" element={<Test />} />
+    <Route path="/favourites" element={<Favourites />} />
   </Routes>
 );
 

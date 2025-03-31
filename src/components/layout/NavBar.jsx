@@ -163,23 +163,26 @@ function NavBar() {
             >
               Profile
             </a>
-            <a
-              href="#"
-              className="block px-4 py-2 hover:bg-pink-300 hover:text-pink-700 transition-all duration-500"
-            >
-              Favourites
-            </a>
+
             {userLoggedIn ? (
-              <button
-                onClick={() => {
-                  doSignOut().then(() => {
-                    navigate("/login");
-                  });
-                }}
-                className="px-4 py-2 hover:bg-pink-300 hover:text-pink-700 transition-all duration-500"
-              >
-                Logout
-              </button>
+              <>
+                <Link
+                  to={"/favourites"}
+                  className="block px-4 py-2 hover:bg-pink-300 hover:text-pink-700 transition-all duration-500"
+                >
+                  Favourites
+                </Link>
+                <button
+                  onClick={() => {
+                    doSignOut().then(() => {
+                      navigate("/login");
+                    });
+                  }}
+                  className="px-4 py-2 hover:bg-pink-300 hover:text-pink-700 transition-all duration-500"
+                >
+                  Logout
+                </button>
+              </>
             ) : (
               <Link
                 to={"/login"}

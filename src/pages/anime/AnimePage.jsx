@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useAuth } from "../../context/authContext";
+
+import setFav from "../../pages/favourites/components/setFav";
 
 import getAnimeFullById from "../../api/hooks/getAnimeFullById";
 import getAnimePictures from "../../api/hooks/getAnimePictures";
@@ -13,6 +16,7 @@ import PlayArrowOutlinedIcon from "@mui/icons-material/PlayArrowOutlined";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 import ImportContactsIcon from "@mui/icons-material/ImportContacts";
+import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 
 import Side from "../../components/layout/SideBar/Side";
 
@@ -28,6 +32,7 @@ function AnimePage() {
     return () => clearTimeout(timer);
   }, []);
 
+  const { currentUser } = useAuth();
   const { id } = useParams();
   const { data: anime, isLoading } = getAnimeFullById(id);
   const { data: characters, isLoading: isCharacterLoading } =
@@ -145,6 +150,14 @@ function AnimePage() {
                             Read more
                           </button>
                         </>
+                      )}
+                      {anime && currentUser && (
+                        <button
+                          className="px-4 py-2 my-2 rounded bg-pink-300 text-pink-800 hover:bg-pink-700 hover:text-gray-200 transition-all duration-300 block"
+                          onClick={() => setFav(anime, currentUser.uid)}
+                        >
+                          Add To Favourites <BookmarkBorderOutlinedIcon />
+                        </button>
                       )}
                     </div>
                   </div>

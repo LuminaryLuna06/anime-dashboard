@@ -22,6 +22,7 @@ export const doCreateUserWithEmailAndPassword = async (email, password) => {
     await setDoc(doc(db, "users", user.uid), {
       email: user.email,
       role: "user",
+      favourites: [],
     });
     console.log("User signed up: ", user.email);
     return user;
@@ -39,10 +40,24 @@ export const doSignInWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
     const userCredential = await signInWithPopup(auth, provider);
     const user = userCredential.user;
-    await setDoc(doc(db, "users", user.uid), {
-      email: user.email,
-      role: "user",
-    });
+    const userDoc = await getDoc(doc(db, "users", user.uid));
+    if (userDoc.exists()) {
+      console.log("User already exists in Firestore: ", user.email);
+      return user;
+    } else {
+      await setDoc(
+        doc(db, "users", user.uid),
+        {
+          email: user.email,
+          role: "user",
+          favourites: [],
+        },
+        {
+          merge: true,
+        }
+      );
+    }
+
     console.log("User signed up: ", user.email);
     return user;
   } catch (error) {

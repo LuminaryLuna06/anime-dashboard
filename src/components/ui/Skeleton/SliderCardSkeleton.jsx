@@ -42,7 +42,7 @@ function SliderCardSkeleton({ cards }) {
   };
   return (
     <div className="p-4 m-auto">
-      <Slider {...settings}>
+      <Slider {...settings} className="lg:h-[400px] h-[300px]">
         {Array(cards)
           .fill(0)
           .map((item, index) => (
