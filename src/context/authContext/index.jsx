@@ -4,7 +4,6 @@ import { onAuthStateChanged } from "firebase/auth";
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "../../firebase/firebase";
 
-
 const AuthContext = React.createContext();
 
 export function useAuth() {
@@ -33,7 +32,7 @@ export function AuthProvider({ children }) {
       );
       setIsEmailUser(isEmail);
       setUserLoggedIn(true);
-      await checkAdmin(user)
+      await checkAdmin(user);
     } else {
       setCurrentUser(null);
       setUserLoggedIn(false);

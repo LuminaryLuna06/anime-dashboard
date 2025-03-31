@@ -3,6 +3,8 @@ import { Link, useNavigate, NavLink } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import { doSignOut } from "../../firebase/auth";
 import SearchIcon from "@mui/icons-material/Search";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+
 function NavBar() {
   const { isAdmin, userLoggedIn } = useAuth();
   const navigate = useNavigate();
@@ -152,22 +154,42 @@ function NavBar() {
           </div>
         </form>
 
-        {userLoggedIn ? (
-          <button
-            onClick={() => {
-              doSignOut().then(() => {
-                navigate("/login");
-              });
-            }}
-            className="btn"
-          >
-            Logout
-          </button>
-        ) : (
-          <Link to={"/login"} className="btn ">
-            Log in
-          </Link>
-        )}
+        <button className="group relative text-gray-200 text-lg px-3 py-1 rounded">
+          <AccountCircleOutlinedIcon fontSize="large" />
+          <div className="absolute top-full right-0 rounded-lg p-3 mt-1 shadow-md bg-slate-800 text-gray-200 scale-y-0 group-hover:scale-y-100 group-focus:scale-y-100 origin-top duration-200 z-[10]">
+            <a
+              href="#"
+              className="block px-4 py-2 hover:bg-pink-300 hover:text-pink-700 transition-all duration-500"
+            >
+              Profile
+            </a>
+            <a
+              href="#"
+              className="block px-4 py-2 hover:bg-pink-300 hover:text-pink-700 transition-all duration-500"
+            >
+              Favourites
+            </a>
+            {userLoggedIn ? (
+              <button
+                onClick={() => {
+                  doSignOut().then(() => {
+                    navigate("/login");
+                  });
+                }}
+                className="px-4 py-2 hover:bg-pink-300 hover:text-pink-700 transition-all duration-500"
+              >
+                Logout
+              </button>
+            ) : (
+              <Link
+                to={"/login"}
+                className="block px-4 py-2 hover:bg-pink-300 hover:text-pink-700 transition-all duration-500 "
+              >
+                Log in
+              </Link>
+            )}
+          </div>
+        </button>
       </div>
     </div>
   );

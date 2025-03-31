@@ -328,6 +328,9 @@ function Season() {
                   <Cards key={anime.mal_id} props={anime} />
                 ))
               )}
+              {seasons && seasons.length === 0 && !isLoading && (
+                <h1>No data</h1>
+              )}
             </div>
             {pagination ? (
               <Pagination2
