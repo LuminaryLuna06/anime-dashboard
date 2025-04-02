@@ -15,7 +15,7 @@ function HeroSlider() {
     slidesToScroll: 1,
     waitForAnimate: false,
     autoplay: true,
-    autoplaySpeed: 4000,
+    autoplaySpeed: 8000,
   };
   return (
     <div className="slider-container">
