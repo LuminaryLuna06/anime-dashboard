@@ -22,7 +22,6 @@ const PublicRoutes = () => (
     <Route path="/anime-type" element={<AnimeType />} />
     <Route path="/season" element={<Season />} />
     <Route path="/test" element={<Test />} />
-    <Route path="/favourites" element={<Favourites />} />
   </Routes>
 );
 

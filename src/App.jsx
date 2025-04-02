@@ -16,7 +16,7 @@ function App() {
     <Router>
       <AuthProvider>
         <div
-          className="text-gray-200 bg-gradient-to-r from-black to-slate-800 font-sans"
+          className="text-gray-200 bg-gradient-to-r from-black to-slate-800 font-sans transition-transform duration-300"
           data-theme="dark"
         >
           {/* <Loading /> */}

@@ -13,7 +13,7 @@ const LazySlider = lazy(() =>
 function Favourites() {
   const { currentUser } = useAuth();
   const [favourites, setFavourites] = useState([]);
-
+  console.log(currentUser);
   useEffect(() => {
     const getFavourites = async () => {
       try {

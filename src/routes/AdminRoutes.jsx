@@ -4,7 +4,8 @@ import { AuthProvider } from "../context/authContext";
 import Login from "../components/auth/login";
 import Register from "../components/auth/register";
 import Users from "../pages/admin/Users/Users";
-import Clubs from "../pages/admin/Clubs/Clubs"
+import Clubs from "../pages/admin/Clubs/Clubs";
+import Favourites from "../pages/favourites/favourites";
 const AdminRoutes = () => {
   return (
     <Routes>
@@ -13,6 +14,7 @@ const AdminRoutes = () => {
       <Route path="/admin" element={<Admin />} />
       <Route path="/admin/users" element={<Users />} />
       <Route path="/admin/clubs" element={<Clubs />} />
+      <Route path="/profile" element={<Favourites />} />
     </Routes>
   );
 };

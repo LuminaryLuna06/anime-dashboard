@@ -7,9 +7,10 @@ import Side from "../../components/layout/SideBar/Side";
 import Loading from "../../components/layout/Loading";
 import HeroSlider from "./components/HeroSlider";
 
+const LazyHero = lazy(() => delay(import("./components/HeroSlider")));
+
 function Home() {
   window.scrollTo(0, 0);
-  const LazyHero = lazy(() => import("./components/HeroSlider"));
   return (
     <>
       <Suspense
@@ -48,4 +49,9 @@ function Home() {
   );
 }
 
+function delay(promise) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, 2000);
+  }).then(() => promise);
+}
 export default Home;

@@ -9,7 +9,7 @@ function Trending() {
     order_by: "popularity",
     sort: "asc",
     limit: 20,
-    min_score: 8.0,
+    min_score: 7.5,
     status: "airing",
     type: "tv",
   };
