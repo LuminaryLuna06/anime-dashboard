@@ -42,7 +42,7 @@ function Favourites() {
         />
       </div> */}
       {/* Welcome User */}
-      <div className="lg:w-[80%] md:w-[90%] h-[100vh] mx-auto flex md:flex-row flex-col">
+      <div className="lg:w-[80%] md:w-[90%] h-[100vh] mx-auto flex md:flex-row flex-col my-5">
         {/* name of each tab group should be unique */}
         <div className="md:w-1/5  mx-auto">
           <div className="avatar">
