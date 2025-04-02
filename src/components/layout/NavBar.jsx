@@ -177,7 +177,7 @@ function NavBar() {
                       navigate("/login");
                     });
                   }}
-                  className="px-4 py-2 hover:bg-pink-300 hover:text-pink-700 transition-all duration-500"
+                  className="px-4 py-2 w-full hover:bg-pink-300 hover:text-pink-700 transition-all duration-500"
                 >
                   Logout
                 </button>
@@ -185,7 +185,7 @@ function NavBar() {
             ) : (
               <Link
                 to={"/login"}
-                className="block px-4 py-2 hover:bg-pink-300 hover:text-pink-700 transition-all duration-500 "
+                className="block px-4 py-2 w-full hover:bg-pink-300 hover:text-pink-700 transition-all duration-500 "
               >
                 Log in
               </Link>

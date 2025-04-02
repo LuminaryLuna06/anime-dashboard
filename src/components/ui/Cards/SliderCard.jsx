@@ -50,11 +50,11 @@ function SliderCard({ props }) {
 
   return (
     <div className="p-4 m-auto">
-      <Slider {...settings} className="lg:h-[400px] h-[300px]">
+      <Slider {...settings} className="lg:h-[500px] h-[300px]">
         {props &&
           props.map((anime) => (
             <div
-              className="flex flex-col md:w-[30%] lg:w-[15%] w-[45%] h-[400px]  relative container animate-fadeIn p-2"
+              className="flex flex-col md:w-[30%] lg:w-[15%] w-[45%]   relative container animate-fadeIn p-2"
               key={anime.mal_id || anime.uid}
             >
               <Link

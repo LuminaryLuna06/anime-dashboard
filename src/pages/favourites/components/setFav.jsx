@@ -11,10 +11,6 @@ const setFav = async (anime, currentUser) => {
         image: anime.images.webp.large_image_url,
       }
     );
-    // await setDoc(doc(db, "users", currentUser, "favourites", "1234567"), {
-    //   uid: "1234567",
-    //   title: "Omg anime",
-    // });
     console.log("Anime added to favourites: ", anime.title);
   } catch (error) {
     console.error("Error creating collection:", error);

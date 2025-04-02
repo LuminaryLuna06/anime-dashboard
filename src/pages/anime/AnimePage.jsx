@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
+import { getDocs, doc, collection } from "firebase/firestore";
+import { db } from "../../firebase/firebase";
 
 import setFav from "../../pages/favourites/components/setFav";
 
@@ -19,6 +21,21 @@ import ImportContactsIcon from "@mui/icons-material/ImportContacts";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 
 import Side from "../../components/layout/SideBar/Side";
+
+const getFav = async (userId, animeId) => {
+  try {
+    const data = await getDocs(collection(db, "users", userId, "favourites"));
+    let isAdded = false;
+    data.forEach((doc) => {
+      if (doc.data().uid === animeId) {
+        isAdded = true;
+      }
+    });
+    return isAdded;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 function AnimePage() {
   window.scrollTo(0, 0);
@@ -91,7 +108,23 @@ function AnimePage() {
       content: anime?.type,
     },
   ];
+  const [added, setAdded] = useState(false);
 
+  useEffect(() => {
+    const checkIfAdded = async () => {
+      if (anime && currentUser) {
+        const isAdded = await getFav(currentUser.uid, anime.mal_id);
+        setAdded(isAdded);
+      }
+    };
+    checkIfAdded();
+  }, [anime, currentUser]);
+  const handleAddToFavourites = () => {
+    if (anime && currentUser) {
+      setFav(anime, currentUser.uid);
+      setAdded(true); // Update the state to reflect the change
+    }
+  };
   return (
     <>
       {isLoading ? (
@@ -151,10 +184,32 @@ function AnimePage() {
                           </button>
                         </>
                       )}
-                      {anime && currentUser && (
+                      {/* {anime && currentUser && added ? (
                         <button
                           className="px-4 py-2 my-2 rounded bg-pink-300 text-pink-800 hover:bg-pink-700 hover:text-gray-200 transition-all duration-300 block"
-                          onClick={() => setFav(anime, currentUser.uid)}
+                          onClick={() => {
+                            setFav(anime, currentUser.uid);
+                            setAdded(true);
+                          }}
+                        >
+                          Add To Favourites <BookmarkBorderOutlinedIcon />
+                        </button>
+                      ) : (
+                        <button className="px-4 py-2 my-2 rounded bg-pink-300 text-pink-800 hover:bg-pink-700 hover:text-gray-200 transition-all duration-300 block">
+                          Added To Favourites <BookmarkBorderOutlinedIcon />
+                        </button>
+                      )} */}
+                      {added ? (
+                        <button
+                          className="px-4 py-2 my-2 rounded bg-gray-300 text-gray-800 block"
+                          disabled
+                        >
+                          Added To Favourites <BookmarkBorderOutlinedIcon />
+                        </button>
+                      ) : (
+                        <button
+                          className="px-4 py-2 my-2 rounded bg-pink-300 text-pink-800 hover:bg-pink-700 hover:text-gray-200 transition-all duration-300 block"
+                          onClick={handleAddToFavourites}
                         >
                           Add To Favourites <BookmarkBorderOutlinedIcon />
                         </button>
