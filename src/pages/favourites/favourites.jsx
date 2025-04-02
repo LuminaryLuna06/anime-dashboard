@@ -34,12 +34,17 @@ function Favourites() {
   }, []);
 
   return (
+    <>
+    {/* Welcome User */}
+    <div></div>
+
     <div className="w-[70%] mx-auto h-[100vh]">
       <h1 className="mb-0">Your Favourite Lists: </h1>
       <Suspense fallback={<SliderCardSkeleton cards={6} />}>
         <LazySlider props={favourites} />
       </Suspense>
     </div>
+    </>
   );
 }
 

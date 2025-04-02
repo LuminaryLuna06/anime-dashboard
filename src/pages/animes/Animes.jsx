@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, useEffect, Suspense, lazy } from "react";
 import SearchAnime from "./components/SearchAnime";
 import TopAnime from "./components/TopAnime";
 import AnimeFilter from "../../components/function/AnimeFilter";
@@ -6,6 +6,8 @@ import Side from "../../components/layout/SideBar/Side";
 import Loading from "../../components/layout/Loading";
 import CardSkeleton from "../../components/ui/Skeleton/CardSkeleton";
 import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
+
+const LazyAnime = lazy(() => import("../../components/function/AnimeFilter"));
 
 function Animes() {
   window.scrollTo(0, 0);
@@ -44,6 +46,7 @@ function Animes() {
               </div>
             }
           >
+            {/* <LazyAnime /> */}
             <AnimeFilter />
           </Suspense>
 
