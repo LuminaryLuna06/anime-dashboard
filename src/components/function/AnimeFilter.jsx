@@ -155,7 +155,7 @@ function AnimeFilter({ totalPages = 3, query }) {
         </div>
         <div className="flex justify-center items-center">
           <button
-            className="border-2 rounded-lg py-3 px-6  border-pink-300 hover:bg-pink-300 font-semibold items-center"
+            className="border-2 rounded-lg py-3 px-6  border-blossoms-100 hover:bg-blossoms-100 font-semibold items-center"
             onClick={() => {
               setIsOpen(!isOpen);
             }}

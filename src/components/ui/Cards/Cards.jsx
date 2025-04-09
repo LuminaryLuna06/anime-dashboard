@@ -25,7 +25,7 @@ function Cards({ props }) {
           <div className="text flex-col">
             <p className="font-bold">{truncateTitle(props?.title, 50)}</p>
             <p className="text-sm">
-              ⭐ {props?.score} - {props?.episodes} Episodes
+              ⭐ {props?.score || "--"} - {props?.episodes || "--"} Episodes
             </p>
             <p className="text-sm my-2">{`${props?.synopsis?.slice(
               0,
@@ -34,9 +34,9 @@ function Cards({ props }) {
           </div>
         </div>
         <div className="my-2">
-          <h4 className="font-semibold">{truncateTitle(props?.title, 50)}</h4>
+          <h4 className="font-semibold">{truncateTitle(props?.title, 40)}</h4>
           <p>
-            ⭐ {props?.score || NaN} - 🗓 {props?.year || NaN}
+            ⭐ {props?.score === null ? "--" : props?.score} - 🗓 {props?.year === null ? "--" : props?.year}
           </p>
         </div>
       </Link>

@@ -6,13 +6,14 @@ import { Link } from "react-router-dom";
 import ShuffleIcon from "@mui/icons-material/Shuffle";
 
 function Side() {
-  const { data: recents } = getWatchRecentEpisodes();
+  const { data } = getWatchRecentEpisodes();
   const truncateTitle = (title, maxLength) => {
     if (title.length > maxLength) {
       return `${title.slice(0, maxLength)}...`;
     }
     return title;
   };
+  const recents = data && data.slice(0, 15);
 
   return (
     <div className="md:w-[20%] lg:w-[25%] flex flex-col gap-4 animate-fadeIn">
@@ -34,7 +35,7 @@ function Side() {
                 >
                   <Link
                     to={`/anime/${recent.entry.mal_id}/episodes/${lastestEp}`}
-                    className="text-pink-500 hover:text-pink-300 transition-all duration-500"
+                    className="text-blossoms-300 hover:text-blossoms-200 transition-all duration-500"
                   >
                     {truncateTitle(recent.entry.title, 30)}
                   </Link>

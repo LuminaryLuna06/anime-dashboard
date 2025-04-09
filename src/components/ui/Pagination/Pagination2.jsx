@@ -7,7 +7,7 @@ const Pagination2 = (props) => {
   const {
     onPageChange,
     totalCount,
-    siblingCount = 1,
+    siblingCount = 0,
     currentPage,
     pageSize,
   } = props;
@@ -33,12 +33,12 @@ const Pagination2 = (props) => {
   let lastPage = paginationRange[paginationRange.length - 1];
 
   return (
-    <ul className="flex items-center justify-center gap-10 my-5 px-5">
+    <ul className="flex items-center justify-center gap-5 md:gap-10 my-5 px-5">
       {/* Left navigation arrow */}
       {currentPage !== 1 && (
         <li
           onClick={onPrevious}
-          className="rounded p-3 hover:bg-pink-300 hover:text-pink-700 bg-gray-800  font-semibold flex items-center justify-center cursor-pointer transition-all"
+          className="rounded md:p-3 p-2 text-sm md:text-md hover:bg-blossoms-100 hover:text-blossoms-300 bg-gray-800  font-semibold flex items-center justify-center cursor-pointer transition-all"
         >
           <ArrowBackIosOutlinedIcon /> Previous
         </li>
@@ -55,8 +55,8 @@ const Pagination2 = (props) => {
             onClick={() => onPageChange(pageNumber)}
             className={
               pageNumber === currentPage
-                ? "bg-pink-300 text-pink-800 font-semibold rounded-full px-2"
-                : ""
+                ? "bg-blossoms-200 font-semibold rounded-full px-2"
+                : "cursor-pointer text-sm md:text-md"
             }
           >
             {pageNumber}
@@ -67,7 +67,7 @@ const Pagination2 = (props) => {
       {currentPage !== lastPage && (
         <li
           onClick={onNext}
-          className="rounded p-3 hover:bg-pink-300 hover:text-pink-700 bg-gray-800  font-semibold flex items-center justify-center cursor-pointer transition-all"
+          className="rounded md:p-3 p-2 text-sm md:text-md hover:bg-blossoms-100 hover:text-blossoms-300 bg-gray-800  font-semibold flex items-center justify-center cursor-pointer transition-all"
         >
           Next <ArrowForwardIosOutlinedIcon />
         </li>

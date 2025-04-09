@@ -20,8 +20,8 @@ function HeroSlider() {
   return (
     <div className="slider-container">
       <Slider {...settings}>
-        <div className="h-[95vh] bg-SoloLeveling">
-          <div className="h-[95vh] bg-gradient-to-t md:bg-gradient-to-l from-black/100 md:via-black/80 via-black/60 to-transparent flex flex-row-reverse">
+        <div className="h-[95vh] md:h-auto lg:h-[95vh] bg-SoloLeveling">
+          <div className="h-[95vh] md:h-auto lg:h-[95vh] bg-gradient-to-t md:bg-gradient-to-l from-black/100 md:via-black/80 via-black/60 to-transparent flex flex-row-reverse">
             <div className="flex flex-col justify-end md:justify-center z-10 md:w-[40%] max-w-4xl text-left px-4 py-10 text-white ">
               {/* Title */}
               <div className="flex justify-center">
@@ -33,7 +33,7 @@ function HeroSlider() {
               </div>
 
               {/* Description */}
-              <p className="mt-4 text-lg leading-relaxed hidden md:block">
+              <p className="mt-4 text-lg text-gray-200 leading-relaxed hidden md:block">
                 They say whatever doesn’t kill you makes you stronger, but
                 that’s not the case for the world’s weakest hunter, Sung Jinwoo.
                 After being brutally slaughtered by monsters in a high-ranking
@@ -64,8 +64,8 @@ function HeroSlider() {
             </div>
           </div>
         </div>
-        <div className="h-[95vh] bg-Shangrila bg-center bg-cover md:bg-right md:bg-contain bg-no-repeat">
-          <div className=" h-[95vh] bg-gradient-to-t md:bg-gradient-to-r from-black/100 md:via-black/90 via-black/70 to-transparent flex md:w-2/3">
+        <div className="h-[95vh] md:h-auto lg:h-[95vh] bg-Shangrila bg-center bg-cover md:bg-right md:bg-contain bg-no-repeat">
+          <div className=" h-[95vh] md:h-auto lg:h-[95vh] bg-gradient-to-t md:bg-gradient-to-r from-black/100 md:via-black/90 via-black/70 to-transparent flex md:w-2/3">
             <div className="md:bg-gradient-to-r md:from-black/100 md:via-black/90 md:to-transparent flex flex-col justify-end md:justify-center z-10 md:w-1/2 max-w-4xl text-left px-4 py-10 text-white ">
               {/* Title */}
               <div className="flex justify-center">
@@ -77,7 +77,7 @@ function HeroSlider() {
               </div>
 
               {/* Description */}
-              <p className="mt-4 text-lg leading-relaxed hidden md:block">
+              <p className="mt-4 text-lg text-gray-200 leading-relaxed hidden md:block">
                 Ever since Rakurou "Sunraku" Hizutome started to play the
                 extremely popular virtual reality game Shangri-La Frontier, he
                 has truly fallen in love with it. Sunraku has quickly made a big
@@ -107,8 +107,8 @@ function HeroSlider() {
             </div>
           </div>
         </div>
-        <div className="h-[95vh] bg-Rezero bg-center bg-cover md:bg-right md:bg-contain bg-no-repeat">
-          <div className="h-[95vh] bg-gradient-to-t md:bg-gradient-to-r from-black/100 md:via-black/90 via-black/70 to-transparent flex md:w-2/3">
+        <div className="h-[95vh] md:h-auto lg:h-[95vh] bg-Rezero bg-center bg-cover md:bg-right md:bg-contain bg-no-repeat">
+          <div className="h-[95vh] md:h-auto lg:h-[95vh] bg-gradient-to-t md:bg-gradient-to-r from-black/100 md:via-black/90 via-black/70 to-transparent flex md:w-2/3">
             <div className="md:bg-gradient-to-r md:from-black/100 md:via-black/90 md:to-transparent flex flex-col justify-end md:justify-center z-10 md:w-1/2 max-w-4xl text-left px-4 py-10 text-white ">
               {/* Title */}
               <div className="flex justify-center">
@@ -120,7 +120,7 @@ function HeroSlider() {
               </div>
 
               {/* Description */}
-              <p className="mt-4 text-lg leading-relaxed hidden md:block">
+              <p className="mt-4 text-lg text-gray-200 leading-relaxed hidden md:block">
                 One year after the events at the Sanctuary, Subaru Natsuki
                 trains hard to better face future challenges. The peaceful days
                 come to an end when Emilia receives an invitation to a meeting

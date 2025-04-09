@@ -7,8 +7,8 @@ import "slick-carousel/slick/slick-theme.css";
 
 function SliderCard({ props }) {
   const truncateTitle = (title, maxLength) => {
-    if (title.length > maxLength) {
-      return `${title.slice(0, maxLength)}...`;
+    if (title?.length > maxLength) {
+      return `${title?.slice(0, maxLength)}...`;
     }
     return title;
   };
@@ -50,7 +50,7 @@ function SliderCard({ props }) {
 
   return (
     <div className="p-4 m-auto">
-      <Slider {...settings} className="lg:h-[500px] h-[300px]">
+      <Slider {...settings} className="lg:h-[500px] h-[400px]">
         {props &&
           props.map((anime) => (
             <div
@@ -75,7 +75,7 @@ function SliderCard({ props }) {
                     </p>
                     {anime.score || anime.year ? (
                       <p className="text-sm">
-                        ⭐ {anime?.score} - 🗓 {anime?.year || "NaN"}
+                        ⭐ {anime?.score || "--"} - 🗓 {anime?.year || "--"}
                       </p>
                     ) : null}
                     {anime.synopnis ? (
@@ -90,11 +90,9 @@ function SliderCard({ props }) {
                   <h4 className="font-semibold">
                     {truncateTitle(anime?.title, 50)}
                   </h4>
-                  {anime.score || anime.year ? (
                     <p>
-                      ⭐ {anime?.score} - 🗓 {anime?.year || "NaN"}
+                      ⭐ {anime?.score || "--"} - 🗓 {anime?.year || "--"}
                     </p>
-                  ) : null}
                 </div>
               </Link>
             </div>

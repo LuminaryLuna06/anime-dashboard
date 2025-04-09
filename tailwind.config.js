@@ -6,6 +6,14 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      colors: {
+        blossoms: {
+          100: "#f9a8d4",
+          200: "#f472b6",
+          300: "#db2777",
+        },
+        
+      },
       fontFamily: {
         sans: ["InterVariable", ...defaultTheme.fontFamily.sans],
       },

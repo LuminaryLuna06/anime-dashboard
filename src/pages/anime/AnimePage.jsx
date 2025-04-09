@@ -60,7 +60,8 @@ function AnimePage() {
   function handleMore() {
     setMore(!more);
   }
-  const currentEpisode = episodes && episodes[0] && episodes[0].episode;
+  const currentEpisode = episodes && episodes[0] && episodes[0].episode || "--";
+  const limitEpisode = anime?.episodes  === null ? "--" : anime?.episodes;
   const info = [
     {
       id: 1,
@@ -70,7 +71,7 @@ function AnimePage() {
     {
       id: 2,
       title: "Status",
-      content: anime?.status + " - " + currentEpisode + "/" + anime?.episodes,
+      content: anime?.status + " - " + currentEpisode + "/" + limitEpisode,
     },
     {
       id: 3,
@@ -154,7 +155,7 @@ function AnimePage() {
                       className="w-[250px]  object-cover"
                     />
                     <div className="p-3 ">
-                      <h1 className="text-pink-400">{anime?.title}</h1>
+                      <h1 className="text-blossoms-200">{anime?.title}</h1>
                       <h2 className=" text-gray-100 text-xl font-semibold text-center md:text-left">
                         {anime?.title_english}
                       </h2>
@@ -178,7 +179,7 @@ function AnimePage() {
 
                           <button
                             onClick={handleMore}
-                            className="text-pink-400"
+                            className="text-blossoms-200"
                           >
                             Read more
                           </button>
@@ -208,7 +209,7 @@ function AnimePage() {
                         </button>
                       ) : (
                         <button
-                          className="px-4 py-2 my-2 rounded bg-pink-300 text-pink-800 hover:bg-pink-700 hover:text-gray-200 transition-all duration-300 block"
+                          className="px-4 py-2 my-2 rounded bg-blossoms-200 text-pink-800 hover:bg-pink-700 hover:text-gray-200 transition-all duration-300 block"
                           onClick={handleAddToFavourites}
                         >
                           Add To Favourites <BookmarkBorderOutlinedIcon />
@@ -222,7 +223,7 @@ function AnimePage() {
                     {/* Score */}
                     {anime && (
                       <div className="text-center my-4 mx-3 ">
-                        <p className="bg-pink-400 rounded text-white text-sm p-1">
+                        <p className="bg-blossoms-200 rounded text-white text-sm p-1">
                           SCORE
                         </p>
                         <h1 className="text-2xl text-white text-center">
@@ -271,7 +272,7 @@ function AnimePage() {
                       {info &&
                         info.map((info) => (
                           <li className="text-gray-300 p-1" key={info.id}>
-                            <InfoOutlinedIcon className="text-pink-200 mx-1" />
+                            <InfoOutlinedIcon className="text-blossoms-100 mx-1" />
                             <span className=" text-gray-200 font-semibold">
                               {info.title}:
                             </span>{" "}

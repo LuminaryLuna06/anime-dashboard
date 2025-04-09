@@ -60,11 +60,11 @@ function Season() {
   const yearSeason = [
     {
       year: 2025,
-      seasons: ["summer", "winter", "spring", "fall"],
+      seasons: ["winter", "spring", "summer", "fall"],
     },
     {
       year: 2024,
-      seasons: ["winter", "fall"],
+      seasons: ["winter", "spring"],
     },
   ];
   const yearList = [
@@ -190,7 +190,7 @@ function Season() {
               key={`${item.year}-${i}`}
               type="radio"
               name="my_tabs_6"
-              className="tab"
+              className="tab text-xs md:text-sm"
               value={`${item.year}/${i}`}
               onChange={handleChangeURL}
               aria-label={`${i.toUpperCase()} ${item.year}`}
@@ -202,7 +202,7 @@ function Season() {
           <input
             type="radio"
             name="my_tabs_6"
-            className="tab"
+            className="tab text-xs md:text-sm"
             value={seasonY}
             onChange={handleChangeURL}
             aria-label={seasonY.split("/").reverse().join(" ").toUpperCase()}
@@ -214,11 +214,11 @@ function Season() {
           className="flex justify-center items-center"
           onSubmit={handleSearch}
         >
-          <label htmlFor="season" className="mx-2">
+          <label htmlFor="season" className="mx-2 text-sm md:text-md">
             Choose season
           </label>
 
-          <select name="season" id="season" ref={seasonRef}>
+          <select name="season" id="season" ref={seasonRef} className="text-sm md:text-md">
             <option value="">All</option>
             <option value="summer">Summer</option>
             <option value="winter">Winter</option>
@@ -226,11 +226,11 @@ function Season() {
             <option value="fall">Fall</option>
           </select>
 
-          <label htmlFor="year" className="mx-2">
+          <label htmlFor="year" className="mx-2 text-sm md:text-md">
             Choose year
           </label>
 
-          <select name="year" id="year" ref={yearRef}>
+          <select name="year" id="year" ref={yearRef} className="text-sm md:text-md">
             <option value="">All</option>
             {yearList.map((item, index) => (
               <option key={item.year} value={item.year}>
@@ -245,10 +245,10 @@ function Season() {
 
           <input type="number" name="year" /> */}
           <button
-            className="py-1 px-2 bg-pink-200 text-pink-800 text-sm font-semibold rounded mx-2"
+            className="py-1 px-2 hover:bg-blossoms-100 hover:text-blossoms-300 bg-gray-100 text-black text-sm rounded mx-2"
             type="submit"
           >
-            Go to
+            Enter
           </button>
         </form>
       </div>

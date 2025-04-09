@@ -3,6 +3,7 @@ import getTopAnimeFilter from "../../api/hooks/getTopAnimeFilter";
 import { Link, useNavigate } from "react-router-dom";
 import StarIcon from "@mui/icons-material/Star";
 import Side from "../../components/layout/SideBar/Side";
+import WhatshotOutlinedIcon from '@mui/icons-material/WhatshotOutlined';
 
 function TopAnime() {
   const [option, setOption] = useState({
@@ -19,6 +20,12 @@ function TopAnime() {
   };
 
   const { data, isLoading } = getTopAnimeFilter(option);
+  const truncateTitle = (title, maxLength) => {
+    if (title.length > maxLength) {
+      return `${title.slice(0, maxLength)}...`;
+    }
+    return title;
+  };
   window.scrollTo(0, 0);
 
   return (
@@ -77,7 +84,7 @@ function TopAnime() {
       <div className="lg:w-[85%] mx-auto py-3 flex flex-col md:flex-row gap-3">
         {/* Left */}
         <div className="overflow-x-auto flex flex-col md:w-[80%] lg:w-[75%] mx-auto animate-fadeIn">
-          <h1>Top anime series</h1>
+          <h1><WhatshotOutlinedIcon/> Top anime series <WhatshotOutlinedIcon/></h1>
           <table className="table">
             <thead>
               <tr>
@@ -106,8 +113,8 @@ function TopAnime() {
                       }}
                       className="cursor-pointer hover:bg-gray-900"
                     >
-                      <th className="text-4xl">{index + 1}</th>
-                      <td className="font-bold text-xl">
+                      <th className="text-2xl md:text-4xl">{index + 1}</th>
+                      <td className="font-bold">
                         <div className="flex">
                           <img
                             src={anime.images.webp.large_image_url}
@@ -115,21 +122,23 @@ function TopAnime() {
                             className="h-28 w-20 object-cover"
                           />
                           <div className="p-3">
-                            <h2>{anime.title}</h2>
+                            <h2 className="md:text-xl">
+                              {truncateTitle(anime.title, 20)}
+                            </h2>
                             <p className="text-sm font-normal text-gray-400">
                               {anime.type} ({anime.episodes} eps)
                             </p>
                             <p className="text-sm font-normal text-gray-400">
-                              {anime.year || "NaN"}
+                              {anime.year || "--"}
                             </p>
-                            <p className="text-sm font-normal text-gray-400">
+                            <p className="text-sm font-normal text-gray-400 hidden md:block">
                               {anime.members} members
                             </p>
                           </div>
                         </div>
                       </td>
-                      <td className="font-bold text-xl ">
-                        <div className="flex items-center">
+                      <td className="font-bold">
+                        <div className="flex items-center md:text-xl">
                           <StarIcon className="text-yellow-400" />
                           {anime.score}
                         </div>

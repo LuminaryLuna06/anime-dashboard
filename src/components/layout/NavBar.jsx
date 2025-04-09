@@ -71,7 +71,7 @@ function NavBar() {
             ) : null}
           </ul>
         </div>
-        <Link className="btn btn-ghost text-2xl" to={"/"}>
+        <Link className="btn btn-ghost md:text-2xl text-xl" to={"/"}>
           🌸BlossomAnime
         </Link>
       </div>

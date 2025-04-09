@@ -15,7 +15,7 @@ function UpcomingAnime() {
     <>
       <div className="mx-auto">
         <div className="py-4 ">
-          <h1 className="text-3xl font-bold my-3">⭐Upcoming 2025 Anime⭐</h1>
+          <h1>⭐Upcoming Anime⭐</h1>
           {/* Upcoming */}
 
           {isLoading ? (

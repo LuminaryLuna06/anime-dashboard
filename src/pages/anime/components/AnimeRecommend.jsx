@@ -20,7 +20,7 @@ function AnimeRecommend({ id }) {
       <div className="my-10">
         <h1>⭐Recommended Anime⭐</h1>
         {/* Top */}
-        <div className="flex">
+        <div className="flex flex-wrap">
           {isLoading ? (
             <CardSkeleton cards={6} />
           ) : animes && animes.length > 0 ? (
