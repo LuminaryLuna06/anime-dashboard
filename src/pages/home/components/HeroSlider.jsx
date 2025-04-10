@@ -20,7 +20,7 @@ function HeroSlider() {
   return (
     <div className="slider-container">
       <Slider {...settings}>
-        <div className="h-[95vh] md:h-auto lg:h-[95vh] bg-SoloLeveling">
+        <div className="h-[95vh] md:h-auto lg:h-[95vh] bg-SoloLeveling bg-no-repeat bg-cover">
           <div className="h-[95vh] md:h-auto lg:h-[95vh] bg-gradient-to-t md:bg-gradient-to-l from-black/100 md:via-black/80 via-black/60 to-transparent flex flex-row-reverse">
             <div className="flex flex-col justify-end md:justify-center z-10 md:w-[40%] max-w-4xl text-left px-4 py-10 text-white ">
               {/* Title */}

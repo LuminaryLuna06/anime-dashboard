@@ -13,7 +13,7 @@ function NavBar() {
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     if (query.trim()) {
-      navigate(`/search?q=${query}`);
+      navigate(`/anime?q=${query}&page=1`);
     }
   };
 

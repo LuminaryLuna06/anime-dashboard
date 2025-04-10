@@ -7,18 +7,14 @@ import Pagination from "../ui/Pagination/Pagination";
 import AnimeFilter from "./AnimeFilter";
 import Side from "../layout/SideBar/Side";
 
-function useQuery() {
-  return new URLSearchParams(useLocation().search);
-}
 
 function SearchAnime() {
-  const query = useQuery().get("q") || "";
   return (
     <>
       <div className="lg:w-[85%] mx-auto py-3 flex flex-col md:flex-row gap-3">
         {/* Left */}
         <div className="flex flex-col md:w-[80%] lg:w-[75%]">
-          <AnimeFilter totalPages={3} query={query} />
+          <AnimeFilter />
         </div>
         <Side />
       </div>

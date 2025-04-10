@@ -21,6 +21,14 @@ function SliderCard({ props }) {
     initialSlide: 0,
     responsive: [
       {
+        breakpoint: 1280,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 2,
+          infinite: true,
+        },
+      },
+      {
         breakpoint: 1024,
         settings: {
           slidesToShow: 3,
@@ -90,9 +98,9 @@ function SliderCard({ props }) {
                   <h4 className="font-semibold">
                     {truncateTitle(anime?.title, 50)}
                   </h4>
-                    <p>
-                      ⭐ {anime?.score || "--"} - 🗓 {anime?.year || "--"}
-                    </p>
+                  <p>
+                    ⭐ {anime?.score || "--"} - 🗓 {anime?.year || "--"}
+                  </p>
                 </div>
               </Link>
             </div>

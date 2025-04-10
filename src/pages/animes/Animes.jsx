@@ -6,6 +6,7 @@ import Side from "../../components/layout/SideBar/Side";
 import Loading from "../../components/layout/Loading";
 import CardSkeleton from "../../components/ui/Skeleton/CardSkeleton";
 import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
+import AnimeFilter2 from "../../components/function/AnimeFilter2";
 
 const LazyAnime = lazy(() => import("../../components/function/AnimeFilter"));
 
@@ -47,7 +48,8 @@ function Animes() {
             }
           >
             {/* <LazyAnime /> */}
-            <AnimeFilter />
+            {/* <AnimeFilter /> */}
+            <AnimeFilter2 />
           </Suspense>
 
           {/* Top Anime Of All Time */}

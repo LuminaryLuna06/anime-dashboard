@@ -16,12 +16,14 @@ import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 
-function AnimeFilter({ query }) {
+function AnimeFilter2() {
   const navigate = useNavigate();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
 
-  const [filters, setFilters] = useState({
+  const [isOpen, setIsOpen] = useState(false);
+  const [filters, setFilters] = useState({});
+  const [subFilters, setSubFilters] = useState({
     q: params.get("q") || "",
     type: params.get("type") || "",
     genres: params.get("genres")
@@ -29,20 +31,28 @@ function AnimeFilter({ query }) {
       : [],
     start_date: params.get("start_date") || "",
     end_date: params.get("end_date") || "",
-  });
-  const [option, setOption] = useState({
+    sfw: true,
     page: Number(params.get("page")) || 1,
     order_by: params.get("order_by") || "",
     sort: params.get("sort") || "",
-    sfw: true,
   });
-
-  const [isOpen, setIsOpen] = useState(false);
-  const [page, setPage] = useState(option.page);
-
+  const [page, setPage] = useState(Number(params.get("page")) || 1);
+  // Chay khi url thay doi
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const newFilters = {
+      q: params.get("q") || "",
+      type: params.get("type") || "",
+      genres: params.get("genres") || "",
+      start_date: params.get("start_date") || "",
+      end_date: params.get("end_date") || "",
+      sfw: true,
+      page: Number(params.get("page")) || 1,
+      order_by: params.get("order_by") || "",
+      sort: params.get("sort") || "",
+    };
+    setFilters(newFilters);
+    const newSubFilters = {
       q: params.get("q") || "",
       type: params.get("type") || "",
       genres: params.get("genres")
@@ -50,57 +60,44 @@ function AnimeFilter({ query }) {
         : [],
       start_date: params.get("start_date") || "",
       end_date: params.get("end_date") || "",
-    };
-    const newOption = {
+      sfw: true,
       page: Number(params.get("page")) || 1,
       order_by: params.get("order_by") || "",
       sort: params.get("sort") || "",
     };
-    setFilters(newFilters);
-    setOption((prevOption) => ({
-      ...prevOption,
-      ...newOption,
-      ...filters,
-      genres: filters.genres.join(","),
-    }));
-    setPage(newOption.page);
+    setSubFilters(newSubFilters);
+    const urlPage = Number(params.get("page")) || 1;
+    if (urlPage !== page) {
+      setPage(urlPage);
+    }
+    setIsOpen(false);
   }, [location.search]);
-
+  // Chuyen trang
   useEffect(() => {
-    setOption((prevOption) => ({
-      ...prevOption,
-      page: page,
-    }));
+    const params = new URLSearchParams(location.search);
+    params.set("page", page);
+    navigate({ search: params.toString() }, { replace: true });
   }, [page]);
-
-  useEffect(() => {
-    setOption((prevOption) => ({
-      ...prevOption,
-      q: query,
-      page: 1,
-    }));
-    setPage(1);
-  }, [query]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
     if (type === "checkbox") {
-      setFilters((prev) => ({
+      setSubFilters((prev) => ({
         ...prev,
         genres: checked
           ? [...prev.genres, Number(value)]
           : prev.genres.filter((id) => id !== Number(value)),
       }));
     } else {
-      setFilters((prev) => ({ ...prev, [name]: value }));
+      setSubFilters((prev) => ({ ...prev, [name]: value }));
     }
   };
 
   const handleYearChange = (e) => {
     const year = e.target.value;
 
-    setFilters((prev) => ({
+    setSubFilters((prev) => ({
       ...prev,
       start_date: year ? `${year}-01-01` : "",
       end_date: year ? `${parseInt(year) + 1}-06-30` : "",
@@ -109,34 +106,31 @@ function AnimeFilter({ query }) {
 
   const handleSubmit = (e, newOption = null) => {
     if (e) e.preventDefault();
-    const finalOption = newOption || {
-      ...option,
-      ...filters,
-      genres: filters.genres.join(","),
+    const finalFilter = newOption || {
+      ...subFilters,
+      genres: subFilters.genres.join(","),
     };
-    setOption(finalOption);
     setPage(1);
     setIsOpen(false);
 
     const params = new URLSearchParams();
-    Object.keys(finalOption).forEach((key) => {
-      if (finalOption[key]) {
-        params.append(key, finalOption[key]);
+    Object.keys(finalFilter).forEach((key) => {
+      if (finalFilter[key]) {
+        params.append(key, finalFilter[key]);
       }
     });
     navigate({ search: params.toString() });
   };
-
   function handleSort(sort) {
     const newOption = {
-      ...option,
+      ...subFilters,
       order_by: "title",
       sort: sort,
     };
     handleSubmit(null, newOption);
   }
 
-  const { data, isLoading } = getAnime(option);
+  const { data, isLoading } = getAnime(filters);
   const uniqueAnimes = data && data[0];
   const pagination = data && data[1];
 
@@ -194,7 +188,7 @@ function AnimeFilter({ query }) {
                 className="text-left bg-gray-200 p-2 hover:text-pink-800 hover:bg-pink-200 transition-all rounded-md my-1"
                 onClick={() => {
                   const newOption = {
-                    ...subFilter,
+                    ...subFilters,
                     order_by: "members",
                     sort: "desc",
                   };
@@ -209,7 +203,7 @@ function AnimeFilter({ query }) {
                 onClick={(e) => {
                   e.preventDefault();
                   const newOption = {
-                    ...subFilter,
+                    ...subFilters,
                     order_by: "start_date",
                     sort: "desc",
                   };
@@ -231,7 +225,7 @@ function AnimeFilter({ query }) {
                     type="radio"
                     name="type"
                     value={""}
-                    checked={filters.type === ""}
+                    checked={subFilters.type === ""}
                     onChange={handleChange}
                   />
                   {" All"}
@@ -242,7 +236,7 @@ function AnimeFilter({ query }) {
                       type="radio"
                       name="type"
                       value={type.value}
-                      checked={filters.type === type.value}
+                      checked={subFilters.type === type.value}
                       onChange={handleChange}
                     />
                     {` ${type.name}`}
@@ -258,7 +252,7 @@ function AnimeFilter({ query }) {
                       type="checkbox"
                       name="genres"
                       value={genre.mal_id}
-                      checked={filters.genres.includes(genre.mal_id)}
+                      checked={subFilters.genres.includes(genre.mal_id)}
                       onChange={handleChange}
                       className="mr-1"
                     />
@@ -274,7 +268,7 @@ function AnimeFilter({ query }) {
                     type="radio"
                     name="year"
                     value=""
-                    checked={filters.start_date === ""} // No year selected
+                    checked={subFilters.start_date === ""} // No year selected
                     onChange={handleYearChange}
                   />
                   {` All`}
@@ -286,7 +280,7 @@ function AnimeFilter({ query }) {
                       type="radio"
                       name="year"
                       value={year}
-                      checked={filters.start_date === `${year}-01-01`}
+                      checked={subFilters.start_date === `${year}-01-01`}
                       onChange={handleYearChange}
                     />
                     {` ${year}`}
@@ -330,13 +324,6 @@ function AnimeFilter({ query }) {
             ))
           )}
         </div>
-        {/* <Suspense fallback={<Loading />}>
-          <div className="flex flex-wrap items-start mx-auto">
-            {uniqueAnimes.map((anime) => (
-              <Cards key={anime.mal_id} props={anime} />
-            ))}
-          </div>
-        </Suspense> */}
 
         {pagination ? (
           <Pagination2
@@ -355,4 +342,4 @@ function AnimeFilter({ query }) {
   );
 }
 
-export default AnimeFilter;
+export default AnimeFilter2;

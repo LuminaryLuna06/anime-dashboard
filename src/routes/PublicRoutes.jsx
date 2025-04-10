@@ -18,7 +18,7 @@ const PublicRoutes = () => (
     <Route path="/popular" element={<TopAnime />} />
     {/* <Route path="/genres" element={<Genre />} /> */}
     {/* <Route path="/genres/:genreId/:genreName" element={<GenrePage />} /> */}
-    <Route path="/search" element={<SearchAnime />} />
+    {/* <Route path="/search" element={<SearchAnime />} /> */}
     <Route path="/anime-type" element={<AnimeType />} />
     <Route path="/season" element={<Season />} />
     <Route path="/test" element={<Test />} />
