@@ -10,3 +10,34 @@
     @apply font-semibold;
   }
 }
+
+.blossoms {
+  /* --background: 50, 50, 50; */
+  --background: 3, 3, 3;
+  --border: 250, 78, 171;
+  --primary: 250, 78, 171;
+  --secondary: 254, 131, 198;
+  --text: 255, 242, 249;
+  --text-secondary: 241, 239, 236;
+  --accent: 250, 78, 171;
+}
+
+.light {
+  --background: 249, 245, 246;
+  --border: 253, 206, 223;
+  --primary: 253, 206, 223;
+  --secondary: 242, 190, 209;
+  --text: 3, 3, 3;
+  --text-secondary: 3, 3, 3;
+  --accent: 253, 206, 223;
+}
+
+.dark {
+  --background: 3, 3, 3;
+  --border: 247,247,247;
+  --primary: 250, 78, 171;
+  --secondary: 254, 131, 198;
+  --text: 248, 247, 247;
+  --text-secondary: 238,238,238;
+  --accent: 250, 78, 171;
+}

@@ -1,45 +1,21 @@
 import React, { useEffect } from "react";
-import { db } from "../../firebase/firebase";
-import { collection, getDocs, setDoc, getDoc, doc } from "firebase/firestore";
-import { useAuth } from "../../context/authContext";
 
 function Test() {
-  const { currentUser } = useAuth();
-  const setFavourites = async (anime) => {
-    try {
-      await setDoc(doc(db, "users", currentUser.uid, "favourites", anime.uid), {
-        title: anime.title,
-        image: anime.images.webp.large_image_url,
-      });
-    } catch (error) {
-      console.error("Error creating collection:", error);
-    }
-  };
-  useEffect(() => {
-    const fetchCollection = async () => {
-      try {
-        const querySnapshot = await getDocs(
-          collection(db, "users", currentUser.uid, "favourites")
-        );
-        querySnapshot.forEach((doc) => {
-          console.log(doc.id, " => ", doc.data());
-        });
-        await setDoc(
-          doc(db, "users", currentUser.uid, "favourites", "0123456"),
-          {
-            title: "One Piece",
-            id: "0123456",
-          }
-        );
-      } catch (error) {
-        console.error("Error fetching collection:", error);
-      }
-    };
-
-    fetchCollection();
-  }, []);
-
-  return <div>Test</div>;
+  return (
+    <div className="h-screen flex justify-center items-center">
+      <div className="w-[300px] h-[400px] bg-background text-text border border-border rounded p-5 flex flex-col gap-3">
+        <h1>Hello World</h1>
+        <p className="text-text-secondary">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Hic sit
+          nihil iusto omnis adipisci iste sint impedit, magni quidem laborum
+          reiciendis aliquam quia assumenda. Vel rerum quis saepe quas officiis?
+        </p>
+        <button className="p-3 bg-primary border border-primary hover:bg-background hover:border-primary rounded"> Hello World</button>
+        <button className="p-3 bg-secondary rounded"> Hello World</button>
+        <input type="checkbox" className="accent-accent" />
+      </div>
+    </div>
+  );
 }
 
 export default Test;

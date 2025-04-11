@@ -4,7 +4,6 @@ import getAnime from "../../api/hooks/getAnime";
 import Cards from "../../components/ui/Cards/Cards";
 import CardSkeleton from "../../components/ui/Skeleton/CardSkeleton";
 import Pagination2 from "../ui/Pagination/Pagination2";
-import Loading from "../layout/Loading";
 
 import genres from "../../assets/genres";
 import types from "../../assets/type";
@@ -70,7 +69,7 @@ function AnimeFilter2() {
     if (urlPage !== page) {
       setPage(urlPage);
     }
-    setIsOpen(false);
+    setIsOpen(true); //-------->
   }, [location.search]);
   // Chuyen trang
   useEffect(() => {
@@ -149,7 +148,7 @@ function AnimeFilter2() {
         </div>
         <div className="flex justify-center items-center">
           <button
-            className="border-2 rounded-lg py-3 px-6  border-blossoms-100 hover:bg-blossoms-100 font-semibold items-center"
+            className="border-2 rounded-lg py-3 px-6 border-blossoms-100 hover:bg-blossoms-100 font-semibold items-center"
             onClick={() => {
               setIsOpen(!isOpen);
             }}
@@ -171,21 +170,21 @@ function AnimeFilter2() {
                 Sort by
               </h2>
               <button
-                className="text-left bg-gray-200 p-2 hover:text-pink-800 hover:bg-pink-200 transition-all rounded-md my-1"
+                className="text-left bg-gray-200 p-2 hover:text-blossoms-300 hover:bg-blossoms-100 transition-all rounded-md my-1"
                 onClick={() => handleSort("asc")}
               >
                 <TrendingUpIcon />
                 Asc Title
               </button>
               <button
-                className="text-left bg-gray-200 p-2 hover:text-pink-800 hover:bg-pink-200 transition-all rounded-md my-1"
+                className="text-left bg-gray-200 p-2 hover:text-blossoms-300 hover:bg-blossoms-100 transition-all rounded-md my-1"
                 onClick={() => handleSort("desc")}
               >
                 <TrendingDownIcon />
                 Desc Title
               </button>
               <button
-                className="text-left bg-gray-200 p-2 hover:text-pink-800 hover:bg-pink-200 transition-all rounded-md my-1"
+                className="text-left bg-gray-200 p-2 hover:text-blossoms-300 hover:bg-blossoms-100 transition-all rounded-md my-1"
                 onClick={() => {
                   const newOption = {
                     ...subFilters,
@@ -199,7 +198,7 @@ function AnimeFilter2() {
                 Most View
               </button>
               <button
-                className="text-left bg-gray-200 p-2 hover:text-pink-800 hover:bg-pink-200 transition-all rounded-md my-1"
+                className="text-left bg-gray-200 p-2 hover:text-blossoms-300 hover:bg-blossoms-100 transition-all rounded-md my-1"
                 onClick={(e) => {
                   e.preventDefault();
                   const newOption = {
@@ -215,7 +214,7 @@ function AnimeFilter2() {
               </button>
             </div>
             {/* Right */}
-            <div className="flex flex-col w-full gap-5 p-2 text-gray-300 accent-pink-300">
+            <div className="flex flex-col w-full gap-5 p-2 text-gray-300 accent-blossoms-100">
               {/* Type Selection */}
               <fieldset className="grid md:grid-cols-4 lg:grid-cols-5 grid-cols-2">
                 <legend className="text-xl font-semibold">Type:</legend>
@@ -289,7 +288,7 @@ function AnimeFilter2() {
               </fieldset>
               {/* Submit Button */}
               <button
-                className="text-gray-700 font-bold bg-gray-200 p-2 hover:text-pink-800 hover:bg-pink-200 transition-all rounded-md my-1"
+                className="text-gray-700 font-bold bg-gray-200 p-2 hover:text-blossoms-300 hover:bg-blossoms-100 transition-all rounded-md my-1"
                 type="submit"
               >
                 Filter <TuneOutlinedIcon />

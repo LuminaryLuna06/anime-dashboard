@@ -12,6 +12,13 @@ export default {
           200: "#f472b6",
           300: "#db2777",
         },
+        background: "rgba(var(--background))",
+        border: "rgba(var(--border))",
+        primary: "rgba(var(--primary))",
+        secondary: "rgba(var(--secondary))",
+        text: "rgba(var(--text))",
+        "text-secondary": "rgba(var(--text-secondary))",
+        accent: "rgba(var(--accent))",
         
       },
       fontFamily: {
@@ -40,7 +47,7 @@ export default {
   },
   plugins: [daisyui],
   daisyui: {
-    themes: ["light", "dark", "cupcake"], // Add or remove themes here
+    themes: ["light", "dark"], // Add or remove themes here
     darkTheme: "dark", // Set default dark mode theme
   },
 };

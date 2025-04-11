@@ -16,17 +16,17 @@ function App() {
     <Router>
       <AuthProvider>
         <div
-          className="text-gray-200 bg-gradient-to-r from-black to-slate-800 font-sans transition-transform duration-300"
-          data-theme="dark"
+          className="text-gray-200 bg-gradient-to-r from-black to-slate-800 font-sans dark transition-transform duration-300"
+          // data-theme="dark"
         >
           {/* <Loading /> */}
           <MayShow>
             <NavBar />
           </MayShow>
-          <SkeletonTheme baseColor="#202020" highlightColor="#444">
+          {/* <SkeletonTheme baseColor="#202020" highlightColor="#444"> */}
             <PublicRoutes />
             <AdminRoutes />
-          </SkeletonTheme>
+          {/* </SkeletonTheme> */}
           <MayShow>
             <Footer />
           </MayShow>
