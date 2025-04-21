@@ -14,8 +14,8 @@ function HeroSlider() {
     slidesToShow: 1,
     slidesToScroll: 1,
     waitForAnimate: false,
-    autoplay: true,
-    autoplaySpeed: 8000,
+    // autoplay: true,
+    // autoplaySpeed: 8000,
   };
   return (
     <div className="slider-container">
@@ -48,7 +48,7 @@ function HeroSlider() {
             </div>
           </div>
         </div>
-        <div className="h-[95vh] md:h-auto lg:h-[95vh] bg-Shangrila bg-center bg-cover md:bg-right md:bg-contain bg-no-repeat">
+        <div className="h-[95vh] md:h-auto lg:h-[95vh] bg-Shangrila bg-center bg-cover md:bg-right  bg-no-repeat">
           <div className=" h-[95vh] md:h-auto lg:h-[95vh] bg-gradient-to-t md:bg-gradient-to-r from-black/100 md:via-black/90 via-black/70 to-transparent flex md:w-2/3">
             <div className="md:bg-gradient-to-r md:from-black/100 md:via-black/90 md:to-transparent flex flex-col justify-end md:justify-center z-10 md:w-1/2 max-w-4xl text-left px-4 py-10 text-text ">
               {/* Title */}
@@ -75,7 +75,7 @@ function HeroSlider() {
             </div>
           </div>
         </div>
-        <div className="h-[95vh] md:h-auto lg:h-[95vh] bg-Rezero bg-center bg-cover md:bg-right md:bg-contain bg-no-repeat">
+        <div className="h-[95vh] md:h-auto lg:h-[95vh] bg-Rezero bg-center bg-cover md:bg-right  bg-no-repeat">
           <div className="h-[95vh] md:h-auto lg:h-[95vh] bg-gradient-to-t md:bg-gradient-to-r from-black/100 md:via-black/90 via-black/70 to-transparent flex md:w-2/3">
             <div className="md:bg-gradient-to-r md:from-black/100 md:via-black/90 md:to-transparent flex flex-col justify-end md:justify-center z-10 md:w-1/2 max-w-4xl text-left px-4 py-10 text-text ">
               {/* Title */}

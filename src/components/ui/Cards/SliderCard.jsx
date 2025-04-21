@@ -57,7 +57,7 @@ function SliderCard({ props }) {
   };
 
   return (
-    <div className="p-4 m-auto">
+    <div className="p-7 m-auto bg-background-secondary rounded border border-border">
       <Slider {...settings} className="lg:h-[500px] h-[400px]">
         {props &&
           props.map((anime) => (

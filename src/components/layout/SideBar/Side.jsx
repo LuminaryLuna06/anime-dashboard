@@ -21,8 +21,8 @@ function Side() {
         <img src="quangcao2.jpg" alt="Quang cao" />
       </div>
       {/* Anime moi cap nhat */}
-      <div className="w-full bg-base-100 p-2 rounded">
-        <h2 className="text-xl font-semibold my-2 text-primary">
+      <div className="w-full bg-background-secondary p-2 rounded">
+        <h2 className="text-xl font-semibold my-2 text-secondary">
           New Episodes
         </h2>
         <hr className="my-2" />
@@ -33,7 +33,7 @@ function Side() {
               return (
                 <li
                   key={index}
-                  className="flex justify-between p-2 bg-background/30 my-2 hover:text-text-hover hover:border hover:border-border transition-all duration-300"
+                  className="flex justify-between p-2 bg-background/70 my-2 hover:text-text-hover hover:border hover:border-border rounded transition-all duration-300"
                 >
                   <Link
                     to={`/anime/${recent.entry.mal_id}/episodes/${lastestEp}`}
