@@ -33,7 +33,7 @@ function HeroSlider() {
               </div>
 
               {/* Description */}
-              <p className="mt-4 text-lg text-text-secondary leading-relaxed hidden md:block">
+              <p className="mt-4 text-lg text-text-third leading-relaxed hidden md:block">
                 They say whatever doesn’t kill you makes you stronger, but
                 that’s not the case for the world’s weakest hunter, Sung Jinwoo.
                 After being brutally slaughtered by monsters in a high-ranking
@@ -61,7 +61,7 @@ function HeroSlider() {
               </div>
 
               {/* Description */}
-              <p className="mt-4 text-lg text-text-secondary leading-relaxed hidden md:block">
+              <p className="mt-4 text-lg text-text-third leading-relaxed hidden md:block">
                 Ever since Rakurou "Sunraku" Hizutome started to play the
                 extremely popular virtual reality game Shangri-La Frontier, he
                 has truly fallen in love with it. Sunraku has quickly made a big
@@ -88,7 +88,7 @@ function HeroSlider() {
               </div>
 
               {/* Description */}
-              <p className="mt-4 text-lg text-text-secondary leading-relaxed hidden md:block">
+              <p className="mt-4 text-lg text-text-third leading-relaxed hidden md:block">
                 One year after the events at the Sanctuary, Subaru Natsuki
                 trains hard to better face future challenges. The peaceful days
                 come to an end when Emilia receives an invitation to a meeting

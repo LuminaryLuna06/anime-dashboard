@@ -7,13 +7,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "rgba(var(--background))",
+        background: "rgba(var(--background), 1)",
+        "background-secondary": "rgba(var(--background-secondary))",
         border: "rgba(var(--border))",
         primary: "rgba(var(--primary))",
         secondary: "rgba(var(--secondary))",
         text: "rgba(var(--text))",
-        "text-secondary": "rgba(var(--text-secondary))",
+        "text-secondary": "rgba(var(--text-secondary), 0.8)",
+        "text-third": "rgba(var(--text-third), 0.8)",
         "text-hover": "rgba(var(--text-hover))",
+        "text-active": "rgba(var(--text-active))",
         accent: "rgba(var(--accent))",
       },
       fontFamily: {

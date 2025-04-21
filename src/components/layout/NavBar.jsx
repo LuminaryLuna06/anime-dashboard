@@ -18,10 +18,14 @@ function NavBar() {
   };
 
   return (
-    <div className="navbar bg-background/50 text-text h-5 sticky top-0 z-20">
+    <div className="navbar bg-background-secondary text-text h-5 sticky top-0 z-20">
       <div className="navbar-start">
-        <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">
+        <div className="dropdown ">
+          <div
+            tabIndex={0}
+            role="button"
+            className="p-3  md:hidden hover:bg-background focus:bg-background transition-all duration-300"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -39,15 +43,15 @@ function NavBar() {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content text-text bg-gradient-to-r from-slate-800 to-black rounded-box z-[1] mt-3 w-52 p-2 shadow "
+            className="menu menu-sm dropdown-content text-text bg-background rounded-box z-[1] mt-3 w-52 p-2 shadow transition-all duration-300"
           >
-            <li>
+            <li className="hover:bg-background-secondary transition-all duration-300">
               <Link to={"/"}>Home</Link>
             </li>
-            <li>
+            <li className="hover:bg-background-secondary transition-all duration-300">
               <Link to={"/anime"}>Anime</Link>
             </li>
-            <li>
+            <li className="hover:bg-background-secondary transition-all duration-300">
               <Link to={"/popular"}>Popular</Link>
               {/* <ul className="p-2">
                 <li>
@@ -61,27 +65,34 @@ function NavBar() {
             {/* <li>
               <Link to={"/genres"}>Genres</Link>
             </li> */}
-            <li>
+            <li className="hover:bg-background-secondary transition-all duration-300">
               <Link to={"/season"}>Seasonal</Link>
             </li>
             {isAdmin ? (
-              <li>
+              <li className="hover:bg-background-secondary transition-all duration-300">
                 <Link to={"/admin"}>Admin</Link>
               </li>
             ) : null}
           </ul>
         </div>
-        <Link className="btn btn-ghost md:text-2xl text-xl text-text" to={"/"}>
+        <Link
+          className="p-3 font-bold md:text-2xl text-xl text-text hover:bg-background transition-all duration-300"
+          to={"/"}
+        >
           🌸BlossomAnime
         </Link>
       </div>
       <div className="navbar-center hidden md:flex">
-        <ul className="menu menu-horizontal px-1 text-lg">
-          <li>
+        <ul className="menu menu-horizontal px-1 text-lg gap-2">
+          <li className="hover:bg-background">
             <NavLink
               to="/"
               className={({ isActive }) => ` 
-              ${isActive ? "text-primary" : "inactive"}
+              ${
+                isActive
+                  ? "text-text-active bg-background"
+                  : "inactive hover:bg-background"
+              }
               `}
             >
               Home
@@ -91,7 +102,11 @@ function NavBar() {
             <NavLink
               to="/anime"
               className={({ isActive }) => ` 
-              ${isActive ? "text-primary" : "inactive"}
+              ${
+                isActive
+                  ? "text-text-active bg-background"
+                  : "inactive hover:bg-background"
+              }
               `}
             >
               Anime
@@ -101,7 +116,11 @@ function NavBar() {
             <NavLink
               to="/popular"
               className={({ isActive }) => ` 
-              ${isActive ? "text-primary" : "inactive"}
+              ${
+                isActive
+                  ? "text-text-active bg-background"
+                  : "inactive hover:bg-background"
+              }
               `}
             >
               Popular
@@ -112,7 +131,11 @@ function NavBar() {
             <NavLink
               to="/season"
               className={({ isActive }) => ` 
-              ${isActive ? "text-primary" : "inactive"}
+              ${
+                isActive
+                  ? "text-text-active bg-background"
+                  : "inactive hover:bg-background"
+              }
               `}
             >
               Seasonal
@@ -147,7 +170,7 @@ function NavBar() {
             />
             <button
               type="submit"
-              className="text-text absolute right-2.5 bottom-2.5 bg-primary hover:bg-secondary focus:ring-4 focus:outline-none focus:ring-primary font-medium rounded-lg text-sm p-2"
+              className="text-text absolute right-2.5 bottom-2 bg-primary hover:bg-secondary focus:ring-4 focus:outline-none focus:ring-primary font-medium rounded-lg text-sm p-2"
             >
               <SearchIcon />
             </button>

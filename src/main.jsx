@@ -26,9 +26,9 @@ createRoot(document.getElementById("root")).render(
       withGlobalStyles={false}
       withNormalizeCSS={false}
     >
-      <Suspense fallback={<Loading />}>
+      {/* <Suspense fallback={<Loading />}> */}
         <App />
-      </Suspense>
+      {/* </Suspense> */}
     </MantineProvider>
     {/* <ReactQueryDevtools /> */}
   </QueryClientProvider>
