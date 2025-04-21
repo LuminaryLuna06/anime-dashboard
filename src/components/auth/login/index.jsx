@@ -37,15 +37,15 @@ const Login = () => {
       {userLoggedIn && <Navigate to={"/"} replace={true} />}
 
       <main className="w-full h-screen flex self-center place-content-center place-items-center">
-        <div className="w-96 text-gray-600 space-y-5 p-4 shadow-xl border rounded-xl">
+        <div className="w-96 text-text space-y-5 p-4 shadow-xl border rounded-xl">
           <div className="text-center">
             <div className="mt-2">
-              <h2 className="text-gray-200 font-bold text-2xl">Welcome Back</h2>
+              <h2 className="text-text font-bold text-2xl">Welcome Back</h2>
             </div>
           </div>
           <form onSubmit={onSubmit} className="space-y-5">
             <div>
-              <label className="text-sm text-gray-600 font-bold">Email</label>
+              <label className="text-sm text-text/90 font-bold">Email</label>
               <input
                 type="email"
                 autoComplete="email"
@@ -54,14 +54,12 @@ const Login = () => {
                 onChange={(e) => {
                   setEmail(e.target.value);
                 }}
-                className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-pink-300 shadow-sm rounded-lg transition duration-300"
+                className="w-full mt-2 px-3 py-2 text-text bg-transparent outline-none border focus:border-border shadow-sm rounded-lg transition duration-300"
               />
             </div>
 
             <div>
-              <label className="text-sm text-gray-600 font-bold">
-                Password
-              </label>
+              <label className="text-sm text-text/90 font-bold">Password</label>
               <input
                 type="password"
                 autoComplete="current-password"
@@ -70,7 +68,7 @@ const Login = () => {
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}
-                className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-pink-300 shadow-sm rounded-lg transition duration-300"
+                className="w-full mt-2 px-3 py-2 text-text bg-transparent outline-none border focus:border-border shadow-sm rounded-lg transition duration-300"
               />
             </div>
 
@@ -81,16 +79,16 @@ const Login = () => {
             <button
               type="submit"
               disabled={isSigningIn}
-              className={`w-full px-4 py-2 text-white font-medium rounded-lg ${
+              className={`w-full px-4 py-2 text-text font-medium rounded-lg ${
                 isSigningIn
-                  ? "bg-gray-300 cursor-not-allowed"
-                  : "bg-pink-400 hover:bg-pink-300 hover:shadow-xl transition duration-300"
+                  ? "bg-secondary cursor-not-allowed"
+                  : "bg-primary hover:bg-secondary hover:shadow-xl transition duration-300"
               }`}
             >
               {isSigningIn ? "Signing In..." : "Sign In"}
             </button>
           </form>
-          <p className="text-gray-200 text-center text-sm">
+          <p className="text-text/95 text-center text-sm">
             Don't have an account?{" "}
             <Link to={"/register"} className="hover:underline font-bold">
               Sign up
@@ -106,7 +104,7 @@ const Login = () => {
             onClick={(e) => {
               onGoogleSignIn(e);
             }}
-            className={`text-gray-200 w-full flex items-center justify-center gap-x-3 py-2.5 border rounded-lg text-sm font-medium  ${
+            className={`text-text w-full flex items-center justify-center gap-x-3 py-2.5 border rounded-lg text-sm font-medium  ${
               isSigningIn
                 ? "cursor-not-allowed"
                 : "hover:bg-gray-100 hover:text-black transition duration-300 active:bg-gray-100"

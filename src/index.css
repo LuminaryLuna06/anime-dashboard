@@ -20,24 +20,27 @@
   --text: 255, 242, 249;
   --text-secondary: 241, 239, 236;
   --accent: 250, 78, 171;
+  --text-hover: 255, 163, 253;
 }
 
 .light {
   --background: 249, 245, 246;
-  --border: 253, 206, 223;
+  --border: 255, 163, 253;
   --primary: 253, 206, 223;
   --secondary: 242, 190, 209;
   --text: 3, 3, 3;
   --text-secondary: 3, 3, 3;
   --accent: 253, 206, 223;
+  --text-hover: 255, 163, 253;
 }
 
 .dark {
   --background: 3, 3, 3;
-  --border: 247,247,247;
-  --primary: 250, 78, 171;
-  --secondary: 254, 131, 198;
+  --border: 255, 163, 253;
+  --primary: 227, 132, 255;
+  --secondary: 238, 122, 219;
   --text: 248, 247, 247;
-  --text-secondary: 238,238,238;
+  --text-secondary: 238, 238, 238;
   --accent: 250, 78, 171;
+  --text-hover: 255, 163, 253;
 }

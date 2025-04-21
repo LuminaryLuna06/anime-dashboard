@@ -15,7 +15,7 @@ function Home() {
     <>
       <Suspense
         fallback={
-          <div className="h-screen flex flex-col items-center justify-center bg-black z-50 text-gray-300">
+          <div className="h-screen flex flex-col items-center justify-center bg-background z-50 text-text-secondary">
             <span className="loading loading-ring loading-xl"></span>
             <h1 className="text-2xl font-bold">Loading...</h1>
           </div>

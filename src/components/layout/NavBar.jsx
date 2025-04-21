@@ -18,7 +18,7 @@ function NavBar() {
   };
 
   return (
-    <div className="navbar bg-[#23252b] text-neutral-content h-5 sticky top-0 z-20">
+    <div className="navbar bg-background/50 text-text h-5 sticky top-0 z-20">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">
@@ -39,7 +39,7 @@ function NavBar() {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content text-gray-200 bg-gradient-to-r from-slate-800 to-black rounded-box z-[1] mt-3 w-52 p-2 shadow "
+            className="menu menu-sm dropdown-content text-text bg-gradient-to-r from-slate-800 to-black rounded-box z-[1] mt-3 w-52 p-2 shadow "
           >
             <li>
               <Link to={"/"}>Home</Link>
@@ -71,7 +71,7 @@ function NavBar() {
             ) : null}
           </ul>
         </div>
-        <Link className="btn btn-ghost md:text-2xl text-xl" to={"/"}>
+        <Link className="btn btn-ghost md:text-2xl text-xl text-text" to={"/"}>
           🌸BlossomAnime
         </Link>
       </div>
@@ -81,7 +81,7 @@ function NavBar() {
             <NavLink
               to="/"
               className={({ isActive }) => ` 
-              ${isActive ? "text-pink-400" : "inactive"}
+              ${isActive ? "text-primary" : "inactive"}
               `}
             >
               Home
@@ -91,7 +91,7 @@ function NavBar() {
             <NavLink
               to="/anime"
               className={({ isActive }) => ` 
-              ${isActive ? "text-pink-400" : "inactive"}
+              ${isActive ? "text-primary" : "inactive"}
               `}
             >
               Anime
@@ -101,7 +101,7 @@ function NavBar() {
             <NavLink
               to="/popular"
               className={({ isActive }) => ` 
-              ${isActive ? "text-pink-400" : "inactive"}
+              ${isActive ? "text-primary" : "inactive"}
               `}
             >
               Popular
@@ -112,7 +112,7 @@ function NavBar() {
             <NavLink
               to="/season"
               className={({ isActive }) => ` 
-              ${isActive ? "text-pink-400" : "inactive"}
+              ${isActive ? "text-primary" : "inactive"}
               `}
             >
               Seasonal
@@ -140,34 +140,34 @@ function NavBar() {
             <input
               type="search"
               id="default-search"
-              className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-pink-500 focus:border-pink-500"
+              className="block w-full p-4 pl-10 text-sm text-text border border-border rounded-lg bg-background focus:ring-border focus:border-border"
               placeholder="Search Anime..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
             />
             <button
               type="submit"
-              className="text-white absolute right-2.5 bottom-2.5 bg-pink-300 hover:bg-pink-400 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-sm p-2"
+              className="text-text absolute right-2.5 bottom-2.5 bg-primary hover:bg-secondary focus:ring-4 focus:outline-none focus:ring-primary font-medium rounded-lg text-sm p-2"
             >
               <SearchIcon />
             </button>
           </div>
         </form>
 
-        <button className="group relative text-gray-200 text-lg px-3 py-1 rounded">
+        <button className="group relative text-text text-lg px-3 py-1 rounded">
           <AccountCircleOutlinedIcon fontSize="large" />
-          <div className="absolute top-full right-0 w-[150px] rounded-lg p-3 mt-1 shadow-md bg-slate-800 text-gray-200 scale-y-0 group-hover:scale-y-100 group-focus:scale-y-100 origin-top duration-200 z-[10]">
+          <div className="absolute top-full right-0 w-[150px] rounded-lg p-3 mt-1 shadow-md bg-background/80 text-text scale-y-0 group-hover:scale-y-100 group-focus:scale-y-100 origin-top duration-200 z-[10]">
             {userLoggedIn ? (
               <>
                 <Link
                   to={"/profile"}
-                  className="block px-4 py-2 hover:bg-pink-300 hover:text-pink-700 transition-all duration-500"
+                  className="block px-4 py-2 hover:bg-primary hover:text-pink-700 transition-all duration-500"
                 >
                   Profile
                 </Link>
                 <a
                   href="#"
-                  className="block px-4 py-2 hover:bg-pink-300 hover:text-pink-700 transition-all duration-500"
+                  className="block px-4 py-2 hover:bg-primary hover:text-pink-700 transition-all duration-500"
                 >
                   Setting
                 </a>
@@ -177,7 +177,7 @@ function NavBar() {
                       navigate("/login");
                     });
                   }}
-                  className="px-4 py-2 w-full hover:bg-pink-300 hover:text-pink-700 transition-all duration-500"
+                  className="px-4 py-2 w-full hover:bg-primary hover:text-pink-700 transition-all duration-500"
                 >
                   Logout
                 </button>
@@ -185,7 +185,7 @@ function NavBar() {
             ) : (
               <Link
                 to={"/login"}
-                className="block px-4 py-2 w-full hover:bg-pink-300 hover:text-pink-700 transition-all duration-500 "
+                className="block px-4 py-2 w-full hover:bg-primary text-text transition-all duration-500 "
               >
                 Log in
               </Link>

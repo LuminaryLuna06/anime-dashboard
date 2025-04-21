@@ -21,7 +21,7 @@ function Trending() {
         <div className="py-4 ">
           <div className="py-4">
             <h1>⭐Trending Anime⭐</h1>
-            <p className="text-md text-gray-400 text-center md:text-left">
+            <p className="text-md text-text-secondary/80 text-center md:text-left">
               Find the best new and continuing simulcasts here!
             </p>
           </div>

@@ -78,11 +78,11 @@ function SliderCard({ props }) {
                 </div>
                 <div className="overlay">
                   <div className="text flex-col">
-                    <p className="font-bold">
+                    <p className="font-bold text-text">
                       {truncateTitle(anime?.title, 50)}
                     </p>
                     {anime.score || anime.year ? (
-                      <p className="text-sm">
+                      <p className="text-sm text-text-secondary">
                         ⭐ {anime?.score || "--"} - 🗓 {anime?.year || "--"}
                       </p>
                     ) : null}
@@ -95,10 +95,10 @@ function SliderCard({ props }) {
                   </div>
                 </div>
                 <div className="my-2">
-                  <h4 className="font-semibold">
+                  <h4 className="font-semibold text-text">
                     {truncateTitle(anime?.title, 50)}
                   </h4>
-                  <p>
+                  <p className="text-text-secondary/95">
                     ⭐ {anime?.score || "--"} - 🗓 {anime?.year || "--"}
                   </p>
                 </div>

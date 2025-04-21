@@ -7,19 +7,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        blossoms: {
-          100: "#f9a8d4",
-          200: "#f472b6",
-          300: "#db2777",
-        },
         background: "rgba(var(--background))",
         border: "rgba(var(--border))",
         primary: "rgba(var(--primary))",
         secondary: "rgba(var(--secondary))",
         text: "rgba(var(--text))",
         "text-secondary": "rgba(var(--text-secondary))",
+        "text-hover": "rgba(var(--text-hover))",
         accent: "rgba(var(--accent))",
-        
       },
       fontFamily: {
         sans: ["InterVariable", ...defaultTheme.fontFamily.sans],

@@ -11,6 +11,7 @@ import AdminRoutes from "./routes/AdminRoutes";
 
 import { AuthProvider } from "./context/authContext/index";
 import MayShow from "./components/layout/MayShow";
+
 function App() {
   return (
     <Router>
@@ -24,8 +25,8 @@ function App() {
             <NavBar />
           </MayShow>
           {/* <SkeletonTheme baseColor="#202020" highlightColor="#444"> */}
-            <PublicRoutes />
-            <AdminRoutes />
+          <PublicRoutes />
+          <AdminRoutes />
           {/* </SkeletonTheme> */}
           <MayShow>
             <Footer />

@@ -22,7 +22,9 @@ function Side() {
       </div>
       {/* Anime moi cap nhat */}
       <div className="w-full bg-base-100 p-2 rounded">
-        <h2 className="text-xl font-semibold my-2">New Episodes</h2>
+        <h2 className="text-xl font-semibold my-2 text-primary">
+          New Episodes
+        </h2>
         <hr className="my-2" />
         <ul>
           {recents &&
@@ -31,15 +33,15 @@ function Side() {
               return (
                 <li
                   key={index}
-                  className="flex justify-between p-2 bg-base-200 my-2"
+                  className="flex justify-between p-2 bg-background/30 my-2 hover:text-text-hover hover:border hover:border-border transition-all duration-300"
                 >
                   <Link
                     to={`/anime/${recent.entry.mal_id}/episodes/${lastestEp}`}
-                    className="text-blossoms-300 hover:text-blossoms-200 transition-all duration-500"
+                    className=""
                   >
                     {truncateTitle(recent.entry.title, 30)}
                   </Link>
-                  <p>Ep {recent.episodes[0].mal_id}</p>
+                  <p className="">Ep {recent.episodes[0].mal_id}</p>
                 </li>
               );
             })}
