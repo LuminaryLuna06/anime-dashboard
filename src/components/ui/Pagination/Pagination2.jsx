@@ -38,7 +38,7 @@ const Pagination2 = (props) => {
       {currentPage !== 1 && (
         <li
           onClick={onPrevious}
-          className="rounded md:p-3 p-2 text-sm md:text-md hover:bg-blossoms-100 hover:text-blossoms-300 bg-gray-800  font-semibold flex items-center justify-center cursor-pointer transition-all"
+          className="rounded md:p-3 p-2 text-sm md:text-md border border-background-secondary hover:bg-background hover:border-border bg-background-secondary  font-semibold flex items-center justify-center cursor-pointer transition-all duration-300"
         >
           <ArrowBackIosOutlinedIcon /> Previous
         </li>
@@ -55,8 +55,8 @@ const Pagination2 = (props) => {
             onClick={() => onPageChange(pageNumber)}
             className={
               pageNumber === currentPage
-                ? "bg-blossoms-200 font-semibold rounded-full px-2"
-                : "cursor-pointer text-sm md:text-md"
+                ? "border border-border font-semibold rounded-full px-2"
+                : "cursor-pointer text-sm md:text-md hover:border hover:border-border rounded-full px-3 py-1"
             }
           >
             {pageNumber}
@@ -67,7 +67,7 @@ const Pagination2 = (props) => {
       {currentPage !== lastPage && (
         <li
           onClick={onNext}
-          className="rounded md:p-3 p-2 text-sm md:text-md hover:bg-blossoms-100 hover:text-blossoms-300 bg-gray-800  font-semibold flex items-center justify-center cursor-pointer transition-all"
+          className="rounded md:p-3 p-2 text-sm md:text-md border border-background-secondary hover:bg-background hover:border-border bg-background-secondary  font-semibold flex items-center justify-center cursor-pointer transition-all duration-300"
         >
           Next <ArrowForwardIosOutlinedIcon />
         </li>

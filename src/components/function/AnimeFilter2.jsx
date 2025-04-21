@@ -135,20 +135,20 @@ function AnimeFilter2() {
 
   return (
     <>
-      <div className="md:flex md:justify-between mx-5">
+      <div className="md:flex md:justify-between mx-5 text-text">
         <div className="">
           <h1>Use filter for better result!</h1>
           {pagination ? (
-            <h2 className="font-semibold text-xl text-gray-400">
+            <h2 className="font-semibold text-xl text-text-secondary">
               There are {pagination.items.total} results
             </h2>
           ) : (
-            <div className="h-6 w-48 animate-pulse bg-gray-400"></div>
+            <div className="h-6 w-48 animate-pulse bg-background-secondary"></div>
           )}
         </div>
         <div className="flex justify-center items-center">
           <button
-            className="border-2 rounded-lg py-3 px-6 border-blossoms-100 hover:bg-blossoms-100 font-semibold items-center"
+            className="rounded-lg py-3 px-6 hover:border-2 hover:border-border text-text bg-background-secondary hover:bg-background font-semibold items-center transition-all duration-300"
             onClick={() => {
               setIsOpen(!isOpen);
             }}
@@ -158,33 +158,33 @@ function AnimeFilter2() {
         </div>
       </div>
       {isOpen && (
-        <div className=" md:w-[100%] lg:w-[80%] mx-auto bg-base-100 rounded-lg my-2">
+        <div className=" md:w-[100%] lg:w-[80%] mx-auto border border-border rounded-lg my-2">
           <form
             action=""
-            className="flex flex-col md:flex-row text-gray-800 p-2"
+            className="flex flex-col md:flex-row p-2 accent-accent"
             onSubmit={handleSubmit}
           >
             {/* Left */}
             <div className="w-[200px] flex flex-col p-2 font-semibold">
-              <h2 className="font-semibold text-xl text-center text-gray-300">
+              <h2 className="font-semibold text-xl text-center text-text">
                 Sort by
               </h2>
               <button
-                className="text-left bg-gray-200 p-2 hover:text-blossoms-300 hover:bg-blossoms-100 transition-all rounded-md my-1"
+                className="text-left bg-background-secondary p-2 hover:text-text-active hover:bg-background border border-background-secondary hover:border-border transition-all duration-300 rounded-md my-1"
                 onClick={() => handleSort("asc")}
               >
                 <TrendingUpIcon />
                 Asc Title
               </button>
               <button
-                className="text-left bg-gray-200 p-2 hover:text-blossoms-300 hover:bg-blossoms-100 transition-all rounded-md my-1"
+                className="text-left bg-background-secondary p-2 hover:text-text-active hover:bg-background border border-background-secondary hover:border-border transition-all duration-300 rounded-md my-1"
                 onClick={() => handleSort("desc")}
               >
                 <TrendingDownIcon />
                 Desc Title
               </button>
               <button
-                className="text-left bg-gray-200 p-2 hover:text-blossoms-300 hover:bg-blossoms-100 transition-all rounded-md my-1"
+                className="text-left bg-background-secondary p-2 hover:text-text-active hover:bg-background border border-background-secondary hover:border-border transition-all duration-300 rounded-md my-1"
                 onClick={() => {
                   const newOption = {
                     ...subFilters,
@@ -198,7 +198,7 @@ function AnimeFilter2() {
                 Most View
               </button>
               <button
-                className="text-left bg-gray-200 p-2 hover:text-blossoms-300 hover:bg-blossoms-100 transition-all rounded-md my-1"
+                className="text-left bg-background-secondary p-2 hover:text-text-active hover:bg-background border border-background-secondary hover:border-border transition-all duration-300 rounded-md my-1"
                 onClick={(e) => {
                   e.preventDefault();
                   const newOption = {
@@ -214,7 +214,7 @@ function AnimeFilter2() {
               </button>
             </div>
             {/* Right */}
-            <div className="flex flex-col w-full gap-5 p-2 text-gray-300 accent-blossoms-100">
+            <div className="flex flex-col w-full gap-5 p-2 text-text accent-blossoms-100">
               {/* Type Selection */}
               <fieldset className="grid md:grid-cols-4 lg:grid-cols-5 grid-cols-2">
                 <legend className="text-xl font-semibold">Type:</legend>
@@ -288,7 +288,7 @@ function AnimeFilter2() {
               </fieldset>
               {/* Submit Button */}
               <button
-                className="text-gray-700 font-bold bg-gray-200 p-2 hover:text-blossoms-300 hover:bg-blossoms-100 transition-all rounded-md my-1"
+                className="text-text font-bold p-2 border border-background-secondary bg-background-secondary hover:bg-background hover:border-border transition-all duration-300 rounded-md my-1"
                 type="submit"
               >
                 Filter <TuneOutlinedIcon />
@@ -314,7 +314,7 @@ function AnimeFilter2() {
           />
         ) : null}
 
-        <div className="flex flex-wrap items-start mx-auto">
+        <div className="flex flex-wrap items-start mx-auto bg-background-secondary p-3 rounded">
           {isLoading ? (
             <CardSkeleton cards={12} />
           ) : (
